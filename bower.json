@@ -1,9 +1,10 @@
 {
   "name": "dwt",
+  "version": "13.1.0",
   "authors": [
     "Dynamsoft"
   ],
-  "description": "Dynamic Web TWAIN is a browser-based document scanning SDK specifically designed for web applications. With just a few lines of JavaScript code, you can develop robust applications to scan documents from TWAIN and SANE compatible scanners, edit the scanned images and save them to a local/server file system or document repository.",
+  "description": "Dynamic Web TWAIN is a browser-based document scanning SDK designed for web applications. It supports Windows, Linux and macOS.",
   "main": "dist/dynamsoft.webtwain.min.js",
   "keywords": [
     "TWAIN",
