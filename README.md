@@ -34,7 +34,7 @@ npm install dwt
 Include **dynamsoft.webtwain.min.js** into your page:
 
 ```html
-<script type="text/javascript" src="https://www.dynamsoft.com/library/dbr/dynamsoft.barcode.min.js"></script>
+<script type="text/javascript" src="https://www.dynamsoft.com/library/dwt/dynamsoft.webtwain.min.js"></script>
 ```
 
 Select a source and scan documents:
@@ -84,7 +84,7 @@ If you need to rename the id, you should also change the id in the dynamsoft.web
 <html>
 <head>
     <title>Use Dynamic Web TWAIN to Scan</title>
-    <script type="text/javascript" src="https://www.dynamsoft.com/library/dbr/dynamsoft.barcode.min.js"></script>
+    <script type="text/javascript" src="https://www.dynamsoft.com/library/dwt/dynamsoft.webtwain.min.js"></script>
 </head>
 <body>
     <select size="1" id="source" style="position: relative; width: 220px;"></select>
