@@ -2448,7 +2448,7 @@ interface WebTwain {
      * @param {function} asyncFailureFunc the function to call when the upload fails. Please refer to the function prototype OnFailure.
      * @return {bool}
      */
-    ConvertToBase64(indices: number[], enumImageType: EnumDWT_ImageType, optionalAsyncSuccessFunc?: () => void, optionalAsyncFailureFunc?: (errorCode: number, errorString: string) => void): boolean;
+    ConvertToBase64(indices: number[], enumImageType: EnumDWT_ImageType, optionalAsyncSuccessFunc?: (result:any) => void, optionalAsyncFailureFunc?: (errorCode: number, errorString: string) => void): boolean;
 
     /**
      * Converts the images specified by the indices to base64.
@@ -2459,7 +2459,7 @@ interface WebTwain {
      * @param {function} asyncFailureFunc the function to call when the upload fails. Please refer to the function prototype OnFailure.
      * @return {bool}
      */
-    ConvertToBlob(indices: number[], enumImageType: EnumDWT_ImageType, optionalAsyncSuccessFunc?: () => void, optionalAsyncFailureFunc?: (errorCode: number, errorString: string) => void): boolean;
+    ConvertToBlob(indices: number[], enumImageType: EnumDWT_ImageType, optionalAsyncSuccessFunc?: (result:any) => void, optionalAsyncFailureFunc?: (errorCode: number, errorString: string) => void): boolean;
 
     /**
      * Changes a specified image to gray scale.
@@ -3180,7 +3180,7 @@ interface WebTwain {
      * @param {EnumDWT_ImageType} lImageType specifies the file format.
      * @return {bool}
      */
-    LoadImageFromBase64Binary(bry: string, lImageType: EnumDWT_ImageType): boolean;
+    LoadImageFromBase64Binary(bry: string, lImageType: EnumDWT_ImageType, optionalAsyncSuccessFunc?: () => void, optionalAsyncFailureFunc?: (errorCode: number, errorString: string) => void): boolean;
 
     /**
      * [Deprecated.] Loads image from a byte array with the specified file format.
@@ -3360,7 +3360,7 @@ interface WebTwain {
      * @param {number} sImageIndex specifies the index of image in buffer. The index is 0-based.
      * @return {bool}
      */
-    SaveAsBMP(localFile: string, sImageIndex: number): boolean;
+    SaveAsBMP(localFile: string, sImageIndex: number, optionalAsyncSuccessFunc?: () => void, optionalAsyncFailureFunc?: (errorCode: number, errorString: string) => void): boolean;
 
     /*ignored
     SaveAsGIF
@@ -3373,7 +3373,7 @@ interface WebTwain {
      * @param {number} sImageIndex specifies the index of image in buffer. The index is 0-based.
      * @return {bool}
      */
-    SaveAsJPEG(localFile: string, sImageIndex: number): boolean;
+    SaveAsJPEG(localFile: string, sImageIndex: number, optionalAsyncSuccessFunc?: () => void, optionalAsyncFailureFunc?: (errorCode: number, errorString: string) => void): boolean;
 
     /**
      * Saves the image of a specified index in buffer as a PDF file.
@@ -3382,7 +3382,7 @@ interface WebTwain {
      * @param {number} sImageIndex specifies the index of image in buffer. The index is 0-based.
      * @return {bool}
      */
-    SaveAsPDF(localFile: string, sImageIndex: number): boolean;
+    SaveAsPDF(localFile: string, sImageIndex: number, optionalAsyncSuccessFunc?: () => void, optionalAsyncFailureFunc?: (errorCode: number, errorString: string) => void): boolean;
 
     /**
      * Saves the image of a specified index in buffer as a PNG file.
@@ -3391,7 +3391,7 @@ interface WebTwain {
      * @param {number} sImageIndex specifies the index of image in buffer. The index is 0-based.
      * @return {bool}
      */
-    SaveAsPNG(localFile: string, sImageIndex: number): boolean;
+    SaveAsPNG(localFile: string, sImageIndex: number, optionalAsyncSuccessFunc?: () => void, optionalAsyncFailureFunc?: (errorCode: number, errorString: string) => void): boolean;
 
     /**
      * Saves the image of a specified index in buffer as a TIFF file.
@@ -3400,7 +3400,7 @@ interface WebTwain {
      * @param {number} sImageIndex specifies the index of image in buffer. The index is 0-based.
      * @return {bool}
      */
-    SaveAsTIFF(localFile: string, sImageIndex: number): boolean;
+    SaveAsTIFF(localFile: string, sImageIndex: number, optionalAsyncSuccessFunc?: () => void, optionalAsyncFailureFunc?: (errorCode: number, errorString: string) => void): boolean;
 
     /**
      * Saves the selected images in buffer as a Multipage PDF file.
@@ -3425,9 +3425,9 @@ interface WebTwain {
     /**
      * Saves the selected images in buffer to base64 string.
      * @method WebTwain#SaveSelectedImagesToBase64Binary
-     * @return {string}
+     * @return {string|bool}
      */
-    SaveSelectedImagesToBase64Binary(): string;
+    SaveSelectedImagesToBase64Binary(optionalAsyncSuccessFunc?: (result:string[]) => void, optionalAsyncFailureFunc?: (errorCode: number, errorString: string) => void): string|boolean;
 
     /**
      * [Deprecated.] Saves the selected images in buffer to a byte array in the specified file format.
