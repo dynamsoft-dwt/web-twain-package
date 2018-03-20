@@ -21,6 +21,37 @@
  * @namespace Dynamsoft
  */
 declare namespace Dynamsoft {
+    namespace Lib {
+        /*ignored
+        Addon_Events  Addon_Sendback_Events  AttachAndShowImage  BIO  DOM  DynamicLoadAddonFuns  DynamicWebTwain  EnumMouseButton
+        Errors  Events  IntToColorStr  LS  OnGetImageByURL  OnGetImageFromServer  Path  ProgressBar  UI  Uri
+        addEventListener  ajax  all  appendMessage  appendRichMessage  aryControlLoadImage  attachAddon  attachProperty
+        base64  bio  cancelFrome  clearMessage  closeAll  closeProgress  colorStrToInt  config  css  currentStyle
+        debug  detect  detectButton  dialog  dialogShowStatus  dlgProgress  dlgRef  drawBoxBorder  drawImageWithHermite
+        each  empty  endsWith
+        */
+
+        let env:{
+            WSSession: number, WSVersion: string,
+            bChrome: boolean, bEdge: boolean, bFileSystem: boolean, bFirefox: boolean, 
+            bIE: boolean, bLinux: boolean, bMac: boolean, bSafari: boolean, bWin: boolean, bWin64: boolean,
+            basePath: string, iPluginLength: number, isX64: boolean, pathType: number,
+            strChromeVersion: number, strFirefoxVersion: string, strIEVersion: string
+        }
+
+        /*ignored
+        error  escapeHtml  escapeRegExp  extend  filter  fireEvent  fromUnicode  get  getColor  getCss
+        getElDimensions  getHex  getHexColor  getHttpUrl  getLogger  getOffset  getRandom  getRealPath  getScript
+        getWS  getWSUrl  getWheelDelta  globalEval  guid  hide  html5  imageControlCount  indexOf  install
+        io  isArray  isBoolean  isDef  isFunction  isLocalIP  isNaN  isNull  isNumber  isObject
+        isPlainObject  isString  isUndef  isUndefined  isWindow  keys  log  main  makeArray  mix
+        needShowTwiceShowDialog  nil  noop  now  obj  one  page  param  parse  parseHTML  parser
+        product  progressMessage  ready  removeEventListener  replaceAll  replaceControl  show  showProgress  startWS
+        startWSByIP  startsWith  stopPropagation  stringify  style  support  switchEvent  tmp  toggle  trim
+        type  unEscapeHtml  unparam  upperCaseFirst  urlDecode  urlEncode  utf8  win
+        ...other internal ones
+        */
+    }
     namespace WebTwainEnv {
         let ActiveXInstallWithCAB: boolean;
         let ActiveXVersion: string;
@@ -39,18 +70,18 @@ declare namespace Dynamsoft {
         let JSVersion: string;
         function Load(): void;
         function RegisterEvent(event: string, fn: (...args: any[]) => void): void;
-        /*
-        OnWebTwainInitMessage
-        OnWebTwainNeedUpgrade
-        OnWebTwainNeedUpgradeWebJavascript
-        OnWebTwainNotFound
-        OnWebTwainOldPluginNotAllowed
+        
+        /*ignored
+        OnWebTwainInitMessage  OnWebTwainNeedUpgrade  OnWebTwainNeedUpgradeWebJavascript  OnWebTwainNotFound  OnWebTwainOldPluginNotAllowed
         */
+        
         function OnWebTwainPostExecute(): void;
         function OnWebTwainPreExecute(): void;
-        /*
+        
+        /*ignored
         OnWebTwainReady
         */
+
         let PluginVersion:string;
         let ProductKey: string;
         function RegisterEvent(event: string, fn: (...args: any[]) => void): void;
@@ -66,13 +97,14 @@ declare namespace Dynamsoft {
     }
 }
 
+/** Border Styles */
 declare enum EnumDWT_BorderStyle {
-  /** No border. */
-  TWBS_NONE = 0,
-  /** Flat border. */
-  TWBS_SINGLEFLAT = 1,
-  /** 3D border.   */
-  TWBS_SINGLE3D = 2
+    /** No border. */
+    TWBS_NONE = 0,
+    /** Flat border. */
+    TWBS_SINGLEFLAT = 1,
+    /** 3D border.   */
+    TWBS_SINGLE3D = 2
 }
 
 /** Capabilities */
@@ -1390,37 +1422,37 @@ interface WebTwain {
 
     /**
      * Returns or sets the background color of the main control. It is a value specifying the 24-bit RGB value.
-     * @type {int}
+     * @type {number}
      */
     BackgroundColor: number;
 
     /**
      * Returns or sets the fill color of the selected area of an image when it is cut, erased or rotated. It is a value specifying the 24-bit RGB value.
-     * @type {int}
+     * @type {number}
      */
     BackgroundFillColor: number;
 
     /**
      * Returns or sets the pixel bit depths for the current value of PixelType property. This is a runtime property.
-     * @type {short}
+     * @type {number}
      */
     BitDepth: number;
 
     /**
      * Returns the current deviation of the pixels in the image.
-     * @type {float}
+     * @type {number}
      */
     BlankImageCurrentStdDev: number;
 
     /**
      * Returns or sets the standard deviation of the pixels in the image.
-     * @type {float}
+     * @type {number}
      */
     BlankImageMaxStdDev: number;
 
     /**
      * Returns or sets the dividing line between black and white. The default value is 128.
-     * @type {int}
+     * @type {number}
      */
     BlankImageThreshold: number;
 
@@ -1432,43 +1464,43 @@ interface WebTwain {
 
     /**
      * Returns or sets the brightness values available within the Source. This is a runtime property.
-     * @type {float}
+     * @type {number}
      */
     Brightness: number;
 
     /**
      * [Deprecated.] Sets or returns whether brokerprocess is enabled for scanning.
-     * @type {int}
+     * @type {number}
      */
     BrokerProcessType: number;
 
     /**
      * Sets or returns how much physical memory is allowed for storing images currently loaded in Dynamic Web TWAIN. Once the limit is reached, images will be cached on the hard disk.
-     * @type {int}
+     * @type {number}
      */
     BufferMemoryLimit: number;
 
     /**
      * Sets or returns the index (0-based) of a list to indicate the Current Value when the value of the CapType property is TWON_ENUMERATION. If the data type of the capability is String, the list is in CapItemsString property. For other data types, the list is in CapItems property. This is a runtime property.
-     * @type {int}
+     * @type {number}
      */
     CapCurrentIndex: number;
 
     /**
      * Sets or returns the current value in a range when the value of the CapType property is TWON_RANGE. This is a runtime property.
-     * @type {double}
+     * @type {number}
      */
     CapCurrentValue: number;
 
     /**
      * Returns the index (0-based) of a list to indicate the Default Value when the value of the CapType property is TWON_ENUMERATION. If the data type of the capability is String, the list is in CapItemsString property. For other data types, the list is in CapItems property. This is a runtime, read-only property.
-     * @type {int}
+     * @type {number}
      */
     CapDefaultIndex: number;
 
     /**
      * Returns the default value in a range when the value of the CapType property is TWON_RANGE. This is a runtime, read-only property.
-     * @type {double}
+     * @type {number}
      */
     CapDefaultValue: number;
 
@@ -1480,25 +1512,25 @@ interface WebTwain {
 
     /**
      * Sets or returns the maximum value in a range when the value of the CapType property is TWON_RANGE. This is a runtime property.
-     * @type {double}
+     * @type {number}
      */
     CapMaxValue: number;
 
     /**
      * Sets or returns the minimum value in a range when the value of the CapType property is TWON_RANGE. This is a runtime property.
-     * @type {double}
+     * @type {number}
      */
     CapMinValue: number;
 
     /**
      * [Deprecated.] Sets or returns how many items are in the list when the value of the CapType property is TWON_ARRAY or TWON_ENUMERATION. For String data type, the list is in CapItemsString property. For other data types, the list is in CapItems property. This is a runtime property.
-     * @type {int}
+     * @type {number}
      */
     CapNumItems: number;
 
     /**
      * Sets or returns the step size in a range when the value of the CapType property is TWON_RANGE. This is a runtime property.
-     * @type {double}
+     * @type {number}
      */
     CapStepSize: number;
 
@@ -1510,7 +1542,7 @@ interface WebTwain {
 
     /**
      * Returns or sets the value of the capability specified by Capability property when the value of the CapType property is TWON_ONEVALUE. This is a runtime property.
-     * @type {double}
+     * @type {number}
      */
     CapValue: number;
 
@@ -1522,7 +1554,7 @@ interface WebTwain {
 
     /**
      * Sets or returns the value type for reading the value of a capability. This is a runtime property.
-     * @type {short}
+     * @type {number}
      */
     CapValueType: number;
 
@@ -1534,13 +1566,13 @@ interface WebTwain {
 
     /**
      * Returns or sets the contrast values available within the Source. This is a runtime property.
-     * @type {float}
+     * @type {number}
      */
     Contrast: number;
 
     /**
      * Returns or sets current index of image in buffer. This is a runtime property.
-     * @type {short}
+     * @type {number}
      */
     CurrentImageIndexInBuffer: number;
 
@@ -1552,7 +1584,7 @@ interface WebTwain {
 
     /**
      * Returns the value indicating the data source status. This is a runtime, read-only property.
-     * @type {int}
+     * @type {number}
      */
     DataSourceStatus: number;
 
@@ -1564,7 +1596,7 @@ interface WebTwain {
 
     /**
      * Returns whether the source supports duplex. If so, it further returns the level of duplex the Source supports (one pass or two pass duplex). This is a runtime, read-only property.
-     * @type {int}
+     * @type {number}
      */
     Duplex: number;
 
@@ -1576,7 +1608,7 @@ interface WebTwain {
 
     /**
      * Returns the error code. This is a runtime, read-only property.
-     * @type {int}
+     * @type {number}
      */
     ErrorCode: number;
 
@@ -1594,7 +1626,7 @@ interface WebTwain {
 
     /**
      * Returns or sets the port number of the FTP server.
-     * @type {int}
+     * @type {number}
      */
     FTPPort: number;
 
@@ -1630,7 +1662,7 @@ interface WebTwain {
 
     /**
      * Returns how many images are in buffer. This is a runtime, read-only property.
-     * @type {short}
+     * @type {number}
      */
     HowManyImagesInBuffer: number;
 
@@ -1654,7 +1686,7 @@ interface WebTwain {
 
     /**
      * Returns or sets the port number of the HTTP server.
-     * @type {int|string}
+     * @type {number|string}
      */
     HTTPPort: number|string;
 
@@ -1846,13 +1878,13 @@ interface WebTwain {
 
     /**
      * [Deprecated.] The number of bits in each image pixel (or bit depth). This is a runtime, read-only property.
-     * @type {short}
+     * @type {number}
      */
     ImageBitsPerPixel: number;
 
     /**
      * Returns or sets whether a TWAIN driver or Native Scan of Mac OS X is used for document scanning. This property works for Mac edition only.
-     * @type {int}
+     * @type {number}
      */
     ImageCaptureDriverType: number;
 
@@ -1882,37 +1914,37 @@ interface WebTwain {
 
     /**
      * Returns the document number of the current image. This is a runtime, read-only property.
-     * @type {int}
+     * @type {number}
      */
     ImageLayoutDocumentNumber: number;
 
     /**
      * Returns the value of the bottom-most edge of the current image frame (in Unit). This is a read-only runtime property.
-     * @type {float}
+     * @type {number}
      */
     ImageLayoutFrameBottom: number;
 
     /**
      * Returns the value of the left-most edge of the current image frame (in Unit). This is a runtime, read-only property.
-     * @type {float}
+     * @type {number}
      */
     ImageLayoutFrameLeft: number;
 
     /**
      * Returns the frame number of the current image. This is a runtime, read-only property.
-     * @type {int}
+     * @type {number}
      */
     ImageLayoutFrameNumber: number;
 
     /**
      * Returns the value of the right-most edge of the current image frame (in Unit). This is a runtime, read-only property.
-     * @type {float}
+     * @type {number}
      */
     ImageLayoutFrameRight: number;
 
     /**
      * Returns the value of the top-most edge of the current image frame (in Unit). This is a runtime, read-only property.
-     * @type {float}
+     * @type {number}
      */
     ImageLayoutFrameTop: number;
 
@@ -1924,13 +1956,13 @@ interface WebTwain {
 
     /**
      * [Deprecated.] Returns how tall/long, in pixels, the image is. This is a runtime, read-only property.
-     * @type {int}
+     * @type {number}
      */
     ImageLength: number;
 
     /**
      * Returns or sets the margin between images when multiple images are displayed in Dynamic Web TWAIN.
-     * @type {short}
+     * @type {number}
      */
     ImageMargin: number;
 
@@ -1942,31 +1974,31 @@ interface WebTwain {
 
     /**
      * [Deprecated.] Returns how width, in pixels, the image is. This is a runtime, read-only property.
-     * @type {int}
+     * @type {number}
      */
     ImageWidth: number;
 
     /**
      * [Deprecated.] Returns the X resolution of the current image. X resolution is the number of pixels per Unit in the horizontal direction. This is a runtime, read-only property.
-     * @type {float}
+     * @type {number}
      */
     ImageXResolution: number;
 
     /**
      * [Deprecated.] Returns the Y resolution of the current image. Y resolution is the number of pixels per Unit in the vertical direction. This is a runtime, read-only property.
-     * @type {float}
+     * @type {number}
      */
     ImageYResolution: number;
 
     /**
      * Returns or sets the quality of JPEG files and PDF files using JPEG compression.
-     * @type {short}
+     * @type {number}
      */
     JPEGQuality: number;
 
     /**
      * Returns or sets the log level for debugging.
-     * @type {short}
+     * @type {number}
      */
     LogLevel: number;
 
@@ -1978,7 +2010,7 @@ interface WebTwain {
 
     /**
      * Return the magnetic type if the scanner support magnetic data recognition.
-     * @type {short}
+     * @type {number}
      */
     MagType: number;
 
@@ -1990,19 +2022,19 @@ interface WebTwain {
 
     /**
      * Returns or sets the maximum number of images can be held in buffer.
-     * @type {short}
+     * @type {number}
      */
     MaxImagesInBuffer: number;
 
     /**
      * [Deprecated.] Returns or sets how many threads can be used when you upload files through POST.
-     * @type {int}
+     * @type {number}
      */
     MaxInternetTransferThreads: number;
 
     /**
      * Sets or returns the maximum allowed size when Dynamic Web TWAIN uploads a document.
-     * @type {int}
+     * @type {number}
      */
     MaxUploadImageSize: number;
 
@@ -2014,13 +2046,13 @@ interface WebTwain {
 
     /**
      * Returns the X co-ordinate of the mouse. This is a runtime property.
-     * @type {int}
+     * @type {number}
      */
     MouseX: number;
 
     /**
      * Returns the Y co-ordinate of the mouse. This is a runtime property.
-     * @type {int}
+     * @type {number}
      */
     MouseY: number;
 
@@ -2086,19 +2118,19 @@ interface WebTwain {
 
     /**
      * Returns or sets the page size(s) the Source can/should use to acquire image data. This is a runtime property.
-     * @type {short}
+     * @type {number}
      */
     PageSize: number;
 
     /**
      * Returns the number of transfers the Source is ready to supply, upon demand. This is a runtime, read-only property.
-     * @type {short}
+     * @type {number}
      */
     PendingXfers: number;
 
     /**
      * Returns or sets the pixel flavor for acquired images. This is a runtime property.
-     * @type {short}
+     * @type {number}
      */
     PixelFlavor: number;
 
@@ -2134,25 +2166,25 @@ interface WebTwain {
 
     /**
      * Returns or sets the current resolution for acquired images. This is a runtime property.
-     * @type {float}
+     * @type {number}
      */
     Resolution: number;
 
     /**
      * Returns or sets how many scanned images are selected.
-     * @type {short}
+     * @type {number}
      */
     SelectedImagesCount: number;
 
     /**
      * Returns or sets the border color of the selected image. It is a value specifying the 24-bit RGB value.
-     * @type {int}
+     * @type {number}
      */
     SelectionImageBorderColor: number;
 
     /**
      * Specifies a fixed aspect ratio to be used for selecting an area.
-     * @type {float}
+     * @type {number}
      */
     SelectionRectAspectRatio: number;
 
@@ -2164,7 +2196,7 @@ interface WebTwain {
 
     /**
      * Returns how many sources are installed in the system. This is a runtime, read-only property.
-     * @type {int}
+     * @type {number}
      */
     SourceCount: number;
 
@@ -2182,7 +2214,7 @@ interface WebTwain {
 
     /**
      * Returns or sets the unit of measure. This is a runtime property.
-     * @type {short}
+     * @type {number}
      */
     Unit: number;
 
@@ -2206,17 +2238,17 @@ interface WebTwain {
 
     /**
      * Returns and sets the number of images you are willing to transfer per session. This is a runtime property.
-     * @type {short}
+     * @type {number}
      */
     XferCount: number;
 
     /**
      * Returns or sets zoom factor for the image, only valid When the view mode is set to -1 by -1.
-     * @type {float}
+     * @type {number}
      */
     Zoom: number;
 
-    /* Missing 
+    /* ignored 
     style
     _AutoCropMethod
     */
@@ -2239,14 +2271,14 @@ interface WebTwain {
     /**
      * Add text on an image.
      * @method WebTwain#AddText
-     * @param {short} sImageIndex  the index of the image that you want to add text to.
-     * @param {int} x the x coordinate for the text.
-     * @param {int} y the y coordinate for the text.
+     * @param {number} sImageIndex  the index of the image that you want to add text to.
+     * @param {number} x the x coordinate for the text.
+     * @param {number} y the y coordinate for the text.
      * @param {string} text the content of the text that you want to add.
-     * @param {int} txtColor  the color for the text.
-     * @param {int} backgroundColor  the background color.
-     * @param {float} backgroundRoundRadius ranging from 0 to 0.5. Please NOTE that MAC version does not support this parameter.
-     * @param {float} backgroundOpacity specifies the opacity of the background of the added text, it ranges from 0 to 1.0. Please NOTE that Mac version only supports value 0 and 1
+     * @param {number} txtColor  the color for the text.
+     * @param {number} backgroundColor  the background color.
+     * @param {number} backgroundRoundRadius ranging from 0 to 0.5. Please NOTE that MAC version does not support this parameter.
+     * @param {number} backgroundOpacity specifies the opacity of the background of the added text, it ranges from 0 to 1.0. Please NOTE that Mac version only supports value 0 and 1
      * @return {bool}
      */
     AddText(sImageIndex: number, x: number, y: number, text: string, txtColor: number, backgroundColor: number, backgroundRoundRadius: number, backgroundOpacity: number): boolean;
@@ -2282,32 +2314,32 @@ interface WebTwain {
     /**
      * Returns the value of the bottom-most edge of the specified frame.
      * @method WebTwain#CapGetFrameBottom
-     * @param {short} index specifies the value of which frame to get. The index is 0-based.
-     * @return {float}
+     * @param {number} index specifies the value of which frame to get. The index is 0-based.
+     * @return {number}
      */
     CapGetFrameBottom(index: number): number;
 
     /**
      * Returns the value (in Unit) of the left-most edge of the specified frame.
      * @method WebTwain#CapGetFrameLeft
-     * @param {short} index specifies the value of which frame to get. The index is 0-based.
-     * @return {float}
+     * @param {number} index specifies the value of which frame to get. The index is 0-based.
+     * @return {number}
      */
     CapGetFrameLeft(index: number): number;
 
     /**
      * Returns the value (in Unit) of the left-most edge of the specified frame.
      * @method WebTwain#CapGetFrameRight
-     * @param {short} index specifies the value of which frame to get. The index is 0-based.
-     * @return {float}
+     * @param {number} index specifies the value of which frame to get. The index is 0-based.
+     * @return {number}
      */
     CapGetFrameRight(index: number): number;
 
     /**
      * Returns the value (in Unit) of the top-most edge of the specified frame.
      * @method WebTwain#CapGetFrameTop
-     * @param {short} index specifies the value of which frame to get. The index is 0-based.
-     * @return {float}
+     * @param {number} index specifies the value of which frame to get. The index is 0-based.
+     * @return {number}
      */
     CapGetFrameTop(index: number): number;
 
@@ -2342,11 +2374,11 @@ interface WebTwain {
     /**
      * Sets the values of the specified frame.
      * @method WebTwain#CapSetFrame
-     * @param {short} index  specifies the values of which frame to set. The index is 0-based.
-     * @param {float} left the value (in Unit) of the left-most edge of the specified frame.
-     * @param {float} top the value (in Unit) of the top-most edge of the specified frame.
-     * @param {float} right  the value (in Unit) of the right-most edge of the specified frame.
-     * @param {float} bottom  the value (in Unit) of the bottom-most edge of the specified frame.
+     * @param {number} index  specifies the values of which frame to set. The index is 0-based.
+     * @param {number} left the value (in Unit) of the left-most edge of the specified frame.
+     * @param {number} top the value (in Unit) of the top-most edge of the specified frame.
+     * @param {number} right  the value (in Unit) of the right-most edge of the specified frame.
+     * @param {number} bottom  the value (in Unit) of the bottom-most edge of the specified frame.
      * @return {bool}
      */
     CapSetFrame(index: number, left: number, top: number, right: number, bottom: number): boolean;
@@ -2354,8 +2386,8 @@ interface WebTwain {
     /**
      * Changes the bitdepth of a specified image.
      * @method WebTwain#ChangeBitDepth
-     * @param {short} sImageIndex specifies the index of image in buffer. The index is 0-based.
-     * @param {short} sBitDepth specifies the target bit depth.
+     * @param {number} sImageIndex specifies the index of image in buffer. The index is 0-based.
+     * @param {number} sBitDepth specifies the target bit depth.
      * @param {bool} bHighQuality specifies whether or not to keep high quality while changing the bit depth. When it's true, it takes more time.
      * @return {bool}
      */
@@ -2364,9 +2396,9 @@ interface WebTwain {
     /**
      * Changes width and height of the image of a specified index in the buffer. Please note the file size of the image will be changed proportionately.
      * @method WebTwain#ChangeImageSize
-     * @param {short} sImageIndex specifies the index of image in buffer. The index is 0-based.
-     * @param {int} iNewWidth  specifies the pixel width of the new image.
-     * @param {int} iNewHeight specifies the pixel height of the new image.
+     * @param {number} sImageIndex specifies the index of image in buffer. The index is 0-based.
+     * @param {number} iNewWidth  specifies the pixel width of the new image.
+     * @param {number} iNewHeight specifies the pixel height of the new image.
      * @param {EnumDWT_InterpolationMethod} newVal specifies the method to do interpolation.
      * @return {bool}
      */
@@ -2432,7 +2464,7 @@ interface WebTwain {
     /**
      * Changes a specified image to gray scale.
      * @method WebTwain#ConvertToGrayScale
-     * @param {short} sIndex specifies the index of image in buffer. The index is 0-based.
+     * @param {number} sIndex specifies the index of image in buffer. The index is 0-based.
      * @return {bool}
      */
     ConvertToGrayScale(sIndex: number): boolean;
@@ -2440,7 +2472,7 @@ interface WebTwain {
     /**
      * Copies the image of a specified index in buffer to clipboard in DIB format.
      * @method WebTwain#CopyToClipboard
-     * @param {short} sImageIndex specifies the index of image in buffer. The index is 0-based.
+     * @param {number} sImageIndex specifies the index of image in buffer. The index is 0-based.
      * @return {bool}
      */
     CopyToClipboard(sImageIndex: number): boolean;
@@ -2448,19 +2480,19 @@ interface WebTwain {
     /**
      * Create the font for adding text using the method AddText.
      * @method WebTwain#CreateTextFont
-     * @param {int} height Specifies the desired height (in logical units) of the font.The absolute value of nHeight must not exceed 16,384 device units after it is converted.For all height comparisons, the font mapper looks for the largest font that does not exceed the requested size or the smallest font if all the fonts exceed the requested size.
-     * @param {int} width Specifies the average width (in logical units) of characters in the font. If Width is 0, the aspect ratio of the device will be matched against the digitization aspect ratio of the available fonts to find the closest match, which is determined by the absolute value of the difference.
-     * @param {int} escapement Specifies the angle (in 0.1-degree units) between the escapement vector and the x-axis of the display surface. The escapement vector is the line through the origins of the first and last characters on a line. The angle is measured counterclockwise from the x-axis.
-     * @param {int} orientation Specifies the angle (in 0.1-degree units) between the baseline of a character and the x-axis.The angle is measured counterclockwise from the x-axis for coordinate systems in which the y-direction is down and clockwise from the x-axis for coordinate systems in which the y-direction is up.
-     * @param {int} weight Specifies the font weight (in inked pixels per 1000). The described valuesare approximate; the actual appearance depends on the typeface. Some fonts haveonly FW_NORMAL, FW_REGULAR, and FW_BOLD weights. If FW_DONTCARE is specified, a default weight is used.
-     * @param {short} italic  Specifies an italic font if set to TRUE.
-     * @param {short} underline Specifies an underlined font if set to TRUE.
-     * @param {short} strikeOut A strikeout font if set to TRUE.
-     * @param {short} charSet Specifies the font's character set. The OEM character set is system-dependent. Fonts with other character sets may exist in the system. An application that uses a font with an unknown character set must not attempt to translate or interpret strings that are to be rendered with that font.
-     * @param {short} outputPrecision Specifies the desired output precision. The output precision defines how closely the output must match the requested font's height, width, character orientation, escapement, and pitch.
-     * @param {short} clipPrecision Specifies the desired clipping precision. The clipping precision defines how to clip characters that are partially outside the clipping region.
-     * @param {short} quality Specifies the font's output quality, which defines how carefully the GDI must attempt to match the logical-font attributes to those of an actual physical font.
-     * @param {short} pitchAndFamily  The pitch and family of the font.
+     * @param {number} height Specifies the desired height (in logical units) of the font.The absolute value of nHeight must not exceed 16,384 device units after it is converted.For all height comparisons, the font mapper looks for the largest font that does not exceed the requested size or the smallest font if all the fonts exceed the requested size.
+     * @param {number} width Specifies the average width (in logical units) of characters in the font. If Width is 0, the aspect ratio of the device will be matched against the digitization aspect ratio of the available fonts to find the closest match, which is determined by the absolute value of the difference.
+     * @param {number} escapement Specifies the angle (in 0.1-degree units) between the escapement vector and the x-axis of the display surface. The escapement vector is the line through the origins of the first and last characters on a line. The angle is measured counterclockwise from the x-axis.
+     * @param {number} orientation Specifies the angle (in 0.1-degree units) between the baseline of a character and the x-axis.The angle is measured counterclockwise from the x-axis for coordinate systems in which the y-direction is down and clockwise from the x-axis for coordinate systems in which the y-direction is up.
+     * @param {number} weight Specifies the font weight (in inked pixels per 1000). The described valuesare approximate; the actual appearance depends on the typeface. Some fonts haveonly FW_NORMAL, FW_REGULAR, and FW_BOLD weights. If FW_DONTCARE is specified, a default weight is used.
+     * @param {number} italic  Specifies an italic font if set to TRUE.
+     * @param {number} underline Specifies an underlined font if set to TRUE.
+     * @param {number} strikeOut A strikeout font if set to TRUE.
+     * @param {number} charSet Specifies the font's character set. The OEM character set is system-dependent. Fonts with other character sets may exist in the system. An application that uses a font with an unknown character set must not attempt to translate or interpret strings that are to be rendered with that font.
+     * @param {number} outputPrecision Specifies the desired output precision. The output precision defines how closely the output must match the requested font's height, width, character orientation, escapement, and pitch.
+     * @param {number} clipPrecision Specifies the desired clipping precision. The clipping precision defines how to clip characters that are partially outside the clipping region.
+     * @param {number} quality Specifies the font's output quality, which defines how carefully the GDI must attempt to match the logical-font attributes to those of an actual physical font.
+     * @param {number} pitchAndFamily  The pitch and family of the font.
      * @param {string} faceName   the typeface name, the length of this string must not exceed 32 characters, including the terminating null character.
      * @return {bool}
      */
@@ -2469,11 +2501,11 @@ interface WebTwain {
     /**
      * Crops the image of a specified index in buffer.
      * @method WebTwain#Crop
-     * @param {short} sImageIndex specifies the index of image in buffer. The index is 0-based.
-     * @param {int} left specifies the x-coordinate of the upper-left corner of the rectangle.
-     * @param {int} top specifies the y-coordinate of the upper-left corner of the rectangle.
-     * @param {int} right specifies the x-coordinate of the lower-right corner of the rectangle.
-     * @param {int} bottom specifies the y-coordinate of the lower-right corner of the rectangle.
+     * @param {number} sImageIndex specifies the index of image in buffer. The index is 0-based.
+     * @param {number} left specifies the x-coordinate of the upper-left corner of the rectangle.
+     * @param {number} top specifies the y-coordinate of the upper-left corner of the rectangle.
+     * @param {number} right specifies the x-coordinate of the lower-right corner of the rectangle.
+     * @param {number} bottom specifies the y-coordinate of the lower-right corner of the rectangle.
      * @return {bool}
      */
     Crop(sImageIndex: number, left: number, top: number, right: number, bottom: number): boolean;
@@ -2481,11 +2513,11 @@ interface WebTwain {
     /**
      * Crops the image of a specified index in buffer to clipboard in DIB format.
      * @method WebTwain#CropToClipboard
-     * @param {short} sImageIndex specifies the index of image in buffer. The index is 0-based.
-     * @param {int} left specifies the x-coordinate of the upper-left corner of the rectangle.
-     * @param {int} top specifies the y-coordinate of the upper-left corner of the rectangle.
-     * @param {int} right specifies the x-coordinate of the lower-right corner of the rectangle.
-     * @param {int} bottom specifies the y-coordinate of the lower-right corner of the rectangle.
+     * @param {number} sImageIndex specifies the index of image in buffer. The index is 0-based.
+     * @param {number} left specifies the x-coordinate of the upper-left corner of the rectangle.
+     * @param {number} top specifies the y-coordinate of the upper-left corner of the rectangle.
+     * @param {number} right specifies the x-coordinate of the lower-right corner of the rectangle.
+     * @param {number} bottom specifies the y-coordinate of the lower-right corner of the rectangle.
      * @return {bool}
      */
     CropToClipboard(sImageIndex: number, left: number, top: number, right: number, bottom: number): boolean;
@@ -2493,11 +2525,11 @@ interface WebTwain {
     /**
      * Cuts the image data in the specified area to the system clipboard in DIB format.
      * @method WebTwain#CutFrameToClipboard
-     * @param {short} sImageIndex specifies the index of image in buffer. The index is 0-based.
-     * @param {int} left specifies the x-coordinate of the upper-left corner of the rectangle.
-     * @param {int} top specifies the y-coordinate of the upper-left corner of the rectangle.
-     * @param {int} right specifies the x-coordinate of the lower-right corner of the rectangle.
-     * @param {int} bottom specifies the y-coordinate of the lower-right corner of the rectangle.
+     * @param {number} sImageIndex specifies the index of image in buffer. The index is 0-based.
+     * @param {number} left specifies the x-coordinate of the upper-left corner of the rectangle.
+     * @param {number} top specifies the y-coordinate of the upper-left corner of the rectangle.
+     * @param {number} right specifies the x-coordinate of the lower-right corner of the rectangle.
+     * @param {number} bottom specifies the y-coordinate of the lower-right corner of the rectangle.
      * @return {bool}
      */
     CutFrameToClipboard(sImageIndex: number, left: number, top: number, right: number, bottom: number): boolean;
@@ -2505,7 +2537,7 @@ interface WebTwain {
     /**
      * Cuts the image of a specified index in buffer to clipboard in DIB format.
      * @method WebTwain#CutToClipboard
-     * @param {short} sImageIndex specifies the index of image in buffer. The index is 0-based.
+     * @param {number} sImageIndex specifies the index of image in buffer. The index is 0-based.
      * @return {bool}
      */
     CutToClipboard(sImageIndex: number): boolean;
@@ -2527,11 +2559,11 @@ interface WebTwain {
     /**
      * Clears the specified area of a specified image, and fill the area with the fill color.
      * @method WebTwain#Erase
-     * @param {short} sImageIndex specifies the index of image in buffer. The index is 0-based.
-     * @param {int} left specifies the x-coordinate of the upper-left corner of the rectangle.
-     * @param {int} top specifies the y-coordinate of the upper-left corner of the rectangle.
-     * @param {int} right specifies the x-coordinate of the lower-right corner of the rectangle.
-     * @param {int} bottom specifies the y-coordinate of the lower-right corner of the rectangle.
+     * @param {number} sImageIndex specifies the index of image in buffer. The index is 0-based.
+     * @param {number} left specifies the x-coordinate of the upper-left corner of the rectangle.
+     * @param {number} top specifies the y-coordinate of the upper-left corner of the rectangle.
+     * @param {number} right specifies the x-coordinate of the lower-right corner of the rectangle.
+     * @param {number} bottom specifies the y-coordinate of the lower-right corner of the rectangle.
      * @return {bool}
      */
     Erase(sImageIndex: number, left: number, top: number, right: number, bottom: number): boolean;
@@ -2575,7 +2607,7 @@ interface WebTwain {
      * Uploads the image of a specified index in the buffer to the FTP server.
      * @method WebTwain#FTPUpload
      * @param {string} FTPServer the name of the FTP server.
-     * @param {short} sImageIndex specifies the index of the image in the buffer. The index is 0-based.
+     * @param {number} sImageIndex specifies the index of the image in the buffer. The index is 0-based.
      * @param {string} FTPRemoteFile the name of the file to be created on the FTP server. It should be a relative path on the FTP server.
      * @param {function} optionalAsyncSuccessFunc optional. The function to call when the upload succeeds. Please refer to the function prototype OnSuccess.
      * @param {function} optionalAsyncFailureFunc optional. The function to call when the upload fails. Please refer to the function prototype OnFailure.
@@ -2599,7 +2631,7 @@ interface WebTwain {
      * Uploads the image of a specified index in the buffer to the FTP server as a specified image format.
      * @method WebTwain#FTPUploadEx
      * @param {string} FTPServer the name of the FTP server.
-     * @param {short} sImageIndex specifies the index of image in buffer. The index is 0-based.
+     * @param {number} sImageIndex specifies the index of image in buffer. The index is 0-based.
      * @param {string} FTPRemoteFile the name of the file to be created on the FTP server. It should be a relative path on the FTP server.
      * @param {EnumDWT_ImageType} lImageType the image format of the file to be created on the FTP server.
      * @param {function} optionalAsyncSuccessFunc optional. The function to call when the upload succeeds. Please refer to the function prototype OnSuccess.
@@ -2670,7 +2702,7 @@ interface WebTwain {
     /**
      * Flips the image of a specified index in buffer.
      * @method WebTwain#Flip
-     * @param {short} sImageIndex specifies the index of image in buffer. The index is 0-based.
+     * @param {number} sImageIndex specifies the index of image in buffer. The index is 0-based.
      * @return {bool}
      */
     Flip(sImageIndex: number): boolean;
@@ -2678,15 +2710,15 @@ interface WebTwain {
     /**
      * Get the cap item value of the capability specified by Capability property, when the value of the CapType property is TWON_ARRAY or TWON_ENUMERATION.
      * @method WebTwain#GetCapItems
-     * @param {int} index Index is 0-based. It is the index of the cap item.
-     * @return {double}
+     * @param {number} index Index is 0-based. It is the index of the cap item.
+     * @return {number}
      */
     GetCapItems(index: number): number;
 
     /**
      * Returns the cap item value of the capability specified by Capability property, when the value of the CapType property is TWON_ARRAY or TWON_ENUMERATION.
      * @method WebTwain#GetCapItemsString
-     * @param {int} index Index is 0-based. It is the index of the cap item.
+     * @param {number} index Index is 0-based. It is the index of the cap item.
      * @return {string}
      */
     GetCapItemsString(index: number): string;
@@ -2711,23 +2743,23 @@ interface WebTwain {
     /**
      * Retrieve the device type of the currently selected data source, it might be a scanner, a web camera, etc.
      * @method WebTwain#GetDeviceType
-     * @return {int}
+     * @return {number}
      */
     GetDeviceType(): number;
 
     /**
      * Returns the pixel bit depth of the selected image.
      * @method WebTwain#GetImageBitDepth
-     * @param {short} sImageIndex specifies the index of image. The index is 0-based.
-     * @return {short}
+     * @param {number} sImageIndex specifies the index of image. The index is 0-based.
+     * @return {number}
      */
     GetImageBitDepth(sImageIndex: number): number;
 
     /**
      * Returns the height (pixels) of the selected image. This is a read-only property.
      * @method WebTwain#GetImageHeight
-     * @param {short} sImageIndex specifies the index of image. The index is 0-based.
-     * @return {int}
+     * @param {number} sImageIndex specifies the index of image. The index is 0-based.
+     * @return {number}
      */
     GetImageHeight(sImageIndex: number): number;
 
@@ -2738,28 +2770,28 @@ interface WebTwain {
     /**
      * Returns the file size of the new image resized from the image of a specified index in buffer.
      * @method WebTwain#GetImageSize
-     * @param {short} sImageIndex specifies the index of image in buffer. The index is 0-based.
-     * @param {int} iWidth specifies the pixel width of the new image.
-     * @param {int} iHeight specifies the pixel height of the new image.
-     * @return {double}
+     * @param {number} sImageIndex specifies the index of image in buffer. The index is 0-based.
+     * @param {number} iWidth specifies the pixel width of the new image.
+     * @param {number} iHeight specifies the pixel height of the new image.
+     * @return {number}
      */
     GetImageSize(sImageIndex: number, iWidth: number, iHeight: number): number;
 
     /**
      * Pre-calculate the file size of the local image file that is saved from an image of a specified index in buffer.
      * @method WebTwain#GetImageSizeWithSpecifiedType
-     * @param {short} sImageIndex specifies the index of image in buffer. The index is 0-based.
-     * @param {short} sImageType specifies the type of an image file..
-     * @return {int}
+     * @param {number} sImageIndex specifies the index of image in buffer. The index is 0-based.
+     * @param {number} sImageType specifies the type of an image file..
+     * @return {number}
      */
     GetImageSizeWithSpecifiedType(sImageIndex: number, sImageType: number): number;
 
     /**
      * Returns the direct URL of an image specified by index, if iWidth or iHeight is set to -1, you get the original image, otherwise you get the image with specified iWidth or iHeight while keeping the same aspect ratio.
      * @method WebTwain#GetImageURL
-     * @param {short} index the index of the image.
-     * @param {int} iWidth the width of the image.
-     * @param {int} iHeight the height of the image.
+     * @param {number} index the index of the image.
+     * @param {number} iWidth the width of the image.
+     * @param {number} iHeight the height of the image.
      * @return {string}
      */
     GetImageURL(index: number, iWidth: number, iHeight: number): string;
@@ -2767,76 +2799,78 @@ interface WebTwain {
     /**
      * Returns the width (pixels) of the selected image. This is a read-only property.
      * @method WebTwain#GetImageWidth
-     * @param {short} sImageIndex specifies the index of image. The index is 0-based.
-     * @return {int}
+     * @param {number} sImageIndex specifies the index of image. The index is 0-based.
+     * @return {number}
      */
     GetImageWidth(sImageIndex: number): number;
 
     /**
      * Return the horizontal resolution of the specified image.
      * @method WebTwain#GetImageXResolution
-     * @param {short} sImageIndex specifies the index of image in buffer. The index is 0-based.
-     * @return {int}
+     * @param {number} sImageIndex specifies the index of image in buffer. The index is 0-based.
+     * @return {number}
      */
     GetImageXResolution(sImageIndex: number): number;
 
     /**
      * Return the vertical resolution of the specified image.
      * @method WebTwain#GetImageYResolution
-     * @param {short} sImageIndex specifies the index of image in buffer. The index is 0-based.
-     * @return {int}
+     * @param {number} sImageIndex specifies the index of image in buffer. The index is 0-based.
+     * @return {number}
      */
     GetImageYResolution(sImageIndex: number): number;
 
-    /*ignored
-    GetLicenseInfo
-    */
+    /**
+     * Return the runtime license info.
+     * @method WebTwain#GetLicenseInfo
+     */
+    GetLicenseInfo(): {Domain:string, Detail: Array<any>};
 
     /**
      * Returns the index of the selected image.
      * @method WebTwain#GetSelectedImageIndex
-     * @param {short} sSelectedIndex specifies the index of the selected image.
-     * @return {short}
+     * @param {number} sSelectedIndex specifies the index of the selected image.
+     * @return {number}
      */
     GetSelectedImageIndex(sSelectedIndex: number): number;
 
     /**
      * Pre-calculate the file size of the local image file that is saved from the selected images in buffer.
      * @method WebTwain#GetSelectedImagesSize
-     * @param {int} iImageType specifies the type of an image file.
-     * @return {int}
+     * @param {number} iImageType specifies the type of an image file.
+     * @return {number}
      */
     GetSelectedImagesSize(iImageType: number): number;
 
     /**
      * Check the skew angle of an image by its index in buffer.
      * @method WebTwain#GetSkewAngle
-     * @param {short} sImageIndex the index of the image in the buffer.
-     * @return {double}
+     * @param {number} sImageIndex the index of the image in the buffer.
+     * @return {number}
      */
     GetSkewAngle(sImageIndex: number): number;
 
     /**
      * Check the skew angle of a rectangular part of an image by its index in buffer.
      * @method WebTwain#GetSkewAngleEx
-     * @param {short} sImageIndex the index of the image in the buffer.
-     * @param {int} left specifies the x-coordinate of the upper-left corner of the rectangle.
-     * @param {int} top specifies the y-coordinate of the upper-left corner of the rectangle.
-     * @param {int} right specifies the x-coordinate of the lower-right corner of the rectangle.
-     * @param {int} bottom specifies the y-coordinate of the lower-right corner of the rectangle.
-     * @return {double}
+     * @param {number} sImageIndex the index of the image in the buffer.
+     * @param {number} left specifies the x-coordinate of the upper-left corner of the rectangle.
+     * @param {number} top specifies the y-coordinate of the upper-left corner of the rectangle.
+     * @param {number} right specifies the x-coordinate of the lower-right corner of the rectangle.
+     * @param {number} bottom specifies the y-coordinate of the lower-right corner of the rectangle.
+     * @return {number}
      */
     GetSkewAngleEx(sImageIndex: number, left: number, top: number, right: number, bottom: number): number;
 
     /**
      * Get the source name according to the source index.
      * @method WebTwain#GetSourceNameItems
-     * @param {short} index int index. Index is 0-based and can not be greater than SourceCount property.
+     * @param {number} index number index. Index is 0-based and can not be greater than SourceCount property.
      * @return {string}
      */
     GetSourceNameItems(index: number): string;
 
-    /*ingored
+    /*ignored
     GetSourceNames
     GetSourceType
     GetVersionInfoAsync
@@ -2961,7 +2995,7 @@ interface WebTwain {
      * Uploads the image of a specified index in the buffer to the HTTP server through the HTTP POST method.
      * @method WebTwain#HTTPUploadThroughPost
      * @param {string} HTTPServer the name of the HTTP server.
-     * @param {short} sImageIndex specifies the index of image in buffer. The index is 0-based.
+     * @param {number} sImageIndex specifies the index of image in buffer. The index is 0-based.
      * @param {string} ActionPage the specified page for posting image files. This is the relative path of the page, not the absolute path. For example: "upload.asp", not "http://www.webserver.com/upload.asp".
      * @param {string} fileName the name of the image to be uploaded.
      * @param {function} optionalAsyncSuccessFunc optional. The function to call when the upload succeeds. Please refer to the function prototype OnHttpUploadSuccess.
@@ -3011,7 +3045,7 @@ interface WebTwain {
      * Uploads the image of a specified index in the buffer to the HTTP server as a specified image format through the HTTP POST method.
      * @method WebTwain#HTTPUploadThroughPostEx
      * @param {string} HTTPServer  the name of the HTTP server.
-     * @param {short} sImageIndex specifies the index of image in buffer. The index is 0-based.
+     * @param {number} sImageIndex specifies the index of image in buffer. The index is 0-based.
      * @param {string} ActionPage the specified page for posting image files. This is the relative path of the page, not the absolute path. For example: "upload.asp", not "http://www.webserver.com/upload.asp".
      * @param {string} fileName the name of the image to be uploaded.
      * @param {EnumDWT_ImageType} lImageType the image format of the file to be created on the HTTP server.s
@@ -3025,7 +3059,7 @@ interface WebTwain {
      * [Deprecated.] Uploads the image of a specified index in the buffer to the HTTP server through the HTTP PUT method.
      * @method WebTwain#HTTPUploadThroughPut
      * @param {string} HTTPServer the name of the HTTP server.
-     * @param {short} sImageIndex specifies the index of image in buffer. The index is 0-based.
+     * @param {number} sImageIndex specifies the index of image in buffer. The index is 0-based.
      * @param {string} RemoteFileName the name of the image to be created on the HTTP server. It should a relative path on the web server.
      * @param {function} optionalAsyncSuccessFunc optional. The function to call when the upload succeeds. Please refer to the function prototype OnSuccess.
      * @param {function} optionalAsyncFailureFunc optional. The function to call when the upload fails. Please refer to the function prototype OnFailure.
@@ -3071,7 +3105,7 @@ interface WebTwain {
      * [Deprecated.] Uploads the image of a specified index in the buffer to the HTTP server as a specified image format through the HTTP PUT method.
      * @method WebTwain#HTTPUploadThroughPutEx
      * @param {string} HTTPServer the name of the HTTP server.
-     * @param {short} sImageIndex specifies the index of image in buffer. The index is 0-based.
+     * @param {number} sImageIndex specifies the index of image in buffer. The index is 0-based.
      * @param {string} RemoteFileName the name of the file to be created on the HTTP server. It should a relative path on the web server.
      * @param {EnumDWT_ImageType} lImageType the image format of the file to be created on the HTTP server.
      * @param {function} optionalAsyncSuccessFunc optional. The function to call when the upload succeeds. Please refer to the function prototype OnSuccess.
@@ -3083,7 +3117,7 @@ interface WebTwain {
     /**
      * [Deprecated.] Detects whether an image is blank.
      * @method WebTwain#IsBlankImage
-     * @param {short} sImageIndex specifies the index of image in buffer. The index is 0-based.
+     * @param {number} sImageIndex specifies the index of image in buffer. The index is 0-based.
      * @return {bool}
      */
     IsBlankImage(sImageIndex: number): boolean;
@@ -3091,11 +3125,11 @@ interface WebTwain {
     /**
      * [Deprecated.] Detects whether a certain area on an image is blank.
      * @method WebTwain#IsBlankImageEx
-     * @param {short} sImageIndex specifies the index of image in buffer. The index is 0-based.
-     * @param {int} left specifies the x-coordinate of the upper-left corner of the rectangle.
-     * @param {int} top specifies the y-coordinate of the upper-left corner of the rectangle.
-     * @param {int} right specifies the x-coordinate of the lower-right corner of the rectangle.
-     * @param {int} bottom specifies the y-coordinate of the lower-right corner of the rectangle.
+     * @param {number} sImageIndex specifies the index of image in buffer. The index is 0-based.
+     * @param {number} left specifies the x-coordinate of the upper-left corner of the rectangle.
+     * @param {number} top specifies the y-coordinate of the upper-left corner of the rectangle.
+     * @param {number} right specifies the x-coordinate of the lower-right corner of the rectangle.
+     * @param {number} bottom specifies the y-coordinate of the lower-right corner of the rectangle.
      * @param {bool} bFuzzyMatch specifies whether use fuzzy matching when detecting.
      * @return {bool}
      */
@@ -3104,7 +3138,7 @@ interface WebTwain {
     /**
      * Detects whether a specific image is blank.
      * @method WebTwain#IsBlankImageExpress
-     * @param {short} sImageIndex specifies the index of image in buffer. The index is 0-based.
+     * @param {number} sImageIndex specifies the index of image in buffer. The index is 0-based.
      * @return {bool}
      */
     IsBlankImageExpress(sImageIndex: number): boolean;
@@ -3151,7 +3185,7 @@ interface WebTwain {
     /**
      * [Deprecated.] Loads image from a byte array with the specified file format.
      * @method WebTwain#LoadImageFromBytes
-     * @param {int} lBufferSize Specifies the buffer size.
+     * @param {number} lBufferSize Specifies the buffer size.
      * @param {Array} buffer A byte array of the image data.
      * @param {EnumDWT_ImageType} lImageType Specifies the file format.
      * @return {bool}
@@ -3161,7 +3195,7 @@ interface WebTwain {
     /**
      * Mirrors the image of a specified index in buffer.
      * @method WebTwain#Mirror
-     * @param {short} sImageIndex specifies the index of image in buffer. The index is 0-based.
+     * @param {number} sImageIndex specifies the index of image in buffer. The index is 0-based.
      * @return {bool}
      */
     Mirror(sImageIndex: number): boolean;
@@ -3169,8 +3203,8 @@ interface WebTwain {
     /**
      * Moves a specified image.
      * @method WebTwain#MoveImage
-     * @param {short} sSourceImageIndex Specifies the source index of image in buffer. The index is 0-based.
-     * @param {short} sTargetImageIndex Specifies the target index of image in buffer. The index is 0-based.
+     * @param {number} sSourceImageIndex Specifies the source index of image in buffer. The index is 0-based.
+     * @param {number} sTargetImageIndex Specifies the target index of image in buffer. The index is 0-based.
      * @return {bool}
      */
     MoveImage(sSourceImageIndex: number, sTargetImageIndex: number): boolean;
@@ -3198,13 +3232,13 @@ interface WebTwain {
     /**
      * Decorates image of a specified index in buffer with rectangles of transparent color.
      * @method WebTwain#OverlayRectangle
-     * @param {short} sImageIndex specifies the index of image in buffer. The index is 0-based.
-     * @param {int} left specifies the x-coordinate of the upper-left corner of the rectangle.
-     * @param {int} top specifies the y-coordinate of the upper-left corner of the rectangle.
-     * @param {int} right specifies the x-coordinate of the lower-right corner of the rectangle.
-     * @param {int} bottom specifies the y-coordinate of the lower-right corner of the rectangle.
-     * @param {int} color Specifies the fill color of the rectangle. The byte-ordering of the RGB value is 0xBBGGRR. BB represents blue, GG represents green, RR represents red.
-     * @param {float} fOpacity Specifies the opacity of the rectangle. The value represents opacity. 1.0 is 100% opaque and 0.0 is totally transparent.
+     * @param {number} sImageIndex specifies the index of image in buffer. The index is 0-based.
+     * @param {number} left specifies the x-coordinate of the upper-left corner of the rectangle.
+     * @param {number} top specifies the y-coordinate of the upper-left corner of the rectangle.
+     * @param {number} right specifies the x-coordinate of the lower-right corner of the rectangle.
+     * @param {number} bottom specifies the y-coordinate of the lower-right corner of the rectangle.
+     * @param {number} color Specifies the fill color of the rectangle. The byte-ordering of the RGB value is 0xBBGGRR. BB represents blue, GG represents green, RR represents red.
+     * @param {number} fOpacity Specifies the opacity of the rectangle. The value represents opacity. 1.0 is 100% opaque and 0.0 is totally transparent.
      * @return {bool}
      */
     OverlayRectangle(sImageIndex: number, left: number, top: number, right: number, bottom: number, color: number, fOpacity: number): boolean;
@@ -3242,7 +3276,7 @@ interface WebTwain {
     /**
      * Removes the image of a specified index in buffer.
      * @method WebTwain#RemoveImage
-     * @param {short} sImageIndexToBeDeleted  specifies the index of the image to be deleted  in buffer. The index is 0-based.
+     * @param {number} sImageIndexToBeDeleted  specifies the index of the image to be deleted  in buffer. The index is 0-based.
      * @return {bool}
      */
     RemoveImage(sImageIndexToBeDeleted: number): boolean;
@@ -3265,8 +3299,8 @@ interface WebTwain {
     /**
      * Rotates the image of a specified index in buffer by specified angle.
      * @method WebTwain#Rotate
-     * @param {short} sImageIndex  specifies the index of image in buffer. The index is 0-based.
-     * @param {float} fAngle  Specifies the rotation angle.
+     * @param {number} sImageIndex  specifies the index of image in buffer. The index is 0-based.
+     * @param {number} fAngle  Specifies the rotation angle.
      * @param {bool} bKeepSize Keep size or not.
      * @return {bool}
      */
@@ -3275,8 +3309,8 @@ interface WebTwain {
     /**
      * Rotates the image of a specified index in buffer by specified angle.
      * @method WebTwain#RotateEx
-     * @param {short} sImageIndex  specifies the index of image in buffer. The index is 0-based.
-     * @param {float} fAngle  Specifies the rotation angle.
+     * @param {number} sImageIndex  specifies the index of image in buffer. The index is 0-based.
+     * @param {number} fAngle  Specifies the rotation angle.
      * @param {bool} bKeepSize Keep size or not.
      * @param {EnumDWT_InterpolationMethod} newVal specifies the method to do interpolation.
      * @return {bool}
@@ -3286,7 +3320,7 @@ interface WebTwain {
     /**
      * Rotates the image of a specified index in buffer by 90 degrees counter-clockwise.
      * @method WebTwain#RotateLeft
-     * @param {short} sImageIndex  specifies the index of image in buffer. The index is 0-based.
+     * @param {number} sImageIndex  specifies the index of image in buffer. The index is 0-based.
      * @return {bool}
      */
     RotateLeft(sImageIndex: number): boolean;
@@ -3294,7 +3328,7 @@ interface WebTwain {
     /**
      * Rotates the image of a specified index in buffer by 90 degrees clockwise.
      * @method WebTwain#RotateRight
-     * @param {short} sImageIndex  specifies the index of image in buffer. The index is 0-based.
+     * @param {number} sImageIndex  specifies the index of image in buffer. The index is 0-based.
      * @return {bool}
      */
     RotateRight(sImageIndex: number): boolean;
@@ -3323,7 +3357,7 @@ interface WebTwain {
      * Saves the image of a specified index in buffer as a BMP file.
      * @method WebTwain#SaveAsBMP
      * @param {string} localFile the name of the BMP file to be saved. It should be an absolute path on the local disk.
-     * @param {short} sImageIndex specifies the index of image in buffer. The index is 0-based.
+     * @param {number} sImageIndex specifies the index of image in buffer. The index is 0-based.
      * @return {bool}
      */
     SaveAsBMP(localFile: string, sImageIndex: number): boolean;
@@ -3336,7 +3370,7 @@ interface WebTwain {
      * Saves the image of a specified index in buffer as a JPEG file.
      * @method WebTwain#SaveAsJPEG
      * @param {string} localFile the name of the JPEG file to be saved. It should be an absolute path on the local disk.
-     * @param {short} sImageIndex specifies the index of image in buffer. The index is 0-based.
+     * @param {number} sImageIndex specifies the index of image in buffer. The index is 0-based.
      * @return {bool}
      */
     SaveAsJPEG(localFile: string, sImageIndex: number): boolean;
@@ -3345,7 +3379,7 @@ interface WebTwain {
      * Saves the image of a specified index in buffer as a PDF file.
      * @method WebTwain#SaveAsPDF
      * @param {string} localFile the name of the JPEG file to be saved. It should be an absolute path on the local disk.
-     * @param {short} sImageIndex specifies the index of image in buffer. The index is 0-based.
+     * @param {number} sImageIndex specifies the index of image in buffer. The index is 0-based.
      * @return {bool}
      */
     SaveAsPDF(localFile: string, sImageIndex: number): boolean;
@@ -3354,7 +3388,7 @@ interface WebTwain {
      * Saves the image of a specified index in buffer as a PNG file.
      * @method WebTwain#SaveAsPNG
      * @param {string} localFile the name of the JPEG file to be saved. It should be an absolute path on the local disk.
-     * @param {short} sImageIndex specifies the index of image in buffer. The index is 0-based.
+     * @param {number} sImageIndex specifies the index of image in buffer. The index is 0-based.
      * @return {bool}
      */
     SaveAsPNG(localFile: string, sImageIndex: number): boolean;
@@ -3363,7 +3397,7 @@ interface WebTwain {
      * Saves the image of a specified index in buffer as a TIFF file.
      * @method WebTwain#SaveAsTIFF
      * @param {string} localFile the name of the JPEG file to be saved. It should be an absolute path on the local disk.
-     * @param {short} sImageIndex specifies the index of image in buffer. The index is 0-based.
+     * @param {number} sImageIndex specifies the index of image in buffer. The index is 0-based.
      * @return {bool}
      */
     SaveAsTIFF(localFile: string, sImageIndex: number): boolean;
@@ -3398,9 +3432,9 @@ interface WebTwain {
     /**
      * [Deprecated.] Saves the selected images in buffer to a byte array in the specified file format.
      * @method WebTwain#SaveSelectedImagesToBytes
-     * @param {int} bufferSize specified the buffer size.
+     * @param {number} bufferSize specified the buffer size.
      * @param {Array} buffer A byte array of the image data.
-     * @return {int}
+     * @return {number}
      */
     SaveSelectedImagesToBytes(bufferSize: number, buffer: number[]): number;
 
@@ -3415,7 +3449,7 @@ interface WebTwain {
     /**
      * Selects the index-the source in SourceNameItems property as the current source.
      * @method WebTwain#SelectSourceByIndex
-     * @param {short} index It is the index of SourceNameItems property.
+     * @param {number} index It is the index of SourceNameItems property.
      * @return {bool}
      */
     SelectSourceByIndex(index: number): boolean;
@@ -3427,8 +3461,8 @@ interface WebTwain {
     /**
      * Set the value of the specified cap item.
      * @method WebTwain#SetCapItems
-     * @param {int} index Index is 0-based. It is the index of the cap item.
-     * @param {double} newVal The Double type of CapItems property is used to present Double, Single(float), Long, int and even boolean types. For string type, please use CapItemsstring property.
+     * @param {number} index Index is 0-based. It is the index of the cap item.
+     * @param {number} newVal For string type, please use CapItemsstring property.
      * @return {void}
      */
     SetCapItems(index: number, newVal: number): void;
@@ -3436,7 +3470,7 @@ interface WebTwain {
     /**
      * Set the cap item value of the capability specified by Capability property, when the value of the CapType property is TWON_ARRAY or TWON_ENUMERATION.
      * @method WebTwain#SetCapItemsString
-     * @param {int} index Index is 0-based. It is the index of the cap item.
+     * @param {number} index Index is 0-based. It is the index of the cap item.
      * @param {string} newVal The new value to be set.
      * @return {void}
      */
@@ -3471,9 +3505,9 @@ interface WebTwain {
     /**
      * Change the DPI (dots per inch) for the specified image.
      * @method WebTwain#SetDPI
-     * @param {short} sImageIndex specifies the index of image in buffer. The index is 0-based.
-     * @param {int} xResolution The horizontal resolution.
-     * @param {int} yResolution The vertical resolution.
+     * @param {number} sImageIndex specifies the index of image in buffer. The index is 0-based.
+     * @param {number} xResolution The horizontal resolution.
+     * @param {number} yResolution The vertical resolution.
      * @param {bool} bResampleImage Whether to resample the image. (The image size will be changed if this is set to true).
      * @param {EnumDWT_InterpolationMethod} newVal specifies the method to do interpolation.
      * @return {bool}
@@ -3510,10 +3544,10 @@ interface WebTwain {
     /**
      * Sets the left, top, right, and bottom sides of the image layout rectangle for the current Data Source.
      * @method WebTwain#SetImageLayout
-     * @param {float} left specifies the floating point number for the left side of the image layout rectangle.
-     * @param {float} top specifies the floating point number for the top side of the image layout rectangle.
-     * @param {float} right specifies the floating point number for the right side of the image layout rectangle.
-     * @param {float} bottom specifies the floating point number for the bottom side of the image layout rectangle.
+     * @param {number} left specifies the floating point number for the left side of the image layout rectangle.
+     * @param {number} top specifies the floating point number for the top side of the image layout rectangle.
+     * @param {number} right specifies the floating point number for the right side of the image layout rectangle.
+     * @param {number} bottom specifies the floating point number for the bottom side of the image layout rectangle.
      * @return {bool}
      */
     SetImageLayout(left: number, top: number, right: number, bottom: number): boolean;
@@ -3521,25 +3555,36 @@ interface WebTwain {
     /**
      * Change the width of an image in buffer.
      * @method WebTwain#SetImageWidth
-     * @param {short} sImageIndex  specifies which image you'd like to change.
-     * @param {int} iNewWidth specifies how wide you'd like to change the image.
+     * @param {number} sImageIndex  specifies which image you'd like to change.
+     * @param {number} iNewWidth specifies how wide you'd like to change the image.
      * @return {bool}
      */
     SetImageWidth(sImageIndex: number, iNewWidth: number): boolean;
 
-    /*ignored
-    SetLanguage
-    SetOpenSourceTimeout
-    */
-    
+    /**
+     * Set the language for the authorization dialogs.
+     * @method WebTwain#SetLanguage
+     * @param {EnumDWT_Language} language  specify the language
+     * @return {bool}
+     */
+    SetLanguage(language: EnumDWT_Language): boolean;
+
+    /**
+     * Sets the time-out used to open a specified Data Source.
+     * @method WebTwain#SetOpenSourceTimeout
+     * @param {number} iMilliseconds specifies the number of milliseconds.
+     * @return {bool}
+     */
+    SetOpenSourceTimeout(iMilliseconds: number): boolean;
+
     /**
      * Draws a rectangle on the viewer which represents the selected area.
      * @method WebTwain#SetSelectedImageArea
-     * @param {short} sImageIndex specifies the index of image in buffer. The index is 0-based.
-     * @param {int} left The X axis of the left border.
-     * @param {int} top The Y axis of the top border.
-     * @param {int} right The X axis of the right border.
-     * @param {int} bottom The Y axis of the bottom border.
+     * @param {number} sImageIndex specifies the index of image in buffer. The index is 0-based.
+     * @param {number} left The X axis of the left border.
+     * @param {number} top The Y axis of the top border.
+     * @param {number} right The X axis of the right border.
+     * @param {number} bottom The Y axis of the bottom border.
      * @return {bool}
      */
     SetSelectedImageArea(sImageIndex: number, left: number, top: number, right: number, bottom: number): boolean;
@@ -3547,8 +3592,8 @@ interface WebTwain {
     /**
      * You can use the method to select images programatically which is ususally done by mouse clicking.
      * @method WebTwain#SetSelectedImageIndex
-     * @param {short} sSelectedIndex this is the index of an array that holds the indices of selected images.
-     * @param {short} newVal specifies the index of an image that you want to select.
+     * @param {number} sSelectedIndex this is the index of an array that holds the indices of selected images.
+     * @param {number} newVal specifies the index of an image that you want to select.
      * @return {void}
      */
     SetSelectedImageIndex(selectedIndex: number, newVal: number): void;
@@ -3556,7 +3601,7 @@ interface WebTwain {
     /**
      * Sets a custom tiff tag. Currently you can set up to 32 tags. The string to be set in a tag can be encoded with base64.
      * @method WebTwain#SetTiffCustomTag
-     * @param {int} tag specifies the tag identifier. The value should be between 600 and 700.
+     * @param {number} tag specifies the tag identifier. The value should be between 600 and 700.
      * @param {string} content the string to be set for this tag. The string will be written to the .tiff file when you save/upload it. If the string is base64 encoded, we'll decode it before writing it.
      * @param {bool} base64Str if you'd like to encode the string with base64, set this to true. Otherwise, the string will be plin text.
      * @return {bool}
@@ -3566,8 +3611,8 @@ interface WebTwain {
     /**
      * Configures how segmented upload is done.
      * @method WebTwain#SetUploadSegment
-     * @param {int} segmentUploadThreshold specifies the threshold (in MB) over which segmented upload will be invoked.
-     * @param {int} moduleSize specifies the size of each segment (in KB).
+     * @param {number} segmentUploadThreshold specifies the threshold (in MB) over which segmented upload will be invoked.
+     * @param {number} moduleSize specifies the size of each segment (in KB).
      * @return {bool}
      */
     SetUploadSegment (segmentUploadThreshold: number, moduleSize: number): boolean;
@@ -3575,8 +3620,8 @@ interface WebTwain {
     /**
      * Sets the view mode that images are displayed in Dynamic Web TWAIN. You can use this method to display multiple images in Dynamic Web TWAIN.
      * @method WebTwain#SetViewMode
-     * @param {short} sHorizontalImageCount  specifies how many columns can be displayed in Dynamic Web TWAIN.
-     * @param {short} sVerticalImageCount specifies how many rows can be displayed in Dynamic Web TWAIN..
+     * @param {number} sHorizontalImageCount  specifies how many columns can be displayed in Dynamic Web TWAIN.
+     * @param {number} sVerticalImageCount specifies how many rows can be displayed in Dynamic Web TWAIN..
      * @return {void}
      */
     SetViewMode(sHorizontalImageCount: number, sVerticalImageCount: number): void;
@@ -3586,12 +3631,12 @@ interface WebTwain {
      * @method WebTwain#ShowFileDialog
      * @param {bool} SaveDialog True -- show save file dialog, False -- show open file dialog.
      * @param {string} Filter The filter name specifies the filter pattern (for example, "*.TXT"). To specify multiple filter patterns for a single display string, use a semicolon to separate the patterns (for example, "*.TXT;*.DOC;*.BAK"). A pattern string can be a combination of valid file name characters and the asterisk (*) wildcard character. Do not include spaces in the pattern string. To retrieve a shortcut's target without filtering, use the string "All Files\0*.*\0\0", but the program will replace  "\0" with "|" automatically.
-     * @param {int} FilterIndex The index of the currently selected filter in the File Types control. The buffer pointed to by Filter contains pairs of strings that define the filters. The index is 0-based.
+     * @param {number} FilterIndex The index of the currently selected filter in the File Types control. The buffer pointed to by Filter contains pairs of strings that define the filters. The index is 0-based.
      * @param {string} DefExtension Define the default extension. GetOpenFileName and GetSaveFileName append this extension to the file name only if the user fails to type an extension. If this member is NULL and the user fails to type an extension, no extension is appended.
      * @param {string} InitialDir The initial directory. The algorithm for selecting the initial directory varies on different platforms.
      * @param {bool} AllowMultiSelect True -- allows users to select more than one file, False -- only allows to select one file.
      * @param {bool} OverwritePrompt True -- If a file already exists with the same name, the old file will be simply overwritten, False -- not allows to save and overwrite a same name file.
-     * @param {int} Flags If this parameter equals 0, the program will be initiated with the default flags, otherwise initiated with the cumstom value and paramters "AllowMultiSelect" and "OverwritePrompt" will be useless.
+     * @param {number} Flags If this parameter equals 0, the program will be initiated with the default flags, otherwise initiated with the cumstom value and paramters "AllowMultiSelect" and "OverwritePrompt" will be useless.
      * @return {bool}
      */
     ShowFileDialog(SaveDialog: boolean, Filter: string, FilterIndex: number, DefExtension: string, InitialDir: string, AllowMultiSelect: boolean, OverwritePrompt: boolean, Flags: number): boolean;
@@ -3606,11 +3651,11 @@ interface WebTwain {
     /**
      * [Deprecated.] Shows the GUI of Image Editor with custom settings.
      * @method WebTwain#ShowImageEditorEx
-     * @param {int} x specifies the new position of the left top corner of the window.
-     * @param {int} y specifies the new position of the left top corner of the window.
-     * @param {int} cx specifies the width of the window.
-     * @param {int} cy specifies the height of the window.
-     * @param {int} nCmdShow specifices how the window should be shown.
+     * @param {number} x specifies the new position of the left top corner of the window.
+     * @param {number} y specifies the new position of the left top corner of the window.
+     * @param {number} cx specifies the width of the window.
+     * @param {number} cy specifies the height of the window.
+     * @param {number} nCmdShow specifices how the window should be shown.
      * @return {bool}
      */
     ShowImageEditorEx(x: number, y: number, cx: number, cy: number, nCmdShow: number): boolean;
@@ -3622,8 +3667,8 @@ interface WebTwain {
     /**
      * Switchs two images of specified indices in buffer.
      * @method WebTwain#SwitchImage
-     * @param {short} sImageIndex1 specifies the index of image in buffer. The index is 0-based.
-     * @param {short} sImageIndex2 specifies the index of image in buffer. The index is 0-based.
+     * @param {number} sImageIndex1 specifies the index of image in buffer. The index is 0-based.
+     * @param {number} sImageIndex2 specifies the index of image in buffer. The index is 0-based.
      * @return {bool}
      */
     SwitchImage(sImageIndex1: number, sImageIndex2: number): boolean;
