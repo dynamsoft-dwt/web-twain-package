@@ -27,7 +27,19 @@ declare namespace Dynamsoft {
         Errors  Events  IntToColorStr  LS  OnGetImageByURL  OnGetImageFromServer  Path  ProgressBar  UI  Uri
         addEventListener  ajax  all  appendMessage  appendRichMessage  aryControlLoadImage  attachAddon  attachProperty
         base64  bio  cancelFrome  clearMessage  closeAll  closeProgress  colorStrToInt  config  css  currentStyle
-        debug  detect  detectButton  dialog  dialogShowStatus  dlgProgress  dlgRef  drawBoxBorder  drawImageWithHermite
+        debug*/
+
+        let detect: {
+            /*ignored
+            OnCreatWS  OnDetectNext  OnWebTwainPostExecute  OnWebTwainPreExecute  StartWSByIPTimeoutId  StartWSTimeoutId
+            aryReconnectSTwains  arySTwains  arySTwainsByIP  bFirst  bNeedUpgradeEvent  bNoControlEvent  bOK  bPromptJSOrServerOutdated
+            cUrlIndex  dcpCallbackType  dcpStatus  detectType  getVersionArray  global_dlg  hideMask  isDWTVersionLatest  onNoControl
+            onNotAllowedForChrome  ports  scriptLoaded  showMask  starting  tryTimes*/
+            ssl: boolean;
+        }
+
+        /*ignored
+        detectButton  dialog  dialogShowStatus  dlgProgress  dlgRef  drawBoxBorder  drawImageWithHermite
         each  empty  endsWith
         */
 
@@ -37,7 +49,7 @@ declare namespace Dynamsoft {
             bIE: boolean, bLinux: boolean, bMac: boolean, bSafari: boolean, bWin: boolean, bWin64: boolean,
             basePath: string, iPluginLength: number, isX64: boolean, pathType: number,
             strChromeVersion: number, strFirefoxVersion: string, strIEVersion: string
-        };
+        }
 
         /*ignored
         error  escapeHtml  escapeRegExp  extend  filter  fireEvent  fromUnicode  get  getColor  getCss
@@ -53,44 +65,47 @@ declare namespace Dynamsoft {
         */
     }
     namespace WebTwainEnv {
-        let JSVersion: string;
-        let PluginVersion: string;
-        let ActiveXVersion: string;
-        let ServerVersionInfo: string;
-
-        let Trial: boolean;
-        let AutoLoad: boolean;
-        let ProductKey: string;
-        let ResourcesPath: string;
-
-        let IfUpdateService: boolean;
-        let IfUseActiveXForIE10Plus: boolean;
-        let UseDefaultInstallUI: string;
         let ActiveXInstallWithCAB: boolean;
-        let Debug: boolean;
-
+        let ActiveXVersion: string;
+        let AutoLoad: boolean;
+        function CloseDialog(): void;
         let ContainerMap: {};
         let Containers: Container[];
+        function CreateDWTObject(newObjID: string, successFn: (dwtObject: WebTwain) => void, failurefn: (...args: any[]) => void): void;
+        function CreateDWTObject(newObjID: string, ip: number | string, port: number | string, portSSL: number | string, successFn: (dwtObject: WebTwain) => void, failurefn: (...args: any[]) => void): void;
+        let Debug: boolean;
+        function DeleteDWTObject(objID: string): void;
         let DynamicContainers: string[];
         let DynamicDWTMap: {};
-        
-        function CreateDWTObject(newObjID: string, successFn: (dwtObject: WebTwain) => void, failurefn: (...args: any[]) => void): void;
         function GetWebTwain(cid: string): WebTwain;
-        function DeleteDWTObject(objID: string): void;
+        let IfUpdateService: boolean;
+        let IfUseActiveXForIE10Plus: boolean;
+        let JSVersion: string;
         function Load(): void;
-        function Unload(): void;
-        function RegisterEvent(event: string, fn: (...args: any[]) => void): void;
 
         /*ignored
-        initQueue inited UseDefaultInstallUI
-        OnWebTwainInitMessage  OnWebTwainNeedUpgrade  OnWebTwainNeedUpgradeWebJavascript  OnWebTwainNotFound  OnWebTwainOldPluginNotAllowed OnWebTwainReady
+        OnWebTwainInitMessage  OnWebTwainNeedUpgrade  OnWebTwainNeedUpgradeWebJavascript  OnWebTwainNotFound  OnWebTwainOldPluginNotAllowed
         */
+
         function OnWebTwainPostExecute(): void;
         function OnWebTwainPreExecute(): void;
 
+        /*ignored
+        OnWebTwainReady
+        */
+
+        let PluginVersion: string;
+        let ProductKey: string;
+        function RegisterEvent(event: string, fn: (...args: any[]) => void): void;
         function RemoveAllAuthorizations(): void;
+        let ResourcesPath: string;
+        let ServerVersionInfo: string;
         function ShowDialog(_dialogWidth: number, _dialogHeight: number, _strDialogMessageWithHtmlFormat: string, _bChangeImage: boolean, bHideCloseButton: boolean): void;
-        function CloseDialog(): void;
+        let Trial: boolean;
+        function Unload(): void;
+        let UseDefaultInstallUI: string;
+        let initQueue: number[];
+        let inited: boolean;
     }
 }
 
@@ -1369,6 +1384,7 @@ interface Container {
  */
 // properties (get/set) / sync functions
 interface WebTwain {
+
     /**
      * Returns whether the instance of a DWT is initialized
      * @type {boolean}
@@ -2244,10 +2260,16 @@ interface WebTwain {
      */
     Zoom: number;
 
-    /** ignored 
+    /* ignored 
     style
     _AutoCropMethod
     */
+
+    /*
+    *Methods
+    */
+
+
     /**
      * Displays the source's built-in interface to acquire image.
      * @method WebTwain#AcquireImage
@@ -2814,7 +2836,7 @@ interface WebTwain {
      * Return the runtime license info.
      * @method WebTwain#GetLicenseInfo
      */
-    GetLicenseInfo(): { Domain: string, Detail: any[] };
+    GetLicenseInfo(): { Domain: string, Detail: Array<any> };
 
     /**
      * Returns the index of the selected image.
@@ -2916,7 +2938,7 @@ interface WebTwain {
      * @param {function} optionalAsyncFailureFunc optional. The function to call when the download fails. Please refer to the function prototype OnFailure.
      * @return {boolean}
      */
-    HTTPDownloadThroughPost(HTTPServer: string, HTTPRemoteFile: string, lImageType: EnumDWT_ImageType, optionalAsyncSuccessFunc?: () => void, optionalAsyncFailureFunc?: (errorCode: number, errorString: string) => void): boolean;
+    HTTPDownloadThroughPost(HTTPServer: string, HTTPRemoteFile: string, lImageType: EnumDWT_ImageType, optionalAsyncSuccessFunc?: () => void, optionalAsyncFailureFunc?: (errorCode: number, errorString: string, httppostresponsestring:string) => void): boolean;
 
     /**
      * Uploads the images specified by the indices to the HTTP server.
@@ -2929,7 +2951,7 @@ interface WebTwain {
      * @param {function} asyncFailureFunc the function to call when the upload fails. Please refer to the function prototype OnFailure.
      * @return {boolean}
      */
-    HTTPUpload(url: string, indices: number[], enumImageType: EnumDWT_ImageType, dataFormat: EnumDWT_UploadDataFormat, optionalAsyncSuccessFunc?: () => void, optionalAsyncFailureFunc?: (errorCode: number, errorString: string) => void): boolean;
+    HTTPUpload(url: string, indices: number[], enumImageType: EnumDWT_ImageType, dataFormat: EnumDWT_UploadDataFormat, optionalAsyncSuccessFunc?: () => void, optionalAsyncFailureFunc?: (errorCode: number, errorString: string, httppostresponsestring:string) => void): boolean;
 
     /**
      * Uploads all images in the buffer to the HTTP server through the HTTP Post method as a Multi-Page TIFF.
@@ -2941,7 +2963,7 @@ interface WebTwain {
      * @param {function} optionalAsyncFailureFunc optional. The function to call when the upload fails. Please refer to the function prototype OnHttpUploadFailure.
      * @return {boolean}
      */
-    HTTPUploadAllThroughPostAsMultiPageTIFF(HTTPServer: string, ActionPage: string, fileName: string, optionalAsyncSuccessFunc?: () => void, optionalAsyncFailureFunc?: (errorCode: number, errorString: string) => void): boolean;
+    HTTPUploadAllThroughPostAsMultiPageTIFF(HTTPServer: string, ActionPage: string, fileName: string, optionalAsyncSuccessFunc?: () => void, optionalAsyncFailureFunc?: (errorCode: number, errorString: string, httppostresponsestring:string) => void): boolean;
 
     /**
      * Uploads all images in the buffer to the HTTP server through HTTP Post method as a Multi-Page PDF.
@@ -2953,7 +2975,7 @@ interface WebTwain {
      * @param {function} optionalAsyncFailureFunc optional. The function to call when the upload fails. Please refer to the function prototype OnHttpUploadFailure.
      * @return {boolean}
      */
-    HTTPUploadAllThroughPostAsPDF(HTTPServer: string, ActionPage: string, fileName: string, optionalAsyncSuccessFunc?: () => void, optionalAsyncFailureFunc?: (errorCode: number, errorString: string) => void): boolean;
+    HTTPUploadAllThroughPostAsPDF(HTTPServer: string, ActionPage: string, fileName: string, optionalAsyncSuccessFunc?: () => void, optionalAsyncFailureFunc?: (errorCode: number, errorString: string, httppostresponsestring:string) => void): boolean;
 
     /**
      * [Deprecated.] Uploads all images in the buffer to the HTTP server through the HTTP Put method as a Multi-Page TIFF.
@@ -2992,7 +3014,7 @@ interface WebTwain {
      * @param {function} optionalAsyncFailureFunc optional. The function to call when the upload fails. Please refer to the function prototype OnHttpUploadFailure.
      * @return {boolean}
      */
-    HTTPUploadThroughPost(HTTPServer: string, sImageIndex: number, ActionPage: string, fileName: string, optionalAsyncSuccessFunc?: () => void, optionalAsyncFailureFunc?: (errorCode: number, errorString: string) => void): boolean;
+    HTTPUploadThroughPost(HTTPServer: string, sImageIndex: number, ActionPage: string, fileName: string, optionalAsyncSuccessFunc?: () => void, optionalAsyncFailureFunc?: (errorCode: number, errorString: string, httppostresponsestring:string) => void): boolean;
 
     /**
      * Uploads the selected images in the buffer to the HTTP server through the HTTP Post method as a Multi-Page TIFF.
@@ -3004,7 +3026,7 @@ interface WebTwain {
      * @param {function} optionalAsyncFailureFunc optional. The function to call when the upload fails. Please refer to the function prototype OnHttpUploadFailure.
      * @return {boolean}
      */
-    HTTPUploadThroughPostAsMultiPageTIFF(HTTPServer: string, ActionPage: string, fileName: string, optionalAsyncSuccessFunc?: () => void, optionalAsyncFailureFunc?: (errorCode: number, errorString: string) => void): boolean;
+    HTTPUploadThroughPostAsMultiPageTIFF(HTTPServer: string, ActionPage: string, fileName: string, optionalAsyncSuccessFunc?: () => void, optionalAsyncFailureFunc?: (errorCode: number, errorString: string, httppostresponsestring:string) => void): boolean;
 
     /**
      * Uploads the selected images in the buffer to the HTTP server through the HTTP Post method as a Multi-Page PDF.
@@ -3016,7 +3038,7 @@ interface WebTwain {
      * @param {function} optionalAsyncFailureFunc optional. The function to call when the upload fails. Please refer to the function prototype OnHttpUploadFailure.
      * @return {boolean}
      */
-    HTTPUploadThroughPostAsMultiPagePDF(HTTPServer: string, ActionPage: string, fileName: string, optionalAsyncSuccessFunc?: () => void, optionalAsyncFailureFunc?: (errorCode: number, errorString: string) => void): boolean;
+    HTTPUploadThroughPostAsMultiPagePDF(HTTPServer: string, ActionPage: string, fileName: string, optionalAsyncSuccessFunc?: () => void, optionalAsyncFailureFunc?: (errorCode: number, errorString: string, httppostresponsestring:string) => void): boolean;
 
     /**
      * Directly upload a specific local file to the HTTP server through the HTTP POST method without loading it into Dynamic Web TWAIN.
@@ -3029,7 +3051,7 @@ interface WebTwain {
      * @param {function} optionalAsyncFailureFunc optional. The function to call when the upload fails. Please refer to the function prototype OnHttpUploadFailure.
      * @return {boolean}
      */
-    HTTPUploadThroughPostDirectly(HTTPServer: string, localFile: string, ActionPage: string, fileName: string, optionalAsyncSuccessFunc?: () => void, optionalAsyncFailureFunc?: (errorCode: number, errorString: string) => void): boolean;
+    HTTPUploadThroughPostDirectly(HTTPServer: string, localFile: string, ActionPage: string, fileName: string, optionalAsyncSuccessFunc?: () => void, optionalAsyncFailureFunc?: (errorCode: number, errorString: string, httppostresponsestring:string) => void): boolean;
 
     /**
      * Uploads the image of a specified index in the buffer to the HTTP server as a specified image format through the HTTP POST method.
@@ -3043,7 +3065,7 @@ interface WebTwain {
      * @param {function} optionalAsyncFailureFunc optional. The function to call when the upload succeeds. Please refer to the function prototype OnHttpUploadFailure.
      * @return {boolean}
      */
-    HTTPUploadThroughPostEx(HTTPServer: string, sImageIndex: number, ActionPage: string, fileName: string, lImageType: EnumDWT_ImageType, optionalAsyncSuccessFunc?: () => void, optionalAsyncFailureFunc?: (errorCode: number, errorString: string) => void): boolean;
+    HTTPUploadThroughPostEx(HTTPServer: string, sImageIndex: number, ActionPage: string, fileName: string, lImageType: EnumDWT_ImageType, optionalAsyncSuccessFunc?: () => void, optionalAsyncFailureFunc?: (errorCode: number, errorString: string, httppostresponsestring:string) => void): boolean;
 
     /**
      * [Deprecated.] Uploads the image of a specified index in the buffer to the HTTP server through the HTTP PUT method.
@@ -3244,10 +3266,10 @@ interface WebTwain {
      * Binds a specified function to an event, so that the function gets called whenever the event fires.
      * @method WebTwain#RegisterEvent
      * @param {string} name the name of the event that the function is bound to.
-     * @param {object} evt specifies the function to call when event fires.
+     * @param {any} evt specifies the function to call when event fires.
      * @return {boolean}
      */
-    RegisterEvent(name: string, evt: object): boolean;
+    RegisterEvent(name: string, evt: any): boolean;
 
     /**
      * Removes all images in buffer.
@@ -3415,7 +3437,7 @@ interface WebTwain {
     /**
      * Saves the selected images in buffer to base64 string.
      * @method WebTwain#SaveSelectedImagesToBase64Binary
-     * @return {string|bool}
+     * @return {string|boolean}
      */
     SaveSelectedImagesToBase64Binary(optionalAsyncSuccessFunc?: (result: string[]) => void, optionalAsyncFailureFunc?: (errorCode: number, errorString: string) => void): string | boolean;
 
