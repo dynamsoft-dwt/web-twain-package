@@ -36,7 +36,7 @@ declare namespace Dynamsoft {
             cUrlIndex  dcpCallbackType  dcpStatus  detectType  getVersionArray  global_dlg  hideMask  isDWTVersionLatest  onNoControl
             onNotAllowedForChrome  ports  scriptLoaded  showMask  starting  tryTimes*/
             ssl: boolean;
-        }
+        };
 
         /*ignored
         detectButton  dialog  dialogShowStatus  dlgProgress  dlgRef  drawBoxBorder  drawImageWithHermite
@@ -49,7 +49,7 @@ declare namespace Dynamsoft {
             bIE: boolean, bLinux: boolean, bMac: boolean, bSafari: boolean, bWin: boolean, bWin64: boolean,
             basePath: string, iPluginLength: number, isX64: boolean, pathType: number,
             strChromeVersion: number, strFirefoxVersion: string, strIEVersion: string
-        }
+        };
 
         /*ignored
         error  escapeHtml  escapeRegExp  extend  filter  fireEvent  fromUnicode  get  getColor  getCss
@@ -1384,7 +1384,6 @@ interface Container {
  */
 // properties (get/set) / sync functions
 interface WebTwain {
-
     /**
      * Returns whether the instance of a DWT is initialized
      * @type {boolean}
@@ -2269,7 +2268,6 @@ interface WebTwain {
     *Methods
     */
 
-
     /**
      * Displays the source's built-in interface to acquire image.
      * @method WebTwain#AcquireImage
@@ -2836,7 +2834,7 @@ interface WebTwain {
      * Return the runtime license info.
      * @method WebTwain#GetLicenseInfo
      */
-    GetLicenseInfo(): { Domain: string, Detail: Array<any> };
+    GetLicenseInfo(): { Domain: string, Detail: any[] };
 
     /**
      * Returns the index of the selected image.
