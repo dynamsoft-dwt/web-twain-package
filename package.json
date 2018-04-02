@@ -1,6 +1,6 @@
 {
     "name": "dwt",
-    "version": "13.4.0",
+    "version": "13.4.1",
     "author": {
         "name": "Dynamsoft",
         "url": "https://www.dynamsoft.com"
@@ -39,7 +39,6 @@
         "SANE"
     ],
     "main": "dist/dynamsoft.webtwain.min.js",
-    "types": "dist/index.d.ts",
     "maintainers": [{
         "name": "dynamsoft.webtwain.min.js",
         "email": "support@dynamsoft.com"
