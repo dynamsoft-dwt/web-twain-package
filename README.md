@@ -75,7 +75,7 @@ Dynamsoft.WebTwainEnv.ProductKey = 't0073lQAAAB/yamws7oMQoHO0Hj0/2BCZfXSCbniKJRG
 Dynamsoft.WebTwainEnv.Trial = true;
 ```
 
-***NOTICE*** : If you are using the trial, the ProductKey might be expired or invalid. In this case, you can [request a trial key](http://www.dynamsoft.com/).
+***NOTICE*** : If you are using the trial, the ProductKey might be expired or invalid. In this case, you can [request a trial key](https://www.dynamsoft.com/CustomerPortal/Portal/TrialLicense.aspx) and then replace the one above (Dynamsoft.WebTwainEnv.ProductKey).
 
 ## Step 3 Write code to use the pacakge to do a simple document scan
 

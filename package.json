@@ -1,6 +1,6 @@
 {
     "name": "dwt",
-    "version": "13.4.2-beta",
+    "version": "13.4.3",
     "author": {
         "name": "Dynamsoft",
         "url": "https://www.dynamsoft.com"
@@ -10,7 +10,8 @@
     "devDependencies": {},
     "directories": {},
     "files": [
-        "dist"
+        "dist",
+        "samples"
     ],
     "homepage": "https://www.dynamsoft.com/Products/WebTWAIN_Overview.aspx",
     "keywords": [
