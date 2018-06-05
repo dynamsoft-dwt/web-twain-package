@@ -1,46 +1,87 @@
 ![Dynamic Web TWAIN](https://www.dynamsoft.com/assets/img-icon/logo-dwt-white-300x68.png)
 
-Cross-platform JavaScript library for web document scanning.
+Cross-platform cross-browser JavaScript library for web document scanning.
 
 
-## Overview
-[Dynamic Web TWAIN](https://www.dynamsoft.com/Products/WebTWAIN_Overview.aspx) is a TWAIN-based scanning SDK software specifically designed for web applications. With just a few lines of code, you can develop robust applications to scan documents from TWAIN-compatible scanners, edit the scanned images and save them to a local/server file system or document repository.
+# Overview
+[Dynamic Web TWAIN](https://www.dynamsoft.com/Products/WebTWAIN_Overview.aspx) is a TWAIN-based scanning SDK software specifically designed for web applications. With just a few lines of code, you can develop robust applications to scan documents from TWAIN/ICA/SANE-compatible scanners on Windows/macOS/Linux, view and edit the scanned images, then save them to a local/server file system or database.
 
 ## Installation
+### The main package
 
 ```bash
 npm install dwt
 ```
 
+For TypeScript support
+```bash
+npm install @types/dwt
+```
 ## Features
-* TWAIN specification 2.1 and below compatible (ActiveX, HTML5 for Windows, Plugin APIs).
-* TWAIN specification 1.9 and below compatible (HTML5 for Mac API).
+* TWAIN spec 2.1 and below compatible (ActiveX, HTML5 for Windows APIs).
+* TWAIN spec 1.9 and below compatible (HTML5 for Mac API).
+* ICA compatible (HTML5 for Mac API).
+* SANE compatible (HTML5 for Linux).
 * Optional disk caching mechanism enables high volume document scanning (up to thousands of pages).
 * Supports Auto Document Feeder (ADF) and multiple image acquisition.
-* Supports duplex scanning mode.
-* Supports image preview mode.
-* Supports blank page detection.
-* Built-in wizard mode intelligently manages TWAIN states.
+* Supports duplex scanning mode if the device supports it.
 * Supports setting up image acquisition parameters (resolution, pixel type, bit depth, brightness, contrast, page size, unit, etc).
-* Supports both Native and Disk File Image transfer modes. ActiveX, Plugin and HTML5 for Windows APIs also support Buffered Memory transfer mode.
+* Supports both Native and Disk File Image transfer modes on Windows.
+* Supports importing existing files in the formats BMP, JPG, PNG, TIF, PDF (image based).
+* Supports rasterizing text-based PDF files into images.
+* Supports image viewing and basic editing through APIs like rotate, flip, mirror, crop, etc.
+* Supports encrypting local files in buffer and automatic removing of files that are no longer needed.
+* Built-in encoding module to create files in the formats BMP, JPG, PNG, TIF, PDF.
+* Built-in upload module to easily upload encoded files to FTP or HTTP servers.
+* Built-in support for secure HTTP (HTTPS).
+* Built-in Image Editor to easily edit images without additional code.
+* Barcode reading and OCR with optional addons.
 
 ## Documentation
 
-* [Developer's Guide](http://developer.dynamsoft.com/dwt)
-* [Sample Code](https://www.dynamsoft.com/Downloads/WebTWAIN-Sample-Download.aspx)
+* [Developer's Guide](https://developer.dynamsoft.com/dwt/guide)
+* [Sample Gallery](https://www.dynamsoft.com/Downloads/WebTWAIN-Sample-Download.aspx)
 
-## Quick Start
+# Quick Start
 
-Include **dynamsoft.webtwain.min.js** into your page:
+## Step 1 Load **dynamsoft.webtwain.initiate.js** into your page:
 
 ```html
-<script type="text/javascript" src="https://www.dynamsoft.com/library/dwt/dynamsoft.webtwain.min.js"></script>
+<script src="{your path}/node_modules/dwt/dist/dynamsoft.webtwain.initiate.js"></script>
 ```
 
-Select a source and scan documents:
+> Alternatively, you can also load it from Dynamsoft server that holds the libraries. Note that there are different versions and make sure you use the correct one in your application. 
+> 
+> **NOTE: _This isn't recommended for production._**
 
 ```html
-<select size="1" id="source" style="position: relative; width: 220px;"></select>
+<script src="https://www.dynamsoft.com/library/dwt/13.4.1/dynamsoft.webtwain.initiate.js"></script>
+```
+
+> The file **dynamsoft.webtwain.initiate.js** is the core of the package and must be loaded. Once you have installed the package, it can be found under *node_modules\dwt\dist*. Make sure you write the correct path for it.
+## Step 2 Load **dynamsoft.webtwain.config.js** into your page:
+```html
+<script src="{your path}/node_modules/dwt/dist/dynamsoft.webtwain.config.js"></script>
+```
+> The file **dynamsoft.webtwain.config.js** is used to config the package to best suite your application. You can config things like 
+> 1. The initial dimentions of the built-in viewer
+> 2. Whether or not you will use the full version or trial version
+> 3. The **product key** needed to activate the package
+
+For example:
+```javascript
+Dynamsoft.WebTwainEnv.Containers = [{ ContainerId: 'dwtcontrolContainer',  Width:'583px', Height:'513px'}];
+Dynamsoft.WebTwainEnv.ProductKey = 't0073lQAAAB/yamws7oMQoHO0Hj0/2BCZfXSCbniKJRGXA512xrrM/xtaDXb3K9F3dnXipNqp8So1SqMwwcowv7iAKTzztmE8l/Mdhw==';
+Dynamsoft.WebTwainEnv.Trial = true;
+```
+
+***NOTICE*** : If you are using the trial, the ProductKey might be expired or invalid. In this case, you can [request a trial key](http://www.dynamsoft.com/).
+
+## Step 3 Write code to use the pacakge to do a simple document scan
+
+> The following code demonstrates the minimum code needed to use the package. For more sophisticated sample or demo, check out the [Sample Gallery](https://www.dynamsoft.com/Downloads/WebTWAIN-Sample-Download.aspx)
+
+```html
 <input type="button" value="Scan" onclick="AcquireImage();" />
 
 <!-- dwtcontrolContainer is the default div id for Dynamic Web TWAIN control.
@@ -48,30 +89,17 @@ If you need to rename the id, you should also change the id in the dynamsoft.web
 <div id="dwtcontrolContainer"></div>
 
 <script type="text/javascript">
-    Dynamsoft.WebTwainEnv.RegisterEvent('OnWebTwainReady', Dynamsoft_OnReady);  // Register OnWebTwainReady event. This event fires as soon as Dynamic Web TWAIN is initialized and ready to be used
     var DWObject;
     function Dynamsoft_OnReady() {
-        DWObject = Dynamsoft.WebTwainEnv.GetWebTwain('dwtcontrolContainer');    // Get the Dynamic Web TWAIN object that is embeded in the div with id 'dwtcontrolContainer'
-        if (DWObject) {
-            if (window.navigator.platform.indexOf("Linux") !== -1) {
-                    DWObject.ImageCaptureDriverType = 3;
-            }
-            var count = DWObject.SourceCount;
-            for (var i = 0; i < count; i++)
-                document.getElementById("source").options.add(new Option(DWObject.GetSourceNameItems(i), i)); // Get Data Source names from Data Source Manager and put them in a drop-down box
-        }
+        DWObject = Dynamsoft.WebTwainEnv.GetWebTwain('dwtcontrolContainer');
     }
     function AcquireImage() {
         if (DWObject) {
-            var OnAcquireImageSuccess, OnAcquireImageFailure;
-            OnAcquireImageSuccess = OnAcquireImageFailure = function (){
-                DWObject.CloseSource();
-            };
-            
-            DWObject.SelectSourceByIndex(document.getElementById("source").selectedIndex); //Use method SelectSourceByIndex to avoid the 'Select Source' dialog
+            DWObject.SelectSource();
+            DWObject.CloseSource();
             DWObject.OpenSource();
-            DWObject.IfDisableSourceAfterAcquire = true;	// Scanner source will be disabled/closed automatically after the scan.
-            DWObject.AcquireImage(OnAcquireImageSuccess, OnAcquireImageFailure);
+            DWObject.IfDisableSourceAfterAcquire = true;
+            DWObject.AcquireImage();
         }
     }
 </script>
@@ -84,44 +112,28 @@ If you need to rename the id, you should also change the id in the dynamsoft.web
 <html>
 <head>
     <title>Use Dynamic Web TWAIN to Scan</title>
-    <script type="text/javascript" src="https://www.dynamsoft.com/library/dwt/dynamsoft.webtwain.min.js"></script>
+    <script src="https://www.dynamsoft.com/library/dwt/13.4.1/dynamsoft.webtwain.initiate.js"></script>
+    <script src="{your path}/node_modules/dwt/dist/dynamsoft.webtwain.config.js"></script>
 </head>
 <body>
-    <select size="1" id="source" style="position: relative; width: 220px;"></select>
     <input type="button" value="Scan" onclick="AcquireImage();" />
-
-    <!-- dwtcontrolContainer is the default div id for Dynamic Web TWAIN control.
-    If you need to rename the id, you should also change the id in the dynamsoft.webtwain.config.js accordingly. -->
     <div id="dwtcontrolContainer"></div>
 
     <script type="text/javascript">
-        Dynamsoft.WebTwainEnv.RegisterEvent('OnWebTwainReady', Dynamsoft_OnReady);  // Register OnWebTwainReady event. This event fires as soon as Dynamic Web TWAIN is initialized and ready to be used
-
         var DWObject;
-
         function Dynamsoft_OnReady() {
-            DWObject = Dynamsoft.WebTwainEnv.GetWebTwain('dwtcontrolContainer');    // Get the Dynamic Web TWAIN object that is embeded in the div with id 'dwtcontrolContainer'
-            if (DWObject) {
-                var count = DWObject.SourceCount;
-                for (var i = 0; i < count; i++)
-                    document.getElementById("source").options.add(new Option(DWObject.GetSourceNameItems(i), i)); // Get Data Source names from Data Source Manager and put them in a drop-down box
-            }
+            DWObject = Dynamsoft.WebTwainEnv.GetWebTwain('dwtcontrolContainer');
         }
         function AcquireImage() {
             if (DWObject) {
-				var OnAcquireImageSuccess, OnAcquireImageFailure;
-				OnAcquireImageSuccess = OnAcquireImageFailure = function (){
-					DWObject.CloseSource();
-				};
-				
-                DWObject.SelectSourceByIndex(document.getElementById("source").selectedIndex); //Use method SelectSourceByIndex to avoid the 'Select Source' dialog
+                DWObject.SelectSource();
+                DWObject.CloseSource();
                 DWObject.OpenSource();
-                DWObject.IfDisableSourceAfterAcquire = true;	// Scanner source will be disabled/closed automatically after the scan.
-                DWObject.AcquireImage(OnAcquireImageSuccess, OnAcquireImageFailure);
+                DWObject.IfDisableSourceAfterAcquire = true;
+                DWObject.AcquireImage();
             }
         }
     </script>
 </body>
 </html>
-
 ```

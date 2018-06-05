@@ -1,2 +1,0 @@
-
-RemoveHeadComments a b c
