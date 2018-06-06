@@ -39,13 +39,16 @@ npm install @types/dwt
 
 ## Versions
 
->Dynamic Web TWAIN: **v13.4.1** (build version 13,3,1,0326)
+>Dynamic Web TWAIN: **v13.4.1** (build version 13, 3, 1, 0326)
 >
->Dynamsoft PDF Rasterizer: **v13.4.1** (build version 10.2.0.1123)
->
->Dynamsoft Barcode Reader: **v5.2** (build version 5.2.0.0829)
+>Dynamsoft PDF Rasterizer: **v13.4.1** (build version 10, 2, 0, 1123)
 >
 >Dynamsoft OCR Basic Engine: **v9.3** (build version 9, 3, 2, 407)
+>
+>Dynamsoft Barcode Reader: **v5.2** (build version 5, 2, 0, 0829)
+>
+>Dynamsoft Camera SDK: **v6.1** (build version 6, 1, 0, 0907)
+
 
 ## Samples
 * **AutoFeeder.html & CustomScan.html**: Dynamic Web TWAIN core features
