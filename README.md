@@ -37,9 +37,30 @@ npm install @types/dwt
 * Built-in Image Editor to easily edit images without additional code.
 * Barcode reading and OCR with optional addons.
 
+## Versions
+
+>Dynamic Web TWAIN: **v13.4.1** (build version 13,3,1,0326)
+>
+>Dynamsoft PDF Rasterizer: **v13.4.1** (build version 10.2.0.1123)
+>
+>Dynamsoft Barcode Reader: **v5.2** (build version 5.2.0.0829)
+>
+>Dynamsoft OCR Basic Engine: **v9.3** (build version 9, 3, 2, 407)
+
+## Samples
+* **AutoFeeder.html & CustomScan.html**: Dynamic Web TWAIN core features
+* **PDFRasterizer.html**: Using the Rasterizer add-on to convert text-based PDF files
+* **OCRADocument.html**: Scan, Load images and then perform OCR on them (English)
+* **ReadBarcode.html**: Scan, Load images and then read barcode off them
+* **ScanorCapture.html**: Scan documents from scanners or capture documents from webcams
+
+
 ## Documentation
 
 * [Developer's Guide](https://developer.dynamsoft.com/dwt/guide)
+* [Dynamic Web TWAIN & OCR & PDFR API Reference](https://developer.dynamsoft.com/dwt/api-reference)
+* [Dynamsoft Barcode Reader API Reference](https://www.dynamsoft.com/help/Barcode-Reader-JS/index.html)
+* [Dynamsoft Camera SDK API Reference](https://developer.dynamsoft.com/dws/api-reference)
 * [Sample Gallery](https://www.dynamsoft.com/Downloads/WebTWAIN-Sample-Download.aspx)
 
 # Quick Start
@@ -71,7 +92,7 @@ npm install @types/dwt
 For example:
 ```javascript
 Dynamsoft.WebTwainEnv.Containers = [{ ContainerId: 'dwtcontrolContainer',  Width:'583px', Height:'513px'}];
-Dynamsoft.WebTwainEnv.ProductKey = 't0073lQAAAB/yamws7oMQoHO0Hj0/2BCZfXSCbniKJRGXA512xrrM/xtaDXb3K9F3dnXipNqp8So1SqMwwcowv7iAKTzztmE8l/Mdhw==';
+Dynamsoft.WebTwainEnv.ProductKey = 't01133AEAAL071vQIfKdEnugH4YPU50xTm8yJC0wG6iFWc4vXw69o3GX7datutEKwTT7eeGHu9b46lUb/6uWqjh4HYCSM0ZIdE19MYjW+FGDjzmEU9Y38MLFvbOOf+Xy5Gl3ZeE03wB6QB2CkczJhA74dXLo=';
 Dynamsoft.WebTwainEnv.Trial = true;
 ```
 

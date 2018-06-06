@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Read Barcode on Scanned or Loaded Documents</title>
+    <script type="text/javascript" src="../dist/dynamsoft.webtwain.initiate.js"></script>
+    <script type="text/javascript" src="../dist/dynamsoft.webtwain.config.js"></script>
+    <script type="text/javascript" src="../dist/addon/dynamsoft.webtwain.addon.pdf.js"></script>
+    <script type="text/javascript" src="../dist/addon/dynamsoft.barcodereader.initiate.js"></script>
+    <script type="text/javascript" src="../dist/addon/dynamsoft.barcodereader.config.js"></script>
+</head>
+
+<body>
+    <h1>Read Barcode on Scanned or Loaded Documents</h1>
+    <input type="button" value="Scan Documents" onclick="AcquireImage();" />
+    <input type="button" value="Load Images or PDFs" onclick="LoadImages();" style="margin-right: 20px;" />
+    <select id="barcodeformat"></select>
+    <input type="button" value="Read Barcode" onclick="ReadBarcode();" />
+    <br />
+    <br />
+    <div id="dwtcontrolContainer" style="float:left;"></div>
+    <div id="divNoteMessage" style="margin:0px 20px;float:left;width:300px; height:350px; overflow: auto;background-color:#e7f2fd;border:solid 1px black;"></div>
+    <script type="text/javascript">
+        window.onload = function () {
+            if (Dynamsoft && (!Dynamsoft.Lib.env.bWin || !Dynamsoft.Lib.product.bChromeEdition)) {
+                dynamsoft.lib.dialog.dm._blockDocument();
+                var ObjString = [];
+                ObjString.push('<div style="padding:0 20px;">');
+                ObjString.push("Please note that your current browser doesn't support the Barcode add-on, please use modern browsers like Chrome, Firefox, Edge or IE 11.");
+                ObjString.push('</div>');
+                Dynamsoft.WebTwainEnv.ShowDialog(400, 180, ObjString.join(''));
+                if (document.getElementsByClassName("dynamsoft-dialog-close"))
+                    document.getElementsByClassName("dynamsoft-dialog-close")[0].style.display = "none";
+            } else {
+                Dynamsoft.WebTwainEnv.Load();
+            }
+        };
+
+        Dynamsoft.WebTwainEnv.RegisterEvent('OnWebTwainReady', Dynamsoft_OnReady); // Register OnWebTwainReady event. This event fires as soon as Dynamic Web TWAIN is initialized and ready to be used
+
+        var DWObject;
+        var BarcodeInfo =
+            [
+                { desc: "All", val: 0 },
+                { desc: "1D Barcodes", val: 1023 },
+                { desc: "QR Code", val: 67108864 },
+                { desc: "PDF417", val: 33554432 },
+                { desc: "DATAMATRIX", val: 134217728 },
+                { desc: "CODE_39", val: 1 },
+                { desc: "CODE_128", val: 2 },
+                { desc: "CODE_93", val: 4 },
+                { desc: "CODABAR", val: 8 },
+                { desc: "EAN_13", val: 32 },
+                { desc: "EAN_8", val: 64 },
+                { desc: "UPC_A", val: 128 },
+                { desc: "UPC_E", val: 256 },
+                { desc: "Interleaved 2 of 5", val: 16 },
+                { desc: "Industrial 2 of 5", val: 512 }
+            ];
+
+        function onInitSuccess() {
+            dbrObject = new dynamsoft.dbrEnv.BarcodeReader();
+        }
+
+        function onInitFailure(errorCode, errorString) {
+            alert('Init failed: ' + errorString);
+        }
+
+        function Dynamsoft_OnReady() {
+            DWObject = Dynamsoft.WebTwainEnv.GetWebTwain('dwtcontrolContainer'); // Get the Dynamic Web TWAIN object that is embeded in the div with id 'dwtcontrolContainer'
+            if (DWObject) {
+                for (var index = 0; index < BarcodeInfo.length; index++)
+                    document.getElementById("barcodeformat").options.add(new Option(BarcodeInfo[index].desc, index));
+                DWObject.Addon.PDF.Download(
+                    Dynamsoft.WebTwainEnv.ResourcesPath + '/addon/Pdf.zip',
+                    function () {
+                        console.log('The PDF Rasterizer dll is installed.');
+                    },
+                    function (errorCode, errorString) {
+                        console.log("The PDF Rasterizer wasn't installed correctly.");
+                    }
+                );
+                dynamsoft.dbrEnv.init(onInitSuccess, onInitFailure);
+            }
+        }
+
+        function AcquireImage() {
+            if (DWObject) {
+                DWObject.SelectSource();
+                DWObject.CloseSource();
+                DWObject.OpenSource();
+                DWObject.IfDisableSourceAfterAcquire = true;
+                DWObject.AcquireImage();
+            }
+        }
+
+        function LoadImages() {
+            if (DWObject) {
+                var nCount = 0, nCountLoaded = 0;
+                DWObject.IfShowFileDialog = true;
+                if (DWObject.Addon && DWObject.Addon.PDF) {
+                    DWObject.Addon.PDF.SetResolution(200);
+                    DWObject.Addon.PDF.SetConvertMode(EnumDWT_ConverMode.CM_RENDERALL);
+                }
+                DWObject.LoadImageEx("", 5,
+                    function () {
+                        console.log('Image(s) loaded successfully');
+                    },
+                    function (errorCode, errorString) {
+                        alert(errorString);
+                    }
+                );
+            }
+        }
+
+        function GetBarcodeInfo(sImageIndex, result) {//This is the function called when barcode is read successfully
+            //Retrieve barcode details
+            var _textResult = [], count = result.getCount();
+            if (count == 0) {
+                alert("The barcode for the selected format is not found.");
+                return;
+            } else {
+                for (i = 0; i < count; i++) {
+                    Barcode_text = result.get(i).text;
+                    var x = result.get(i).x1;
+                    var y = result.get(i).y1;
+                    var format = result.get(i).formatString;
+                    var barcodeText = ("<p style='margin:0; padding:5px'>barcode[" + (i + 1) + "]: " + "<br />" + Barcode_text + "<br />");
+                    barcodeText += ("format:" + format + "<br />");
+                    barcodeText += ("x:" + x + "y:" + y + "<br /></p>");
+                    _textResult.push(barcodeText);
+                }
+                document.getElementById('divNoteMessage').innerHTML = _textResult.join('');
+            }
+            Dynamsoft.Lib.detect.hideMask();
+        }
+
+        function GetErrorInfo(errorcode, errorstring) {//This is the function called when barcode reading fails
+            alert(errorstring);
+            Dynamsoft.Lib.detect.hideMask();
+        }
+
+        function ReadBarcode() {
+            if (DWObject) {
+                if (DWObject.HowManyImagesInBuffer == 0) {
+                    alert("Please scan or load an image first.");
+                    return;
+                }
+                dbrObject.barcodeFormats = BarcodeInfo[document.getElementById("barcodeformat").selectedIndex].val;
+                var index = DWObject.CurrentImageIndexInBuffer;
+                var barcodeImage = DWObject.GetImageURL(index, -1, -1);
+                Dynamsoft.Lib.detect.showMask();
+                dbrObject.readURLAsync(barcodeImage,
+                    index,
+                    GetBarcodeInfo,
+                    GetErrorInfo);
+            }
+        }
+
+    </script>
+</body>
+
+</html>

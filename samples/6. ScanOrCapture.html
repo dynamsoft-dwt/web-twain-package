@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Acquire Images From Scanners and Cameras</title>
+    <script type="text/javascript" src="../dist/dynamsoft.webtwain.initiate.js"></script>
+    <script type="text/javascript" src="../dist/dynamsoft.webtwain.config.js"></script>
+    <script type="text/javascript" src="../dist/addon/dynamsoft.webtwain.addon.pdf.js"></script>
+    <script type="text/javascript" src="../dist/addon/dynamsoft.camera.initiate.js"></script>
+    <script type="text/javascript" src="../dist/addon/dynamsoft.camera.config.js"></script>
+</head>
+
+<body>
+    <h1>Acquire Images From Scanners and Cameras</h1>
+    <input type="button" value="Scan Documents" onclick="AcquireImage();" />
+    <input type="button" value="Load Images or PDFs" onclick="LoadImages();" style="margin-right: 20px;" />
+    <select id="sltCameraSource"></select>
+    <input type="button" value="Play Video" onclick="playVideo();" />
+    <input type="button" value="Grab An Image" onclick="grabImage();" />
+    <br />
+    <br />
+    <div id="dwtcontrolContainer" style="float:left; position: absolute; left:-1000px;"></div>
+    <div id="image-container" style="float:left; margin-left: 0px; width:270px; height:350px; border:1px black solid"> </div>
+    <div id="video-container" style="float:left; margin-left: 20px; width:270px; height:350px; border:1px black solid"> </div>
+    <script type="text/javascript">
+        window.onload = function () {
+            if (Dynamsoft && (!Dynamsoft.Lib.env.bWin || !Dynamsoft.Lib.product.bChromeEdition)) {
+                dynamsoft.lib.dialog.dm._blockDocument();
+                var ObjString = [];
+                ObjString.push('<div style="padding:0 20px;">');
+                ObjString.push("Please note that your current browser doesn't support the Webcam add-on, please use modern browsers like Chrome, Firefox, Edge or IE 11.");
+                ObjString.push('</div>');
+                Dynamsoft.WebTwainEnv.ShowDialog(400, 180, ObjString.join(''));
+                if (document.getElementsByClassName("dynamsoft-dialog-close"))
+                    document.getElementsByClassName("dynamsoft-dialog-close")[0].style.display = "none";
+            } else {
+                Dynamsoft.WebTwainEnv.Load();
+            }
+        };
+
+        Dynamsoft.WebTwainEnv.RegisterEvent('OnWebTwainReady', Dynamsoft_OnReady); // Register OnWebTwainReady event. This event fires as soon as Dynamic Web TWAIN is initialized and ready to be used
+
+        function playVideo() {
+            var selectedCameraName = document.getElementById('sltCameraSource').value;
+            if (selectedCameraName) {
+                dcsObject.camera.takeCameraOwnership(selectedCameraName);
+
+                if (dcsObject.getErrorCode() !== EnumDCS_ErrorCode.OK) {
+                    curCameraName = '';
+                } else curCameraName = selectedCameraName;
+
+                dcsObject.camera.playVideo();
+
+            } else {
+                curCameraName = '';
+                console.log('No camera is connected.');
+            }
+        }
+
+        function grabImage() {
+            if (dcsObject) {
+                dcsObject.camera.captureImage('image-container');
+            }
+        }
+
+        function onInitSuccess(videoViewerId, imageViewerId) {
+            setTimeout(function () {
+                dcsObject = dynamsoft.dcsEnv.getObject(videoViewerId);
+                imageViewer = dcsObject.getImageViewer(imageViewerId);
+                imageViewer.ui.setSelectedImageBorderWidth(1);
+                dcsObject.videoviewer.setMode(dcsObject.videoviewer.EnumMode.Image);
+                var cameraList = dcsObject.camera.getCameraList();
+                for (var i = 0; i < cameraList.length; i++)
+                    document.getElementById("sltCameraSource").options.add(new Option(cameraList[i], cameraList[i]));
+            }, 100);
+        }
+
+        function onInitFailure(errorCode, errorString) {
+            console.log('Init failed: ' + errorString);
+        }
+
+        function Dynamsoft_OnReady() {
+            DWObject = Dynamsoft.WebTwainEnv.GetWebTwain('dwtcontrolContainer'); // Get the Dynamic Web TWAIN object that is embeded in the div with id 'dwtcontrolContainer'
+            if (DWObject) {
+                DWObject.Addon.PDF.Download(
+                    Dynamsoft.WebTwainEnv.ResourcesPath + '/addon/Pdf.zip',
+                    function () {
+                        console.log('The PDF Rasterizer dll is installed.');
+                    },
+                    function (errorCode, errorString) {
+                        console.log("The PDF Rasterizer wasn't installed correctly.");
+                    }
+                );
+                DWObject.RegisterEvent('OnBitmapChanged', function (strUpdatedIndex, operationType, sCurrentIndex) {
+                    if (operationType == 1 || operationType == 2) {
+                        var newImageURL = DWObject.GetImageURL(sCurrentIndex);
+                        if (newImageURL != "" && imageViewer) {
+                            imageViewer.io.httpDownload(newImageURL);
+                        }
+                    }
+                });
+                dynamsoft.dcsEnv.init('video-container', 'image-container', onInitSuccess, onInitFailure);
+            }
+        }
+
+        function AcquireImage() {
+            if (DWObject) {
+                DWObject.SelectSource();
+                DWObject.CloseSource();
+                DWObject.OpenSource();
+                DWObject.IfDisableSourceAfterAcquire = true;
+                DWObject.AcquireImage();
+            }
+        }
+
+        function LoadImages() {
+            if (DWObject) {
+                var nCount = 0, nCountLoaded = 0;
+                DWObject.IfShowFileDialog = true;
+                if (DWObject.Addon && DWObject.Addon.PDF) {
+                    DWObject.Addon.PDF.SetResolution(200);
+                    DWObject.Addon.PDF.SetConvertMode(EnumDWT_ConverMode.CM_RENDERALL);
+                }
+                DWObject.LoadImageEx("", 5,
+                    function () {
+                        console.log('Image(s) loaded successfully');
+                    },
+                    function (errorCode, errorString) {
+                        alert(errorString);
+                    }
+                );
+            }
+        }
+    </script>
+</body>
+
+</html>

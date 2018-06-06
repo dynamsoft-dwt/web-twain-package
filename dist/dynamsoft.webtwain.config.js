@@ -1,4 +1,4 @@
-﻿//
+//
 // Dynamsoft JavaScript Library for Basic Initiation of Dynamic Web TWAIN
 // More info on DWT: http://www.dynamsoft.com/Products/WebTWAIN_Overview.aspx
 //
@@ -9,14 +9,14 @@
 /// <reference path="dynamsoft.webtwain.initiate.js" />
 var Dynamsoft = Dynamsoft || { WebTwainEnv: {} };
 
-Dynamsoft.WebTwainEnv.AutoLoad = true;
+Dynamsoft.WebTwainEnv.AutoLoad = false;
 
 ///
-Dynamsoft.WebTwainEnv.Containers = [{ContainerId:'dwtcontrolContainer', Width:270, Height:350}];
+Dynamsoft.WebTwainEnv.Containers = [{ ContainerId: 'dwtcontrolContainer', Width: 270, Height: 350 }];
 
 /// If you need to use multiple keys on the same server, you can combine keys and write like this 
 /// Dynamsoft.WebTwainEnv.ProductKey = 'key1;key2;key3';
-Dynamsoft.WebTwainEnv.ProductKey = 't0073lQAAAB/yamws7oMQoHO0Hj0/2BCZfXSCbniKJRGXA512xrrM/xtaDXb3K9F3dnXipNqp8So1SqMwwcowv7iAKTzztmE8l/Mdhw==';
+Dynamsoft.WebTwainEnv.ProductKey = 't01075QEAAIODtqPVfF2vUIwabNaLRG/Y4twI75RLXBNjylk2asWQjIi+D7werlponky1ViNB/U91+fYlAMOFMnis4ByQiY0YCRi3qw0jX13T2ItpmCbzXebeuUxH/0YCxv4NO//AkKFVD9/RXlE=';
 
 ///
 Dynamsoft.WebTwainEnv.Trial = true;

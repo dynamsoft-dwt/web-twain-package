@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -12,13 +12,28 @@
 <body>
     <h1>Scan or Load documents and OCR them (English as an example)</h1>
     <input type="button" value="Scan Documents" onclick="AcquireImage();" />
-    <input type="button" value="Load Images or PDFs" onclick="LoadImages();" />
+    <input type="button" value="Load Images or PDFs" onclick="LoadImages();" style="margin-right: 20px;" />
     <input type="button" value="OCR An Image with English" onclick="DoOCR();" />
     <br />
     <br />
     <div id="dwtcontrolContainer" style="float:left;"></div>
-    <div id="divNoteMessage" style="margin:0px 20px;float:left;width:300px; height:352px; overflow-x: hidden;overflow-y: auto;background-color:#e7f2fd;border:solid 1px black;"></div>
+    <div id="divNoteMessage" style="margin:0px 20px; float:left;width:300px; height:350px; overflow: auto;background-color:#e7f2fd;border:solid 1px black;"></div>
     <script type="text/javascript">
+        window.onload = function () {
+            if (Dynamsoft && (!Dynamsoft.Lib.env.bWin || !Dynamsoft.Lib.product.bChromeEdition)) {
+                dynamsoft.lib.dialog.dm._blockDocument();
+                var ObjString = [];
+                ObjString.push('<div style="padding:0 20px;">');
+                ObjString.push("Please note that your current browser doesn't support the OCR add-on, please use modern browsers like Chrome, Firefox, Edge or IE 11.");
+                ObjString.push('</div>');
+                Dynamsoft.WebTwainEnv.ShowDialog(400, 180, ObjString.join(''));
+                if (document.getElementsByClassName("dynamsoft-dialog-close"))
+                    document.getElementsByClassName("dynamsoft-dialog-close")[0].style.display = "none";
+            } else {
+                Dynamsoft.WebTwainEnv.Load();
+            }
+        };
+
         Dynamsoft.WebTwainEnv.RegisterEvent('OnWebTwainReady', Dynamsoft_OnReady); // Register OnWebTwainReady event. This event fires as soon as Dynamic Web TWAIN is initialized and ready to be used
 
         var DWObject;
@@ -36,10 +51,14 @@
                         if (confirm("The PDF Rasterizer wasn't installed correctly, continue to install the OCR addon?")) {
                             downloadOCRAddon();
                         }
+                        else {
+                            alert("Both PDF Rasterizer and the OCR addons are not installed, the sample won't work.")
+                        }
                     }
                 );
             }
         }
+
         function downloadOCRAddon() {
             if (DWObject) {
                 DWObject.Addon.OCR.Download(
@@ -53,6 +72,7 @@
                     });
             }
         }
+
         function AcquireImage() {
             if (DWObject) {
                 DWObject.SelectSource();
@@ -62,6 +82,7 @@
                 DWObject.AcquireImage();
             }
         }
+
         function LoadImages() {
             if (DWObject) {
                 var nCount = 0, nCountLoaded = 0;
@@ -94,12 +115,15 @@
                     function (sImageIndex, result) {
                         if (result == null)
                             return null;
-                        var _textResult = (Dynamsoft.Lib.base64.decode(result.Get())).split(/\r?\n/g);
-                        for (var i = 0; i < _textResult.length; i++)
-                            _textResult[i] += '<br />';
-                        _textResult.splice(0, '<p>');
-                        _textResult.push('</p>');
-                        document.getElementById('divNoteMessage').innerHTML = _textResult.join('');
+                        var _textResult = (Dynamsoft.Lib.base64.decode(result.Get())).split(/\r?\n/g), _resultToShow = [];
+                        for (var i = 0; i < _textResult.length; i++) {
+                            if (i == 0 && _textResult[i].trim() == "")
+                                continue;
+                            _resultToShow.push(_textResult[i] + '<br />');
+                        }
+                        _resultToShow.splice(0, 0, '<p style="padding:5px; margin:0;">');
+                        _resultToShow.push('</p>');
+                        document.getElementById('divNoteMessage').innerHTML = _resultToShow.join('');
                     },
                     function (errorcode, errorstring, result) {
                         alert(errorstring);
