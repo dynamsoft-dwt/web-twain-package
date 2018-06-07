@@ -45,7 +45,7 @@
 
         function Dynamsoft_OnReady() {
             DWObject = Dynamsoft.WebTwainEnv.GetWebTwain('dwtcontrolContainer'); // Get the Dynamic Web TWAIN object that is embeded in the div with id 'dwtcontrolContainer'
-            if (DWObject) {
+            if (DWObject && checkCoreLicense(true)) {
                 var count = DWObject.SourceCount;
                 if (count == 0 && Dynamsoft.Lib.env.bMac) {
                     DWObject.CloseSourceManager();
@@ -56,7 +56,8 @@
 
                 for (var i = 0; i < count; i++)
                     document.getElementById("source").options.add(new Option(DWObject.GetSourceNameItems(i), i));
-            }
+            } else
+                Dynamsoft.WebTwainEnv.Unload();
         }
         function AcquireImage() {
             if (DWObject) {

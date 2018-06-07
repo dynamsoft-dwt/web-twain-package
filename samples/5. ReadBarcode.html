@@ -68,7 +68,7 @@
 
         function Dynamsoft_OnReady() {
             DWObject = Dynamsoft.WebTwainEnv.GetWebTwain('dwtcontrolContainer'); // Get the Dynamic Web TWAIN object that is embeded in the div with id 'dwtcontrolContainer'
-            if (DWObject) {
+            if (DWObject && checkCoreLicense(true)) {
                 for (var index = 0; index < BarcodeInfo.length; index++)
                     document.getElementById("barcodeformat").options.add(new Option(BarcodeInfo[index].desc, index));
                 DWObject.Addon.PDF.Download(
@@ -81,7 +81,8 @@
                     }
                 );
                 dynamsoft.dbrEnv.init(onInitSuccess, onInitFailure);
-            }
+            } else
+                Dynamsoft.WebTwainEnv.Unload();
         }
 
         function AcquireImage() {

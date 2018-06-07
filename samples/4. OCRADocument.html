@@ -40,7 +40,7 @@
 
         function Dynamsoft_OnReady() {
             DWObject = Dynamsoft.WebTwainEnv.GetWebTwain('dwtcontrolContainer'); // Get the Dynamic Web TWAIN object that is embeded in the div with id 'dwtcontrolContainer'
-            if (DWObject) {
+            if (DWObject && checkCoreLicense(true)) {
                 DWObject.Addon.PDF.Download(
                     Dynamsoft.WebTwainEnv.ResourcesPath + '/addon/Pdf.zip',
                     function () {
@@ -56,7 +56,8 @@
                         }
                     }
                 );
-            }
+            } else
+                Dynamsoft.WebTwainEnv.Unload();
         }
 
         function downloadOCRAddon() {

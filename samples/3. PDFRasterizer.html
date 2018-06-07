@@ -25,7 +25,7 @@
 
         function Dynamsoft_OnReady() {
             DWObject = Dynamsoft.WebTwainEnv.GetWebTwain('dwtcontrolContainer'); // Get the Dynamic Web TWAIN object that is embeded in the div with id 'dwtcontrolContainer'
-            if (DWObject) {
+            if (DWObject && checkCoreLicense(true)) {
                 var pdfrInstallerPath = Dynamsoft.WebTwainEnv.ResourcesPath + '/addon/';
                 if (Dynamsoft.Lib.env.bMac)
                     pdfrInstallerPath += 'MacPdf.zip';
@@ -43,7 +43,8 @@
                         console.log("The PDF Rasterizer wasn't installed correctly.");
                     }
                 );
-            }
+            } else
+                Dynamsoft.WebTwainEnv.Unload();
         }
 
         function AcquireImage() {
