@@ -11,17 +11,20 @@
 
 <body>
     <h1>Scan or Load documents and OCR them (English as an example)</h1>
+    <h4>Other languages are also supported, contact support@dynamsoft.com for more info.</h4>
     <input type="button" value="Scan Documents" onclick="AcquireImage();" />
     <input type="button" value="Load Images or PDFs" onclick="LoadImages();" style="margin-right: 20px;" />
     <input type="button" value="OCR An Image with English" onclick="DoOCR();" />
     <br />
     <br />
     <div id="dwtcontrolContainer" style="float:left;"></div>
-    <div id="divNoteMessage" style="margin:0px 20px; float:left;width:300px; height:350px; overflow: auto;background-color:#e7f2fd;border:solid 1px black;"></div>
+    <div id="divNoteMessage" ondblclick="this.innerHTML='';" style="margin:0px 20px; float:left;width:300px; height:350px; overflow: auto;background-color:#e7f2fd;border:solid 1px black;"></div>
+
+    <br />
+    
     <script type="text/javascript">
         window.onload = function () {
             if (Dynamsoft && (!Dynamsoft.Lib.env.bWin || !Dynamsoft.Lib.product.bChromeEdition)) {
-                dynamsoft.lib.dialog.dm._blockDocument();
                 var ObjString = [];
                 ObjString.push('<div style="padding:0 20px;">');
                 ObjString.push("Please note that your current browser doesn't support the OCR add-on, please use modern browsers like Chrome, Firefox, Edge or IE 11.");
@@ -33,71 +36,91 @@
                 Dynamsoft.WebTwainEnv.Load();
             }
         };
-
+        Dynamsoft.WebTwainEnv.AutoLoad = false;
         Dynamsoft.WebTwainEnv.RegisterEvent('OnWebTwainReady', Dynamsoft_OnReady); // Register OnWebTwainReady event. This event fires as soon as Dynamic Web TWAIN is initialized and ready to be used
 
         var DWObject;
 
         function Dynamsoft_OnReady() {
             DWObject = Dynamsoft.WebTwainEnv.GetWebTwain('dwtcontrolContainer'); // Get the Dynamic Web TWAIN object that is embeded in the div with id 'dwtcontrolContainer'
-            if (DWObject && checkCoreLicense(true)) {
+            if (DWObject) {
+                var strPDFPath = Dynamsoft.WebTwainEnv.ResourcesPath;
+                if (Dynamsoft.Lib.env.bMac)
+                    strPDFPath += "/dist/mac/MacPdf.zip";
+                else if (Dynamsoft.Lib.env.bLinux)
+                    strPDFPath += "/dist/linux/LinuxPdf.zip";
+                else
+                    strPDFPath += "/dist/win/Pdf.zip";
+
                 DWObject.Addon.PDF.Download(
-                    Dynamsoft.WebTwainEnv.ResourcesPath + '/addon/Pdf.zip',
+                    strPDFPath,
                     function () {
                         console.log('The PDF Rasterizer dll is installed.');
-                        downloadOCRAddon();
+                        downloadOCRBasic(true);
                     },
                     function (errorCode, errorString) {
                         if (confirm("The PDF Rasterizer wasn't installed correctly, continue to install the OCR addon?")) {
-                            downloadOCRAddon();
+                            downloadOCRBasic(true);
                         }
                         else {
                             alert("Both PDF Rasterizer and the OCR addons are not installed, the sample won't work.")
                         }
                     }
                 );
-            } else
-                Dynamsoft.WebTwainEnv.Unload();
+            }
         }
 
-        function downloadOCRAddon() {
-            if (DWObject) {
+        function downloadOCRBasic(bDownloadDLL) {
+            var strOCRPath = Dynamsoft.WebTwainEnv.ResourcesPath + "/OCRResources/OCR.zip",
+                strOCRLangPath = Dynamsoft.WebTwainEnv.ResourcesPath + '/OCRResources/OCRBasicLanguages/English.zip';
+
+            if (bDownloadDLL) {
                 DWObject.Addon.OCR.Download(
-                    Dynamsoft.WebTwainEnv.ResourcesPath + "/addon/OCR.zip",
-                    function () {
-                        console.log('The Basic OCR addon is installed!');
+                    strOCRPath,
+                    function () {/*console.log('OCR dll is installed');*/
+                        downloadOCRBasic(false);
                     },
                     function (errorCode, errorString) {
                         console.log(errorString);
-                        alert("The Basic OCR addon wasn't installed correctly.");
+                    }
+                );
+            } else {
+                DWObject.Addon.OCR.DownloadLangData(
+                    strOCRLangPath,
+                    function () {
+                    }, function (errorCode, errorString) {
+                        console.log(errorString);
                     });
             }
         }
 
         function AcquireImage() {
             if (DWObject) {
-                DWObject.SelectSource();
-                DWObject.CloseSource();
-                DWObject.OpenSource();
-                DWObject.IfDisableSourceAfterAcquire = true;
-                DWObject.AcquireImage();
+                DWObject.SelectSource(function () {
+                    var OnAcquireImageSuccess, OnAcquireImageFailure;
+                    OnAcquireImageSuccess = OnAcquireImageFailure = function () {
+                        DWObject.CloseSource();
+                    };
+                    DWObject.OpenSource();
+                    DWObject.IfDisableSourceAfterAcquire = true;
+                    DWObject.AcquireImage(OnAcquireImageSuccess, OnAcquireImageFailure);
+                }, function () {
+                    console.log('SelectSource failed!');
+                });
             }
         }
 
         function LoadImages() {
             if (DWObject) {
-                var nCount = 0, nCountLoaded = 0;
-                DWObject.IfShowFileDialog = true;
                 if (DWObject.Addon && DWObject.Addon.PDF) {
-                    DWObject.Addon.PDF.SetResolution(200);
-                    DWObject.Addon.PDF.SetConvertMode(EnumDWT_ConverMode.CM_RENDERALL);
+                    DWObject.Addon.PDF.SetResolution(300);
+                    DWObject.Addon.PDF.SetConvertMode(EnumDWT_ConvertMode.CM_RENDERALL);
                 }
-                DWObject.LoadImageEx("", 5,
+                DWObject.LoadImageEx('', 5,
                     function () {
-                        console.log('Image(s) loaded successfully');
                     },
                     function (errorCode, errorString) {
-                        alert(errorString);
+                        alert('Load Image:' + errorString);
                     }
                 );
             }

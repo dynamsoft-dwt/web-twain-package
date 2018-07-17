@@ -30,7 +30,10 @@ dynamsoft.dbrEnv = dynamsoft.dbrEnv || {};
 //  decompile, disassemble, or modify the productKey .                             //
 
 //////////////////////////////////////////////////////////////////////////////
-dynamsoft.dbrEnv.productKey = 't01075QEAAIODtqPVfF2vUIwabNaLRG/Y4twI75RLXBNjylk2asWQjIi+D7werlponky1ViNB/U91+fYlAMOFMnis4ByQiY0YCRi3qw0jX13T2ItpmCbzXebeuUxH/0YCxv4NO//AkKFVD9/RXlE=';
+if (Dynamsoft.WebTwainEnv.ProductKey != "")
+    dynamsoft.dbrEnv.productKey = Dynamsoft.WebTwainEnv.ProductKey;
+else
+    dynamsoft.dbrEnv.productKey = 't00851wAAACl2hQM/RWwI/J4Ic7C6YBL8Wog+tuDJo1zfCsqKcRDy8meJkAl9w3frghiJvTL493gHQ2fxnefVpL5+k5fEQ6gQfYaMsROwrEmCPXtcOXsq8w==';
 
 if (Dynamsoft.WebTwainEnv.ProductKey)
     dynamsoft.dbrEnv.productKey = dynamsoft.dbrEnv.productKey + ';' + Dynamsoft.WebTwainEnv.ProductKey;

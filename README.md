@@ -10,7 +10,7 @@ Cross-platform cross-browser JavaScript library for web document scanning.
 ### The main package
 
 ```bash
-npm install dwt@13.4.6
+npm install dwt@14.0
 ```
 
 ### For TypeScript support
@@ -41,15 +41,15 @@ npm install @types/dwt
 
 >`Dynamic Web TWAIN`
 >
->**v13.4.1** (build version 13, 3, 1, 0326)
+>**v14.0** (build version 14, 0, 0, 0618)
 >
 >`Dynamsoft PDF Rasterizer`
 >
->**v13.4.1** (build version 10, 2, 0, 1123)
+>**v14.0** (build version 10, 2, 0, 1123)
 >
 >`Dynamsoft OCR Basic Engine`
 >
->**v9.3** (build version 9, 3, 2, 407)
+>**v14.0** (build version 10, 0, 0, 618)
 >
 >`Dynamsoft Barcode Reader`
 >
@@ -96,7 +96,7 @@ npm install @types/dwt
 > **NOTE: _Loading it from Dynamsoft isn't recommended for your production environement._**
 
 ```html
-<script src="https://www.dynamsoft.com/library/dwt/13.4.1/dynamsoft.webtwain.initiate.js"></script>
+<script src="https://www.dynamsoft.com/library/dwt/14.0/dynamsoft.webtwain.initiate.js"></script>
 ```
 
 > The file **`dynamsoft.webtwain.initiate.js`** is the core of the package and must be loaded. Once you have installed the package, it can be found under *node_modules\dwt\dist*. Make sure you write the correct path for it.
@@ -112,7 +112,7 @@ npm install @types/dwt
 For example:
 ```javascript
 Dynamsoft.WebTwainEnv.Containers = [{ ContainerId: 'dwtcontrolContainer',  Width:'583px', Height:'513px'}];
-Dynamsoft.WebTwainEnv.ProductKey = 't01133AEAAL071vQIfKdEnugH4YPU50xTm8yJC0wG6iFWc4vXw69o3GX7datutEKwTT7eeGHu9b46lUb/6uWqjh4HYCSM0ZIdE19MYjW+FGDjzmEU9Y38MLFvbOOf+Xy5Gl3ZeE03wB6QB2CkczJhA74dXLo=';
+Dynamsoft.WebTwainEnv.ProductKey = 't00851wAAACl2hQM/RWwI/J4Ic7C6YBL8Wog+tuDJo1zfCsqKcRDy8meJkAl9w3frghiJvTL493gHQ2fxnefVpL5+k5fEQ6gQfYaMsROwrEmCPXtcOXsq8w==';
 Dynamsoft.WebTwainEnv.Trial = true;
 ```
 
@@ -121,11 +121,11 @@ Dynamsoft.WebTwainEnv.Trial = true;
 1. If you are using the trial, the ProductKey might be expired or invalid. In this case, you can [request a trial key](https://www.dynamsoft.com/CustomerPortal/Portal/TrialLicense.aspx) and then replace the one above (Dynamsoft.WebTwainEnv.ProductKey) in **`dynamsoft.webtwain.config.js`**.
 2. For convenience, all the required installers for the SDK(s) are being loaded from Dynamsoft at runtime when needed. This is configured in the file **`dynamsoft.webtwain.config.js`** with this line of code
     ```javascript
-    Dynamsoft.WebTwainEnv.ResourcesPath = 'https://tst.dynamsoft.com/libs/dwt/13.4.1';
+    Dynamsoft.WebTwainEnv.ResourcesPath = 'https://tst.dynamsoft.com/libs/dwt/14.0';
     ```
     The installers on the Dynamsoft server are of the trial version. Once all your testing is done and ready to move on to use a full version, don't forget to do the following
     
-    * Copy the full version files from a full version installation (`C:\Program Files (x86)\Dynamsoft\Dynamic Web TWAIN SDK 13.4.1\Resources\`) which you'll get after the purchase of a full license and paste them under `/node_modules/dwt/dist/`
+    * Copy the full version files from a full version installation (`C:\Program Files (x86)\Dynamsoft\Dynamic Web TWAIN SDK 14.0\Resources\`) which you'll get after the purchase of a full license and paste them under `/node_modules/dwt/dist/`
     * Make sure you have set the correct full version ProductKey and Trial Status as well as correct ResourcesPath in the file **`dynamsoft.webtwain.config.js`** which you just copied over
         ```javascript
         Dynamsoft.WebTwainEnv.ProductKey = '{your full version key}';
@@ -153,11 +153,17 @@ Dynamsoft.WebTwainEnv.Trial = true;
     }
     function AcquireImage() {
         if (DWObject) {
-            DWObject.SelectSource();
-            DWObject.CloseSource();
-            DWObject.OpenSource();
-            DWObject.IfDisableSourceAfterAcquire = true;
-            DWObject.AcquireImage();
+            DWObject.SelectSource(function () {
+                var OnAcquireImageSuccess, OnAcquireImageFailure;
+                OnAcquireImageSuccess = OnAcquireImageFailure = function () {
+                    DWObject.CloseSource();
+                };
+                DWObject.OpenSource();
+                DWObject.IfDisableSourceAfterAcquire = true;
+                DWObject.AcquireImage(OnAcquireImageSuccess, OnAcquireImageFailure);
+            }, function () {
+                console.log('SelectSource failed!');
+            });
         }
     }
 </script>
@@ -173,7 +179,7 @@ Every time you do a `"npm install"`, all the configurations will be lost, we rec
 <html>
 <head>
     <title>Use Dynamic Web TWAIN to Scan</title>
-    <script src="https://www.dynamsoft.com/library/dwt/13.4.1/dynamsoft.webtwain.initiate.js"></script>
+    <script src="https://www.dynamsoft.com/library/dwt/14.0/dynamsoft.webtwain.initiate.js"></script>
     <script src="node_modules/dwt/dist/dynamsoft.webtwain.config.js"></script>
 </head>
 <body>
@@ -182,9 +188,9 @@ Every time you do a `"npm install"`, all the configurations will be lost, we rec
 
     <script type="text/javascript">
         Dynamsoft.WebTwainEnv.Containers = [{ ContainerId: 'dwtcontrolContainer', Width: 270, Height: 350 }];
-        Dynamsoft.WebTwainEnv.ProductKey = 't01075QEAAIODtqPVfF2vUIwabNaLRG/Y4twI75RLXBNjylk2asWQjIi+D7werlponky1ViNB/U91+fYlAMOFMnis4ByQiY0YCRi3qw0jX13T2ItpmCbzXebeuUxH/0YCxv4NO//AkKFVD9/RXlE=';
+        Dynamsoft.WebTwainEnv.ProductKey = 't00851wAAACl2hQM/RWwI/J4Ic7C6YBL8Wog+tuDJo1zfCsqKcRDy8meJkAl9w3frghiJvTL493gHQ2fxnefVpL5+k5fEQ6gQfYaMsROwrEmCPXtcOXsq8w==';
         Dynamsoft.WebTwainEnv.Trial = true;
-        Dynamsoft.WebTwainEnv.ResourcesPath = 'https://tst.dynamsoft.com/libs/dwt/13.4.1';
+        Dynamsoft.WebTwainEnv.ResourcesPath = 'https://tst.dynamsoft.com/libs/dwt/14.0';
         window.onload = function () {
             Dynamsoft.WebTwainEnv.Load();
         };
@@ -194,11 +200,17 @@ Every time you do a `"npm install"`, all the configurations will be lost, we rec
         }
         function AcquireImage() {
             if (DWObject) {
-                DWObject.SelectSource();
-                DWObject.CloseSource();
-                DWObject.OpenSource();
-                DWObject.IfDisableSourceAfterAcquire = true;
-                DWObject.AcquireImage();
+                DWObject.SelectSource(function () {
+                    var OnAcquireImageSuccess, OnAcquireImageFailure;
+                    OnAcquireImageSuccess = OnAcquireImageFailure = function () {
+                        DWObject.CloseSource();
+                    };
+                    DWObject.OpenSource();
+                    DWObject.IfDisableSourceAfterAcquire = true;
+                    DWObject.AcquireImage(OnAcquireImageSuccess, OnAcquireImageFailure);
+                }, function () {
+                    console.log('SelectSource failed!');
+                });
             }
         }
     </script>

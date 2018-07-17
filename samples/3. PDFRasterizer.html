@@ -18,14 +18,14 @@
         window.onload = function () {
             Dynamsoft.WebTwainEnv.Load();
         };
-
+        Dynamsoft.WebTwainEnv.AutoLoad = false;
         Dynamsoft.WebTwainEnv.RegisterEvent('OnWebTwainReady', Dynamsoft_OnReady); // Register OnWebTwainReady event. This event fires as soon as Dynamic Web TWAIN is initialized and ready to be used
 
         var DWObject;
 
         function Dynamsoft_OnReady() {
             DWObject = Dynamsoft.WebTwainEnv.GetWebTwain('dwtcontrolContainer'); // Get the Dynamic Web TWAIN object that is embeded in the div with id 'dwtcontrolContainer'
-            if (DWObject && checkCoreLicense(true)) {
+            if (DWObject) {
                 var pdfrInstallerPath = Dynamsoft.WebTwainEnv.ResourcesPath + '/addon/';
                 if (Dynamsoft.Lib.env.bMac)
                     pdfrInstallerPath += 'MacPdf.zip';
@@ -43,34 +43,36 @@
                         console.log("The PDF Rasterizer wasn't installed correctly.");
                     }
                 );
-            } else
-                Dynamsoft.WebTwainEnv.Unload();
+            }
         }
 
         function AcquireImage() {
             if (DWObject) {
-                DWObject.SelectSource();
-                DWObject.CloseSource();
-                DWObject.OpenSource();
-                DWObject.IfDisableSourceAfterAcquire = true;
-                DWObject.AcquireImage();
+                DWObject.SelectSource(function () {
+                    var OnAcquireImageSuccess, OnAcquireImageFailure;
+                    OnAcquireImageSuccess = OnAcquireImageFailure = function () {
+                        DWObject.CloseSource();
+                    };
+                    DWObject.OpenSource();
+                    DWObject.IfDisableSourceAfterAcquire = true;
+                    DWObject.AcquireImage(OnAcquireImageSuccess, OnAcquireImageFailure);
+                }, function () {
+                    console.log('SelectSource failed!');
+                });
             }
         }
 
         function LoadImages() {
             if (DWObject) {
-                var nCount = 0, nCountLoaded = 0;
-                DWObject.IfShowFileDialog = true;
                 if (DWObject.Addon && DWObject.Addon.PDF) {
-                    DWObject.Addon.PDF.SetResolution(200);
-                    DWObject.Addon.PDF.SetConvertMode(EnumDWT_ConverMode.CM_RENDERALL);
+                    DWObject.Addon.PDF.SetResolution(300);
+                    DWObject.Addon.PDF.SetConvertMode(EnumDWT_ConvertMode.CM_RENDERALL);
                 }
-                DWObject.LoadImageEx("", 5,
+                DWObject.LoadImageEx('', 5,
                     function () {
-                        console.log('Image(s) loaded successfully');
                     },
                     function (errorCode, errorString) {
-                        alert(errorString);
+                        alert('Load Image:' + errorString);
                     }
                 );
             }

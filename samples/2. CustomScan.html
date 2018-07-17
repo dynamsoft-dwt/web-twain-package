@@ -38,27 +38,20 @@
         window.onload = function () {
             Dynamsoft.WebTwainEnv.Load();
         };
-
+        Dynamsoft.WebTwainEnv.AutoLoad = false;
         Dynamsoft.WebTwainEnv.RegisterEvent('OnWebTwainReady', Dynamsoft_OnReady); // Register OnWebTwainReady event. This event fires as soon as Dynamic Web TWAIN is initialized and ready to be used
 
         var DWObject;
 
         function Dynamsoft_OnReady() {
             DWObject = Dynamsoft.WebTwainEnv.GetWebTwain('dwtcontrolContainer'); // Get the Dynamic Web TWAIN object that is embeded in the div with id 'dwtcontrolContainer'
-            if (DWObject && checkCoreLicense(true)) {
+            if (DWObject) {
                 var count = DWObject.SourceCount;
-                if (count == 0 && Dynamsoft.Lib.env.bMac) {
-                    DWObject.CloseSourceManager();
-                    DWObject.ImageCaptureDriverType = 0;
-                    DWObject.OpenSourceManager();
-                    count = DWObject.SourceCount;
-                }
-
                 for (var i = 0; i < count; i++)
                     document.getElementById("source").options.add(new Option(DWObject.GetSourceNameItems(i), i));
-            } else
-                Dynamsoft.WebTwainEnv.Unload();
+            }
         }
+
         function AcquireImage() {
             if (DWObject) {
                 var OnAcquireImageSuccess, OnAcquireImageFailure;

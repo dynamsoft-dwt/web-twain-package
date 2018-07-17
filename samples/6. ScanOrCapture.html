@@ -19,27 +19,55 @@
     <input type="button" value="Grab An Image" onclick="grabImage();" />
     <br />
     <br />
-    <div id="dwtcontrolContainer" style="float:left; position: absolute; left:-1000px;"></div>
-    <div id="image-container" style="float:left; margin-left: 0px; width:270px; height:350px; border:1px black solid"> </div>
+    <div id="dwtcontrolContainer" style="float:left;"></div>
+    <div id="image-container" style="float:left; position: absolute; left:-1000px;"> </div>
     <div id="video-container" style="float:left; margin-left: 20px; width:270px; height:350px; border:1px black solid"> </div>
     <script type="text/javascript">
         window.onload = function () {
-            if (Dynamsoft && (!Dynamsoft.Lib.env.bWin || !Dynamsoft.Lib.product.bChromeEdition)) {
-                dynamsoft.lib.dialog.dm._blockDocument();
+            if (Dynamsoft && (!Dynamsoft.Lib.env.bWin)) {
                 var ObjString = [];
-                ObjString.push('<div style="padding:0 20px;">');
-                ObjString.push("Please note that your current browser doesn't support the Webcam add-on, please use modern browsers like Chrome, Firefox, Edge or IE 11.");
+                ObjString.push('<div class="p15">');
+                ObjString.push("Please note that the webcam SDK currently only works on Windows.");
                 ObjString.push('</div>');
                 Dynamsoft.WebTwainEnv.ShowDialog(400, 180, ObjString.join(''));
                 if (document.getElementsByClassName("dynamsoft-dialog-close"))
                     document.getElementsByClassName("dynamsoft-dialog-close")[0].style.display = "none";
             } else {
+                if (!Dynamsoft.Lib.product.bChromeEdition) {
+                    Dynamsoft.WebTwainEnv.Containers[0].Height = '1px;';
+                    Dynamsoft.WebTwainEnv.Containers[0].Width = '1px;';
+                }
                 Dynamsoft.WebTwainEnv.Load();
             }
         };
 
+        Dynamsoft.WebTwainEnv.AutoLoad = false;
         Dynamsoft.WebTwainEnv.RegisterEvent('OnWebTwainReady', Dynamsoft_OnReady); // Register OnWebTwainReady event. This event fires as soon as Dynamic Web TWAIN is initialized and ready to be used
 
+        function Dynamsoft_OnReady() {
+            DWObject = Dynamsoft.WebTwainEnv.GetWebTwain('dwtcontrolContainer'); // Get the Dynamic Web TWAIN object that is embeded in the div with id 'dwtcontrolContainer'
+            if (DWObject) {
+                var pdfrInstallerPath = Dynamsoft.WebTwainEnv.ResourcesPath + '/addon/';
+                if (Dynamsoft.Lib.env.bMac)
+                    pdfrInstallerPath += 'MacPdf.zip';
+                else if (Dynamsoft.Lib.env.bLinux)
+                    pdfrInstallerPath += 'LinuxPdf.zip';
+                else
+                    pdfrInstallerPath += 'Pdf.zip';
+                DWObject.Addon.PDF.Download(
+                    pdfrInstallerPath,
+                    function () {
+                        /*console.log('The PDF Rasterizer dll is installed.');*/
+                        dynamsoft.dcsEnv.init('video-container', 'image-container', onInitSuccess, onInitFailure);
+                    },
+                    function (errorCode, errorString) {
+                        console.log(errorString);
+                        console.log("The PDF Rasterizer wasn't installed correctly.");
+                    }
+                );
+
+            }
+        }
         function playVideo() {
             var selectedCameraName = document.getElementById('sltCameraSource').value;
             if (selectedCameraName) {
@@ -60,6 +88,16 @@
         function grabImage() {
             if (dcsObject) {
                 dcsObject.camera.captureImage('image-container');
+                if (dcsObject.getErrorCode() !== EnumDCS_ErrorCode.OK) {
+                    alert('Capture error: ' + dcsObject.getErrorString());
+                }
+                else {
+                    var count = imageViewer.image.getCount();
+                    if (count > 0) {
+                        imageViewer.io.copyToClipboard(count - 1);
+                        DWObject.LoadDibFromClipboard()
+                    }
+                }
             }
         }
 
@@ -79,55 +117,33 @@
             console.log('Init failed: ' + errorString);
         }
 
-        function Dynamsoft_OnReady() {
-            DWObject = Dynamsoft.WebTwainEnv.GetWebTwain('dwtcontrolContainer'); // Get the Dynamic Web TWAIN object that is embeded in the div with id 'dwtcontrolContainer'
-            if (DWObject && checkCoreLicense(true)) {
-                DWObject.Addon.PDF.Download(
-                    Dynamsoft.WebTwainEnv.ResourcesPath + '/addon/Pdf.zip',
-                    function () {
-                        console.log('The PDF Rasterizer dll is installed.');
-                    },
-                    function (errorCode, errorString) {
-                        console.log("The PDF Rasterizer wasn't installed correctly.");
-                    }
-                );
-                DWObject.RegisterEvent('OnBitmapChanged', function (strUpdatedIndex, operationType, sCurrentIndex) {
-                    if (operationType == 1 || operationType == 2) {
-                        var newImageURL = DWObject.GetImageURL(sCurrentIndex);
-                        if (newImageURL != "" && imageViewer) {
-                            imageViewer.io.httpDownload(newImageURL);
-                        }
-                    }
-                });
-                dynamsoft.dcsEnv.init('video-container', 'image-container', onInitSuccess, onInitFailure);
-            } else
-                Dynamsoft.WebTwainEnv.Unload();
-        }
-
         function AcquireImage() {
             if (DWObject) {
-                DWObject.SelectSource();
-                DWObject.CloseSource();
-                DWObject.OpenSource();
-                DWObject.IfDisableSourceAfterAcquire = true;
-                DWObject.AcquireImage();
+                DWObject.SelectSource(function () {
+                    var OnAcquireImageSuccess, OnAcquireImageFailure;
+                    OnAcquireImageSuccess = OnAcquireImageFailure = function () {
+                        DWObject.CloseSource();
+                    };
+                    DWObject.OpenSource();
+                    DWObject.IfDisableSourceAfterAcquire = true;
+                    DWObject.AcquireImage(OnAcquireImageSuccess, OnAcquireImageFailure);
+                }, function () {
+                    console.log('SelectSource failed!');
+                });
             }
         }
 
         function LoadImages() {
             if (DWObject) {
-                var nCount = 0, nCountLoaded = 0;
-                DWObject.IfShowFileDialog = true;
                 if (DWObject.Addon && DWObject.Addon.PDF) {
-                    DWObject.Addon.PDF.SetResolution(200);
-                    DWObject.Addon.PDF.SetConvertMode(EnumDWT_ConverMode.CM_RENDERALL);
+                    DWObject.Addon.PDF.SetResolution(300);
+                    DWObject.Addon.PDF.SetConvertMode(EnumDWT_ConvertMode.CM_RENDERALL);
                 }
-                DWObject.LoadImageEx("", 5,
+                DWObject.LoadImageEx('', 5,
                     function () {
-                        console.log('Image(s) loaded successfully');
                     },
                     function (errorCode, errorString) {
-                        alert(errorString);
+                        alert('Load Image:' + errorString);
                     }
                 );
             }

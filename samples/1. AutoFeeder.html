@@ -20,22 +20,18 @@
 		window.onload = function () {
 			Dynamsoft.WebTwainEnv.Load();
 		};
-
+		Dynamsoft.WebTwainEnv.AutoLoad = false;
 		Dynamsoft.WebTwainEnv.RegisterEvent('OnWebTwainReady', Dynamsoft_OnReady); // Register OnWebTwainReady event. This event fires as soon as Dynamic Web TWAIN is initialized and ready to be used
 
 		var DWObject;
 
 		function Dynamsoft_OnReady() {
 			DWObject = Dynamsoft.WebTwainEnv.GetWebTwain('dwtcontrolContainer'); // Get the Dynamic Web TWAIN object that is embeded in the div with id 'dwtcontrolContainer'
-			if (DWObject && !checkCoreLicense(true))
-				Dynamsoft.WebTwainEnv.Unload();
 		}
 
 		function AcquireImage() {
 			if (DWObject) {
-				var bSelected = DWObject.SelectSource();
-
-				if (bSelected) {
+				DWObject.SelectSource(function () {
 					var OnAcquireImageSuccess, OnAcquireImageFailure;
 					OnAcquireImageSuccess = OnAcquireImageFailure = function () {
 						DWObject.CloseSource();
@@ -60,7 +56,7 @@
 					}
 
 					DWObject.AcquireImage(OnAcquireImageSuccess, OnAcquireImageFailure);
-				}
+				}, function () { console.log('SelectSource failed!'); });
 			}
 		}
 	</script>

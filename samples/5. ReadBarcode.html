@@ -19,11 +19,10 @@
     <br />
     <br />
     <div id="dwtcontrolContainer" style="float:left;"></div>
-    <div id="divNoteMessage" style="margin:0px 20px;float:left;width:300px; height:350px; overflow: auto;background-color:#e7f2fd;border:solid 1px black;"></div>
+    <div id="divNoteMessage" ondblclick="this.innerHTML='';" style="margin:0px 20px;float:left;width:300px; height:350px; overflow: auto;background-color:#e7f2fd;border:solid 1px black;"></div>
     <script type="text/javascript">
         window.onload = function () {
             if (Dynamsoft && (!Dynamsoft.Lib.env.bWin || !Dynamsoft.Lib.product.bChromeEdition)) {
-                dynamsoft.lib.dialog.dm._blockDocument();
                 var ObjString = [];
                 ObjString.push('<div style="padding:0 20px;">');
                 ObjString.push("Please note that your current browser doesn't support the Barcode add-on, please use modern browsers like Chrome, Firefox, Edge or IE 11.");
@@ -35,7 +34,7 @@
                 Dynamsoft.WebTwainEnv.Load();
             }
         };
-
+        Dynamsoft.WebTwainEnv.AutoLoad = false;
         Dynamsoft.WebTwainEnv.RegisterEvent('OnWebTwainReady', Dynamsoft_OnReady); // Register OnWebTwainReady event. This event fires as soon as Dynamic Web TWAIN is initialized and ready to be used
 
         var DWObject;
@@ -68,47 +67,61 @@
 
         function Dynamsoft_OnReady() {
             DWObject = Dynamsoft.WebTwainEnv.GetWebTwain('dwtcontrolContainer'); // Get the Dynamic Web TWAIN object that is embeded in the div with id 'dwtcontrolContainer'
-            if (DWObject && checkCoreLicense(true)) {
+            if (DWObject) {
                 for (var index = 0; index < BarcodeInfo.length; index++)
                     document.getElementById("barcodeformat").options.add(new Option(BarcodeInfo[index].desc, index));
+                var strPDFPath = Dynamsoft.WebTwainEnv.ResourcesPath;
+                if (Dynamsoft.Lib.env.bMac)
+                    strPDFPath += "/dist/mac/MacPdf.zip";
+                else if (Dynamsoft.Lib.env.bLinux)
+                    strPDFPath += "/dist/linux/LinuxPdf.zip";
+                else
+                    strPDFPath += "/dist/win/Pdf.zip";
+
                 DWObject.Addon.PDF.Download(
-                    Dynamsoft.WebTwainEnv.ResourcesPath + '/addon/Pdf.zip',
+                    strPDFPath,
                     function () {
                         console.log('The PDF Rasterizer dll is installed.');
                     },
                     function (errorCode, errorString) {
-                        console.log("The PDF Rasterizer wasn't installed correctly.");
+                        if (confirm("The PDF Rasterizer wasn't installed correctly, continue to install the OCR addon?")) {
+                        }
+                        else {
+                            alert("Both PDF Rasterizer and the OCR addons are not installed, the sample won't work.")
+                        }
                     }
                 );
                 dynamsoft.dbrEnv.init(onInitSuccess, onInitFailure);
-            } else
-                Dynamsoft.WebTwainEnv.Unload();
+            }
         }
 
         function AcquireImage() {
             if (DWObject) {
-                DWObject.SelectSource();
-                DWObject.CloseSource();
-                DWObject.OpenSource();
-                DWObject.IfDisableSourceAfterAcquire = true;
-                DWObject.AcquireImage();
+                DWObject.SelectSource(function () {
+                    var OnAcquireImageSuccess, OnAcquireImageFailure;
+                    OnAcquireImageSuccess = OnAcquireImageFailure = function () {
+                        DWObject.CloseSource();
+                    };
+                    DWObject.OpenSource();
+                    DWObject.IfDisableSourceAfterAcquire = true;
+                    DWObject.AcquireImage(OnAcquireImageSuccess, OnAcquireImageFailure);
+                }, function () {
+                    console.log('SelectSource failed!');
+                });
             }
         }
 
         function LoadImages() {
             if (DWObject) {
-                var nCount = 0, nCountLoaded = 0;
-                DWObject.IfShowFileDialog = true;
                 if (DWObject.Addon && DWObject.Addon.PDF) {
-                    DWObject.Addon.PDF.SetResolution(200);
-                    DWObject.Addon.PDF.SetConvertMode(EnumDWT_ConverMode.CM_RENDERALL);
+                    DWObject.Addon.PDF.SetResolution(300);
+                    DWObject.Addon.PDF.SetConvertMode(EnumDWT_ConvertMode.CM_RENDERALL);
                 }
-                DWObject.LoadImageEx("", 5,
+                DWObject.LoadImageEx('', 5,
                     function () {
-                        console.log('Image(s) loaded successfully');
                     },
                     function (errorCode, errorString) {
-                        alert(errorString);
+                        alert('Load Image:' + errorString);
                     }
                 );
             }

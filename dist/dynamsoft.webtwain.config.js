@@ -4,20 +4,27 @@
 //
 // Copyright 2018, Dynamsoft Corporation 
 // Author: Dynamsoft Team
-// Version: 13.4.1
+// Version: 14.0
 //
 /// <reference path="dynamsoft.webtwain.initiate.js" />
 var Dynamsoft = Dynamsoft || { WebTwainEnv: {} };
 
+///
 Dynamsoft.WebTwainEnv.AutoLoad = false;
-
 ///
 Dynamsoft.WebTwainEnv.Containers = [{ ContainerId: 'dwtcontrolContainer', Width: 270, Height: 350 }];
 
+/////////////////////////////////////////////////////////////////////////////////////
+//  WARNING:  The productKey in this file is protected by copyright law            //
+//  and international treaty provisions. Unauthorized reproduction or              //
+//  distribution of this  productKey, or any portion of it, may result in severe   //
+//  criminal and civil penalties, and will be prosecuted to the maximum            //
+//  extent possible under the law.  Further, you may not reverse engineer,         //
+//  decompile, disassemble, or modify the productKey .                             //
+/////////////////////////////////////////////////////////////////////////////////////
 /// If you need to use multiple keys on the same server, you can combine keys and write like this 
 /// Dynamsoft.WebTwainEnv.ProductKey = 'key1;key2;key3';
-Dynamsoft.WebTwainEnv.ProductKey = 't01075QEAAIODtqPVfF2vUIwabNaLRG/Y4twI75RLXBNjylk2asWQjIi+D7werlponky1ViNB/U91+fYlAMOFMnis4ByQiY0YCRi3qw0jX13T2ItpmCbzXebeuUxH/0YCxv4NO//AkKFVD9/RXlE=';
-
+Dynamsoft.WebTwainEnv.ProductKey = 't00851wAAACl2hQM/RWwI/J4Ic7C6YBL8Wog+tuDJo1zfCsqKcRDy8meJkAl9w3frghiJvTL493gHQ2fxnefVpL5+k5fEQ6gQfYaMsROwrEmCPXtcOXsq8w==';
 ///
 Dynamsoft.WebTwainEnv.Trial = true;
 
@@ -28,38 +35,125 @@ Dynamsoft.WebTwainEnv.ActiveXInstallWithCAB = false;
 Dynamsoft.WebTwainEnv.IfUpdateService = false;
 
 ///
-Dynamsoft.WebTwainEnv.ResourcesPath = 'https://tst.dynamsoft.com/libs/dwt/13.4.1';
+Dynamsoft.WebTwainEnv.ResourcesPath = 'https://tst.dynamsoft.com/libs/dwt/14.0';
+
+///
+Dynamsoft.WebTwainEnv.IfAddMD5InUploadHeader = false;
+
+///
+Dynamsoft.WebTwainEnv.IfConfineMaskWithinTheViewer = false;
+
+///
+//Dynamsoft.WebTwainEnv.IfCheck64bitServiceFirst = true;
+
+///
+/*Dynamsoft.WebTwainEnv.CustomizableDisplayInfo = {
+
+    errorMessages: {
+
+        // launch
+        ERR_MODULE_NOT_INSTALLED: 'Error: The Dynamic Web TWAIN module is not installed.',
+        ERR_BROWSER_NOT_SUPPORT: 'Error: This browser is currently not supported.',
+        ERR_CreateID_MustNotInContainers: 'Error: Duplicate ID detected for creating Dynamic Web TWAIN objects, please check and modify.',
+		ERR_CreateID_NotContainer: 'Error: The ID of the DIV for creating the new DWT object is invalid.',
+        ERR_DWT_NOT_DOWNLOADED: 'Error: Failed to download the Dynamic Web TWAIN module.',
+
+        // image view
+        limitReachedForZoomIn: "Error: You have reached the limit for zooming in",
+        limitReachedForZoomOut: "Error: You have reached the limit for zooming out",
+
+        // image editor
+        insufficientParas: 'Error: Not enough parameters.',
+        invalidAngle: 'Error: The angle you entered is invalid.',
+        invalidHeightOrWidth: "Error: The height or width you entered is invalid.",
+        imageNotChanged: "Error: You have not changed the current image."
+
+    },
+
+    // launch
+    generalMessages: {
+        checkingDWTVersion: 'Checking WebTwain version ...',
+        updatingDService: 'Dynamsoft Service is updating ...',
+        downloadingDWTModule: 'Downloading the Dynamic Web TWAIN module.',
+        refreshNeeded: 'Please REFRESH your browser.',
+        downloadNeeded: 'Please download and install the Dynamic Web TWAIN.',
+        DWTmoduleLoaded: 'The Dynamic Web TWAIN module is loaded.'
+    },
+
+    customProgressText: {
+
+        // html5 event
+        upload: 'uploading...',
+        download: 'Downloading...',
+        load: 'Loading...',
+        decode: 'Decoding...',
+        decodeTIFF: 'Decoding tiff...',
+        decodePDF: 'Decoding pdf...',
+        encode: 'Encoding...',
+        encodeTIFF: 'Encoding tiff...',
+        encodePDF: 'Encoding pdf...',
+
+        // image control
+        canvasLoading: 'Loading ...'
+    },
+
+    // image editor
+    buttons: {
+        titles: {
+            'previous': 'Previous Image',
+            'next': 'Next Image',
+            'print': 'Print Image',
+            'scan': 'Acquire new Image(s)',
+            'load': 'Load local Image(s)',
+            'rotateleft': 'Rotate Left',
+            'rotate': 'Rotate',
+            'rotateright': 'Rotate Right',
+            'deskew': 'Deskew',
+            'crop': 'Crop Selected Area',
+            'erase': 'Erase Selected Area',
+            'changeimagesize': 'Change Image Size',
+            'flip': 'Flip Image',
+            'mirror': 'Mirror Image',
+            'zoomin': 'Zoom In',
+            'originalsize': 'Show Original Size',
+            'zoomout': 'Zoom Out',
+            'stretch': 'Stretch Mode',
+            'fit': 'Fit Window',
+            'fitw': 'Fit Horizontally',
+            'fith': 'Fit Vertically',
+            'hand': 'Hand Mode',
+            'rectselect': 'Select Mode',
+            'zoom': 'Click to Zoom In',
+            'restore': 'Restore Orginal Image',
+            'save': 'Save Changes',
+            'close': 'Close the Editor',
+            'removeall': 'Remove All Images',
+            'removeselected': 'Remove All Selected Images'
+        },
+        bShowAllButtons: true,
+        visibility: {
+            //only valid when bShowAllButtons is true, otherwise changing visibility does nothing
+            'scan': true, 'load': true, 'print': true,
+            'removeall': true, 'removeselected': true,
+            'rotateleft': true, 'rotate': true, 'rotateright': true, 'deskew': true,
+            'crop': true, 'erase': true, 'changeimagesize': true, 'flip': true, 'mirror': true,
+            'zoomin': true, 'originalsize': true, 'zoomout': true, 'stretch': true,
+            'fit': true, 'fitw': true, 'fith': true,
+            'hand': true, 'rectselect': true, 'zoom': true
+        }
+    },
+
+    dialogText: {
+        dlgRotateAnyAngle: ['Angle :', 'Interpolation:', 'Keep size', '  OK  ', 'Cancel'],
+        dlgChangeImageSize: ['New Height :', 'New Width :', 'Interpolation method:', '  OK  ', 'Cancel'],
+        saveChangedImage: ['You have changed the image, do you want to keep the change(s)?', '  Yes  ', '  No  '],
+        selectSource: ['Select Source:', 'Select', 'Cancel']
+    }
+};*/
+
 
 /// All callbacks are defined in the dynamsoft.webtwain.install.js file, you can customize them.
 // Dynamsoft.WebTwainEnv.RegisterEvent('OnWebTwainReady', function(){
 // 		// webtwain has been inited
 // });
 
-/// Check Core License 
-function checkCoreLicense(bCheckNow) {
-    if (bCheckNow || Dynamsoft.WebTwainEnv.inited) {
-        if (Dynamsoft.Lib.html5.Funs.checkProductKey(Dynamsoft.WebTwainEnv.GetWebTwain(Dynamsoft.WebTwainEnv.Containers[0].ContainerId), { 'Core': true })) {
-            clearInterval(intervalToCheckProductKey);
-            return true;
-        } else {
-            if (Dynamsoft && Dynamsoft.Lib.product.bChromeEdition) {
-                dynamsoft.lib.dialog.dm._blockDocument();
-                var ObjString = [];
-                ObjString.push('<div style="padding:30px;">');
-                ObjString.push("You are seeing errors because the ProductKey is not valid or has expired.<br /> Please <br />");
-                ObjString.push(" 1. <a href='https://www.dynamsoft.com/CustomerPortal/Portal/TrialLicense.aspx' target='_blank'>Request a <strong>Dynamic Web TWAIN</strong> trial license</a><br />");
-                ObjString.push(" 2. Refer to this <strong><a href='https://developer.dynamsoft.com/?page_id=18633'>article</a></strong> to update the ProductKey<br />");
-                ObjString.push(" 3. Do a <strong>hard refresh</strong> or clear cache in your browser to make sure the new ProductKey is used<br />");
-                ObjString.push(" 4. If the issue persists, please contact <a href='mailto:support@dynamsoft.com'>support@dynamsoft.com</a>");
-                ObjString.push('</div>');
-                Dynamsoft.WebTwainEnv.ShowDialog(530, 230, ObjString.join(''));
-                if (document.getElementsByClassName("dynamsoft-dwt-dlg-header"))
-                    document.getElementsByClassName("dynamsoft-dwt-dlg-header")[0].style.display = "none";
-            }
-            clearInterval(intervalToCheckProductKey);
-            return false;
-        }
-    } else
-        return false;
-}
-var intervalToCheckProductKey = setInterval(checkCoreLicense, 1000);
