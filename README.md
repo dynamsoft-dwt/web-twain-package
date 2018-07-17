@@ -10,7 +10,7 @@ Cross-platform cross-browser JavaScript library for web document scanning.
 ### The main package
 
 ```bash
-npm install dwt@14.0
+npm install dwt@14.0.0
 ```
 
 ### For TypeScript support
@@ -41,15 +41,15 @@ npm install @types/dwt
 
 >`Dynamic Web TWAIN`
 >
->**v14.0** (build version 14, 0, 0, 0618)
+>**v14.0.0** (build version 14, 0, 0, 0618)
 >
 >`Dynamsoft PDF Rasterizer`
 >
->**v14.0** (build version 10, 2, 0, 1123)
+>**v14.0.0** (build version 10, 2, 0, 1123)
 >
 >`Dynamsoft OCR Basic Engine`
 >
->**v14.0** (build version 10, 0, 0, 618)
+>**v14.0.0** (build version 10, 0, 0, 618)
 >
 >`Dynamsoft Barcode Reader`
 >
