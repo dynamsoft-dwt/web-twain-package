@@ -1,0 +1,2 @@
+(function(X){X.ResourcesPath="https://www.dynamsoft.com/library/dwt/Resources";X.AutoLoad=true;X.Containers=[{ContainerId:"dwtcontrolContainer",Width:270,Height:350}];X.Trial=true;X.ActiveXInstallWithCAB=false;X.IfUpdateService=false;
+X.ProductKey="t0068dAAAALuqTnXmD73FtPp6Qo2as3egADwL6ffZmNFYPO2S7DbL3r2FD5wKdEbQGapoRlg2NTwyHBt9zWvSg/IrV4wwfgs=";})(Dynamsoft.WebTwainEnv);

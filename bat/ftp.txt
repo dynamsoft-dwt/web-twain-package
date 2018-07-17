@@ -1,0 +1,9 @@
+open ftp://anonymous:anonymous@192.168.8.20
+
+cd "/Release/TWAIN/TWAIN 14.0/Dll/JS/Resources/"
+get dynamsoft.webtwain.initiate.js
+
+cd "/Release/TWAIN/TWAIN 14.0/Dll/JS/Resources/addon/"
+get dynamsoft.webtwain.addon.pdf.js
+
+exit
