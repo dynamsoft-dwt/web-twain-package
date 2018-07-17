@@ -96,7 +96,7 @@ npm install @types/dwt
 > **NOTE: _Loading it from Dynamsoft isn't recommended for your production environement._**
 
 ```html
-<script src="https://www.dynamsoft.com/library/dwt/14.0/dynamsoft.webtwain.initiate.js"></script>
+<script src="https://tst.dynamsoft.com/libs/dwt/14.0/dynamsoft.webtwain.initiate.js"></script>
 ```
 
 > The file **`dynamsoft.webtwain.initiate.js`** is the core of the package and must be loaded. Once you have installed the package, it can be found under *node_modules\dwt\dist*. Make sure you write the correct path for it.
@@ -179,7 +179,7 @@ Every time you do a `"npm install"`, all the configurations will be lost, we rec
 <html>
 <head>
     <title>Use Dynamic Web TWAIN to Scan</title>
-    <script src="https://www.dynamsoft.com/library/dwt/14.0/dynamsoft.webtwain.initiate.js"></script>
+    <script src="https://tst.dynamsoft.com/libs/dwt/14.0/dynamsoft.webtwain.initiate.js"></script>
     <script src="node_modules/dwt/dist/dynamsoft.webtwain.config.js"></script>
 </head>
 <body>
