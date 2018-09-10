@@ -3,7 +3,7 @@
  * @product Dynamsoft Barcode Reader
  * @website http://www.dynamsoft.com
  *
- * @preserve Copyright 2017, Dynamsoft Corporation
+ * @preserve Copyright 2018, Dynamsoft Corporation
  * @author Dynamsoft
  *
  * @version 5.2
@@ -30,10 +30,7 @@ dynamsoft.dbrEnv = dynamsoft.dbrEnv || {};
 //  decompile, disassemble, or modify the productKey .                             //
 
 //////////////////////////////////////////////////////////////////////////////
-if (Dynamsoft.WebTwainEnv.ProductKey != "")
-    dynamsoft.dbrEnv.productKey = Dynamsoft.WebTwainEnv.ProductKey;
-else
-    dynamsoft.dbrEnv.productKey = 't00851wAAACl2hQM/RWwI/J4Ic7C6YBL8Wog+tuDJo1zfCsqKcRDy8meJkAl9w3frghiJvTL493gHQ2fxnefVpL5+k5fEQ6gQfYaMsROwrEmCPXtcOXsq8w==';
+dynamsoft.dbrEnv.productKey = 't01026QAAAICo9/JZUxsm2aZeBAJ0pOZYg8/z7C1XzV4vjmZZ5lp6SVFwPVNzg9GSPRIYRdaxP+uk9H1jSwkgjMigogcXAUpMdg1jevDhqQv5ZeRhjhej8IMJaGoWM/6JOQlnoROggS8k';
 
 if (Dynamsoft.WebTwainEnv.ProductKey)
     dynamsoft.dbrEnv.productKey = dynamsoft.dbrEnv.productKey + ';' + Dynamsoft.WebTwainEnv.ProductKey;
@@ -41,4 +38,3 @@ if (Dynamsoft.WebTwainEnv.ProductKey)
 
 /// set resourcesPath in runtime is ok
 dynamsoft.dbrEnv.resourcesPath = "https://tst.dynamsoft.com/libs/dbr/5.2/js";
-

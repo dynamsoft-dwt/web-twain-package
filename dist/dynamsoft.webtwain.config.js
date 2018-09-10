@@ -4,7 +4,7 @@
 //
 // Copyright 2018, Dynamsoft Corporation 
 // Author: Dynamsoft Team
-// Version: 14.0
+// Version: 14.1
 //
 /// <reference path="dynamsoft.webtwain.initiate.js" />
 var Dynamsoft = Dynamsoft || { WebTwainEnv: {} };
@@ -12,7 +12,7 @@ var Dynamsoft = Dynamsoft || { WebTwainEnv: {} };
 ///
 Dynamsoft.WebTwainEnv.AutoLoad = false;
 ///
-Dynamsoft.WebTwainEnv.Containers = [{ ContainerId: 'dwtcontrolContainer', Width: 270, Height: 350 }];
+Dynamsoft.WebTwainEnv.Containers = [{ ContainerId: 'dwtcontrolContainer', Width: '270px', Height: '350px' }];
 
 /////////////////////////////////////////////////////////////////////////////////////
 //  WARNING:  The productKey in this file is protected by copyright law            //
@@ -24,7 +24,7 @@ Dynamsoft.WebTwainEnv.Containers = [{ ContainerId: 'dwtcontrolContainer', Width:
 /////////////////////////////////////////////////////////////////////////////////////
 /// If you need to use multiple keys on the same server, you can combine keys and write like this 
 /// Dynamsoft.WebTwainEnv.ProductKey = 'key1;key2;key3';
-Dynamsoft.WebTwainEnv.ProductKey = 't00851wAAACl2hQM/RWwI/J4Ic7C6YBL8Wog+tuDJo1zfCsqKcRDy8meJkAl9w3frghiJvTL493gHQ2fxnefVpL5+k5fEQ6gQfYaMsROwrEmCPXtcOXsq8w==';
+Dynamsoft.WebTwainEnv.ProductKey = 't01026QAAAJoD95jFomf468LGf6SlDE3CW1Avf5PIONn1egaYEKYd/w9yYhW3isYoRlpKBrNMYp0rvFXWkaqKodHykc1cy1OTXMOYHnx46kJ+GXmY/GIK/GACmprFjH9iUuEU9QSNoy8S';
 ///
 Dynamsoft.WebTwainEnv.Trial = true;
 
@@ -35,16 +35,13 @@ Dynamsoft.WebTwainEnv.ActiveXInstallWithCAB = false;
 Dynamsoft.WebTwainEnv.IfUpdateService = false;
 
 ///
-Dynamsoft.WebTwainEnv.ResourcesPath = 'https://tst.dynamsoft.com/libs/dwt/14.0';
+Dynamsoft.WebTwainEnv.ResourcesPath = 'https://tst.dynamsoft.com/libs/dwt/14.1';
 
 ///
 Dynamsoft.WebTwainEnv.IfAddMD5InUploadHeader = false;
 
 ///
 Dynamsoft.WebTwainEnv.IfConfineMaskWithinTheViewer = false;
-
-///
-//Dynamsoft.WebTwainEnv.IfCheck64bitServiceFirst = true;
 
 ///
 /*Dynamsoft.WebTwainEnv.CustomizableDisplayInfo = {
@@ -55,7 +52,6 @@ Dynamsoft.WebTwainEnv.IfConfineMaskWithinTheViewer = false;
         ERR_MODULE_NOT_INSTALLED: 'Error: The Dynamic Web TWAIN module is not installed.',
         ERR_BROWSER_NOT_SUPPORT: 'Error: This browser is currently not supported.',
         ERR_CreateID_MustNotInContainers: 'Error: Duplicate ID detected for creating Dynamic Web TWAIN objects, please check and modify.',
-		ERR_CreateID_NotContainer: 'Error: The ID of the DIV for creating the new DWT object is invalid.',
         ERR_DWT_NOT_DOWNLOADED: 'Error: Failed to download the Dynamic Web TWAIN module.',
 
         // image view
