@@ -1,15 +1,15 @@
 /**
  * Dynamsoft JavaScript Library
  * @product Dynamsoft Camera SDK
- * @website http://www.dynamsoft.com
+ * @website https://www.dynamsoft.com
  *
- * @preserve Copyright 2017, Dynamsoft Corporation
+ * @preserve Copyright 2018, Dynamsoft Corporation
  * @author Dynamsoft
  *
- * @version 6.1
+ * @version 6.2.0.0808
  *
  * @fileoverview Dynamsoft JavaScript Library for Basic Initiation of Dynamsoft Camera SDK
- * More info on DCS: http://www.dynamsoft.com/products/dynamsoft-webcam-sdk.aspx
+ * More info on DCS: https://www.dynamsoft.com/products/dynamsoft-webcam-sdk.aspx
  */
 
 var dynamsoft = dynamsoft || { dcsEnv: {} };
@@ -34,7 +34,7 @@ dynamsoft.dcsEnv.bTrial = true;
 
 //////////////////////////////////////////////////////////////////////////////
 
-dynamsoft.dcsEnv.productKey = 't01075QEAAIODtqPVfF2vUIwabNaLRG/Y4twI75RLXBNjylk2asWQjIi+D7werlponky1ViNB/U91+fYlAMOFMnis4ByQiY0YCRi3qw0jX13T2ItpmCbzXebeuUxH/0YCxv4NO//AkKFVD9/RXlE=';
+dynamsoft.dcsEnv.productKey = 't0100+AAAAAno/koZu9CGEQs4lner0aiwdgPs4TzA3Ju5IUzSAInCujPa3xcGTQ3hFuUNZ7c3QcoV2kKscho+4eITA0JDYFr7QwJLQkugYnbwNQF5JCiWksfxU9IUYqVotXIC+OA0IQ==';
 
 if (Dynamsoft.WebTwainEnv.ProductKey)
     dynamsoft.dcsEnv.productKey = dynamsoft.dcsEnv.productKey + ';' + Dynamsoft.WebTwainEnv.ProductKey;
@@ -44,4 +44,4 @@ if (Dynamsoft.WebTwainEnv.ProductKey)
 dynamsoft.dcsEnv.sessionTimeout = 1200;
 
 /// optional
-dynamsoft.dcsEnv.resourcesPath = "https://tst.dynamsoft.com/libs/dcs/6.1";
+dynamsoft.dcsEnv.resourcesPath = "https://tst.dynamsoft.com/libs/dcs/6.2";
