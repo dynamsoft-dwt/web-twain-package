@@ -11,7 +11,7 @@ Cross-platform cross-browser JavaScript library for web document scanning.
 ### The main package
 
 ```bash
-npm install dwt@14.1.0
+npm install dwt@14.2.0
 ```
 
 ### For TypeScript support
@@ -45,23 +45,23 @@ npm install @types/dwt
 
 >`Dynamic Web TWAIN`
 >
->**v14.1.0** (build version 14, 1, 0, 0828)
+>**v14.2.0** (build version 14, 1, 0, 0828)
 >
 >`Dynamsoft PDF Rasterizer`
 >
->**v14.1.0** (build version 10, 3, 0, 0712)
+>**v14.2.0** (build version 10, 3, 0, 0710)
 >
 >`Dynamsoft OCR Basic Engine`
 >
->**v14.1.0** (build version 10, 0, 0, 0618)
+>**v14.2.0** (build version 10, 0, 0, 618)
 >
 >`Dynamsoft Barcode Reader`
 >
->**v5.2** (build version 5, 2, 0, 0829)
+>**v6.3** (build version 6, 3, 0, 0723)
 >
 >`Dynamsoft Camera SDK`
 >
->**v6.1** (build version 6, 2, 0, 0720)
+>**v6.2** (build version 6, 2, 0, 0720)
 
 ## Included Samples
 
@@ -99,7 +99,7 @@ npm install @types/dwt
 > **NOTE: _Loading it from Dynamsoft isn't recommended for your production environement._**
 
 ```html
-<script src="https://tst.dynamsoft.com/libs/dwt/14.1/dynamsoft.webtwain.initiate.js"></script>
+<script src="https://tst.dynamsoft.com/libs/dwt/14.2/dynamsoft.webtwain.initiate.js"></script>
 ```
 
 > The file **`dynamsoft.webtwain.initiate.js`** is the core of the package and must be loaded. Once you have installed the package, it can be found under *node_modules\dwt\dist*. Make sure you write the correct path for it.
@@ -128,11 +128,11 @@ Dynamsoft.WebTwainEnv.Trial = true;
 1. If you are using the trial, the ProductKey might be expired or invalid. In this case, you can [request a trial key](https://www.dynamsoft.com/CustomerPortal/Portal/TrialLicense.aspx) and then replace the one above (Dynamsoft.WebTwainEnv.ProductKey) in **`dynamsoft.webtwain.config.js`**.
 2. For convenience, all the required installers for the SDK(s) are being loaded from Dynamsoft at runtime when needed. This is configured in the file **`dynamsoft.webtwain.config.js`** with this line of code
     ```javascript
-    Dynamsoft.WebTwainEnv.ResourcesPath = 'https://tst.dynamsoft.com/libs/dwt/14.1';
+    Dynamsoft.WebTwainEnv.ResourcesPath = 'https://tst.dynamsoft.com/libs/dwt/14.2';
     ```
     The installers on the Dynamsoft server are of the trial version. Once you have done all your testing and is ready to move on to use a full version, don't forget to do the following
 
-    * Copy the full version files from a full version installation (`C:\Program Files (x86)\Dynamsoft\Dynamic Web TWAIN SDK 14.1\Resources\`) which you'll get after the purchase of a full license and paste them under `/node_modules/dwt/dist/`
+    * Copy the full version files from a full version installation (`C:\Program Files (x86)\Dynamsoft\Dynamic Web TWAIN SDK 14.2\Resources\`) which you'll get after the purchase of a full license and paste them under `/node_modules/dwt/dist/`
     * Make sure you have set the correct full version `ProductKey` and `Trial Status` as well as correct `ResourcesPath` in the file **`dynamsoft.webtwain.config.js`** which you just copied over
         ```javascript
         Dynamsoft.WebTwainEnv.ProductKey = '{your full version key}';
@@ -186,7 +186,7 @@ Every time you do a `"npm install"`, all the configurations will be lost, we rec
 <html>
 <head>
     <title>Use Dynamic Web TWAIN to Scan</title>
-    <script src="https://tst.dynamsoft.com/libs/dwt/14.1/dynamsoft.webtwain.initiate.js"></script>
+    <script src="https://tst.dynamsoft.com/libs/dwt/14.2/dynamsoft.webtwain.initiate.js"></script>
     <script src="node_modules/dwt/dist/dynamsoft.webtwain.config.js"></script>
 </head>
 <body>
@@ -197,7 +197,7 @@ Every time you do a `"npm install"`, all the configurations will be lost, we rec
         Dynamsoft.WebTwainEnv.Containers = [{ ContainerId: 'dwtcontrolContainer', Width: 270, Height: 350 }];
         Dynamsoft.WebTwainEnv.ProductKey = 't00851wAAACl2hQM/RWwI/J4Ic7C6YBL8Wog+tuDJo1zfCsqKcRDy8meJkAl9w3frghiJvTL493gHQ2fxnefVpL5+k5fEQ6gQfYaMsROwrEmCPXtcOXsq8w==';
         Dynamsoft.WebTwainEnv.Trial = true;
-        Dynamsoft.WebTwainEnv.ResourcesPath = 'https://tst.dynamsoft.com/libs/dwt/14.1';
+        Dynamsoft.WebTwainEnv.ResourcesPath = 'https://tst.dynamsoft.com/libs/dwt/14.2';
         window.onload = function () {
             Dynamsoft.WebTwainEnv.Load();
         };

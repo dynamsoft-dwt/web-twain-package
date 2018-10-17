@@ -25,7 +25,9 @@
             if (Dynamsoft && (!Dynamsoft.Lib.env.bWin || !Dynamsoft.Lib.product.bChromeEdition)) {
                 var ObjString = [];
                 ObjString.push('<div style="padding:0 20px;">');
-                ObjString.push("Please note that your current browser doesn't support the Barcode add-on, please use modern browsers like Chrome, Firefox, Edge or IE 11.");
+                ObjString.push(
+                    "Please note that your current browser doesn't support the Barcode add-on, please use modern browsers like Chrome, Firefox, Edge or IE 11."
+                );
                 ObjString.push('</div>');
                 Dynamsoft.WebTwainEnv.ShowDialog(400, 180, ObjString.join(''));
                 if (document.getElementsByClassName("dynamsoft-dialog-close"))
@@ -37,61 +39,83 @@
         Dynamsoft.WebTwainEnv.AutoLoad = false;
         Dynamsoft.WebTwainEnv.RegisterEvent('OnWebTwainReady', Dynamsoft_OnReady); // Register OnWebTwainReady event. This event fires as soon as Dynamic Web TWAIN is initialized and ready to be used
 
-        var DWObject;
-        var BarcodeInfo =
-            [
-                { desc: "All", val: 0 },
-                { desc: "1D Barcodes", val: 1023 },
-                { desc: "QR Code", val: 67108864 },
-                { desc: "PDF417", val: 33554432 },
-                { desc: "DATAMATRIX", val: 134217728 },
-                { desc: "CODE_39", val: 1 },
-                { desc: "CODE_128", val: 2 },
-                { desc: "CODE_93", val: 4 },
-                { desc: "CODABAR", val: 8 },
-                { desc: "EAN_13", val: 32 },
-                { desc: "EAN_8", val: 64 },
-                { desc: "UPC_A", val: 128 },
-                { desc: "UPC_E", val: 256 },
-                { desc: "Interleaved 2 of 5", val: 16 },
-                { desc: "Industrial 2 of 5", val: 512 }
-            ];
+        var DWObject, dbrObject, barcodeText = [];
+        var BarcodeInfo = [{
+                desc: "All",
+                val: 0
+            },
+            {
+                desc: "1D Barcodes",
+                val: 1023
+            },
+            {
+                desc: "QR Code",
+                val: 67108864
+            },
+            {
+                desc: "PDF417",
+                val: 33554432
+            },
+            {
+                desc: "DATAMATRIX",
+                val: 134217728
+            },
+            {
+                desc: "CODE_39",
+                val: 1
+            },
+            {
+                desc: "CODE_128",
+                val: 2
+            },
+            {
+                desc: "CODE_93",
+                val: 4
+            },
+            {
+                desc: "CODABAR",
+                val: 8
+            },
+            {
+                desc: "EAN_13",
+                val: 32
+            },
+            {
+                desc: "EAN_8",
+                val: 64
+            },
+            {
+                desc: "UPC_A",
+                val: 128
+            },
+            {
+                desc: "UPC_E",
+                val: 256
+            },
+            {
+                desc: "Interleaved 2 of 5",
+                val: 16
+            },
+            {
+                desc: "Industrial 2 of 5",
+                val: 512
+            }
+        ];
 
-        function onInitSuccess() {
-            dbrObject = new dynamsoft.dbrEnv.BarcodeReader();
+        dynamsoft.dbrEnv.onAutoConnectServiceSuccess = function () {
+            dbrObject = new dynamsoft.BarcodeReader();
+        };
+
+        dynamsoft.dbrEnv.onAutoConnectServiceError = function (ex) {
+            alert('Init failed: ' + (ex.message || ex));
         }
 
-        function onInitFailure(errorCode, errorString) {
-            alert('Init failed: ' + errorString);
-        }
 
         function Dynamsoft_OnReady() {
             DWObject = Dynamsoft.WebTwainEnv.GetWebTwain('dwtcontrolContainer'); // Get the Dynamic Web TWAIN object that is embeded in the div with id 'dwtcontrolContainer'
             if (DWObject) {
                 for (var index = 0; index < BarcodeInfo.length; index++)
                     document.getElementById("barcodeformat").options.add(new Option(BarcodeInfo[index].desc, index));
-                var strPDFPath = Dynamsoft.WebTwainEnv.ResourcesPath;
-                if (Dynamsoft.Lib.env.bMac)
-                    strPDFPath += "/dist/mac/MacPdf.zip";
-                else if (Dynamsoft.Lib.env.bLinux)
-                    strPDFPath += "/dist/linux/LinuxPdf.zip";
-                else
-                    strPDFPath += "/dist/win/Pdf.zip";
-
-                DWObject.Addon.PDF.Download(
-                    strPDFPath,
-                    function () {
-                        console.log('The PDF Rasterizer dll is installed.');
-                    },
-                    function (errorCode, errorString) {
-                        if (confirm("The PDF Rasterizer wasn't installed correctly, continue to install the OCR addon?")) {
-                        }
-                        else {
-                            alert("Both PDF Rasterizer and the OCR addons are not installed, the sample won't work.")
-                        }
-                    }
-                );
-                dynamsoft.dbrEnv.init(onInitSuccess, onInitFailure);
             }
         }
 
@@ -118,40 +142,12 @@
                     DWObject.Addon.PDF.SetConvertMode(EnumDWT_ConvertMode.CM_RENDERALL);
                 }
                 DWObject.LoadImageEx('', 5,
-                    function () {
-                    },
+                    function () {},
                     function (errorCode, errorString) {
                         alert('Load Image:' + errorString);
                     }
                 );
             }
-        }
-
-        function GetBarcodeInfo(sImageIndex, result) {//This is the function called when barcode is read successfully
-            //Retrieve barcode details
-            var _textResult = [], count = result.getCount();
-            if (count == 0) {
-                alert("The barcode for the selected format is not found.");
-                return;
-            } else {
-                for (i = 0; i < count; i++) {
-                    Barcode_text = result.get(i).text;
-                    var x = result.get(i).x1;
-                    var y = result.get(i).y1;
-                    var format = result.get(i).formatString;
-                    var barcodeText = ("<p style='margin:0; padding:5px'>barcode[" + (i + 1) + "]: " + "<br />" + Barcode_text + "<br />");
-                    barcodeText += ("format:" + format + "<br />");
-                    barcodeText += ("x:" + x + "y:" + y + "<br /></p>");
-                    _textResult.push(barcodeText);
-                }
-                document.getElementById('divNoteMessage').innerHTML = _textResult.join('');
-            }
-            Dynamsoft.Lib.detect.hideMask();
-        }
-
-        function GetErrorInfo(errorcode, errorstring) {//This is the function called when barcode reading fails
-            alert(errorstring);
-            Dynamsoft.Lib.detect.hideMask();
         }
 
         function ReadBarcode() {
@@ -163,14 +159,33 @@
                 dbrObject.barcodeFormats = BarcodeInfo[document.getElementById("barcodeformat").selectedIndex].val;
                 var index = DWObject.CurrentImageIndexInBuffer;
                 var barcodeImage = DWObject.GetImageURL(index, -1, -1);
-                Dynamsoft.Lib.detect.showMask();
-                dbrObject.readURLAsync(barcodeImage,
-                    index,
-                    GetBarcodeInfo,
-                    GetErrorInfo);
+                dbrObject.decode(barcodeImage).then(function (results) { //This is the function called when barcode is read successfully
+                    //Retrieve barcode details
+                    if (results.length == 0) {
+                        document.getElementById('divNoteMessage').innerHTML =
+                            "The barcode for the selected format is not found.";
+                        return;
+                    } else {
+                        barcodeText = [];
+                        for (i = 0; i < results.length; i++) {
+                            var result = results[i];
+                            Barcode_text = result.BarcodeText;
+                            var loc = result.LocalizationResult;
+                            var x = loc.X1;
+                            var y = loc.Y1;
+                            var format = result.BarcodeFormatString;
+                            barcodeText.push("<p style='margin:0; padding:5px'>barcode[" + (i + 1) + "]: " +
+                                "<br /><strong>" + Barcode_text + "</strong><br />");
+                            barcodeText.push("format:" + format + "<br />");
+                            barcodeText.push("x:" + x + "y:" + y + "<br /></p>");
+                        }
+                        document.getElementById('divNoteMessage').innerHTML = barcodeText.join('');
+                    }
+                }, function (ex) { //This is the function called when barcode reading fails
+                    document.getElementById('divNoteMessage').innerHTML = ex.message || ex;
+                });
             }
         }
-
     </script>
 </body>
 

@@ -1,18 +1,19 @@
-//
+﻿//
 // Dynamsoft JavaScript Library for Basic Initiation of Dynamic Web TWAIN
 // More info on DWT: http://www.dynamsoft.com/Products/WebTWAIN_Overview.aspx
 //
 // Copyright 2018, Dynamsoft Corporation 
 // Author: Dynamsoft Team
-// Version: 14.1
+// Version: 14.2
 //
 /// <reference path="dynamsoft.webtwain.initiate.js" />
 var Dynamsoft = Dynamsoft || { WebTwainEnv: {} };
 
 ///
-Dynamsoft.WebTwainEnv.AutoLoad = false;
+Dynamsoft.WebTwainEnv.AutoLoad = true;
+
 ///
-Dynamsoft.WebTwainEnv.Containers = [{ ContainerId: 'dwtcontrolContainer', Width: '270px', Height: '350px' }];
+Dynamsoft.WebTwainEnv.Containers = [{ContainerId:'dwtcontrolContainer', Width:270, Height:350}];
 
 /////////////////////////////////////////////////////////////////////////////////////
 //  WARNING:  The productKey in this file is protected by copyright law            //
@@ -24,24 +25,23 @@ Dynamsoft.WebTwainEnv.Containers = [{ ContainerId: 'dwtcontrolContainer', Width:
 /////////////////////////////////////////////////////////////////////////////////////
 /// If you need to use multiple keys on the same server, you can combine keys and write like this 
 /// Dynamsoft.WebTwainEnv.ProductKey = 'key1;key2;key3';
-Dynamsoft.WebTwainEnv.ProductKey = 't01026QAAAJoD95jFomf468LGf6SlDE3CW1Avf5PIONn1egaYEKYd/w9yYhW3isYoRlpKBrNMYp0rvFXWkaqKodHykc1cy1OTXMOYHnx46kJ+GXmY/GIK/GACmprFjH9iUuEU9QSNoy8S';
+Dynamsoft.WebTwainEnv.ProductKey = 't0112CQIAADxbZT6MLCbkeJCgh3McQh9MrgFsm8prq6W2urCEXIPMW1fSZKM0dAOCUXC1c6ov8D8fdB3+QM7SyilLV4nxZm7B7XHBrMxhw8jCrvhhMg+j/CybzlGPG9lGFky0DZn3CGZ/9zFpVJILrGFoKA==';
+
 ///
 Dynamsoft.WebTwainEnv.Trial = true;
 
 ///
-Dynamsoft.WebTwainEnv.ActiveXInstallWithCAB = false;
-
-///
-Dynamsoft.WebTwainEnv.IfUpdateService = false;
-
-///
-Dynamsoft.WebTwainEnv.ResourcesPath = 'https://tst.dynamsoft.com/libs/dwt/14.1';
-
+Dynamsoft.WebTwainEnv.ResourcesPath = 'https://tst.dynamsoft.com/libs/dwt/14.2/';
+dynamsoft.managerEnv.resourcesPath = 'https://tst.dynamsoft.com/libs/dwt/14.2/';
+ 
 ///
 Dynamsoft.WebTwainEnv.IfAddMD5InUploadHeader = false;
 
 ///
 Dynamsoft.WebTwainEnv.IfConfineMaskWithinTheViewer = false;
+
+///
+//Dynamsoft.WebTwainEnv.IfCheck64bitServiceFirst = true;
 
 ///
 /*Dynamsoft.WebTwainEnv.CustomizableDisplayInfo = {
@@ -52,6 +52,7 @@ Dynamsoft.WebTwainEnv.IfConfineMaskWithinTheViewer = false;
         ERR_MODULE_NOT_INSTALLED: 'Error: The Dynamic Web TWAIN module is not installed.',
         ERR_BROWSER_NOT_SUPPORT: 'Error: This browser is currently not supported.',
         ERR_CreateID_MustNotInContainers: 'Error: Duplicate ID detected for creating Dynamic Web TWAIN objects, please check and modify.',
+		ERR_CreateID_NotContainer: 'Error: The ID of the DIV for creating the new DWT object is invalid.',
         ERR_DWT_NOT_DOWNLOADED: 'Error: Failed to download the Dynamic Web TWAIN module.',
 
         // image view
@@ -138,12 +139,12 @@ Dynamsoft.WebTwainEnv.IfConfineMaskWithinTheViewer = false;
             'hand': true, 'rectselect': true, 'zoom': true
         }
     },
-
+	
     dialogText: {
         dlgRotateAnyAngle: ['Angle :', 'Interpolation:', 'Keep size', '  OK  ', 'Cancel'],
         dlgChangeImageSize: ['New Height :', 'New Width :', 'Interpolation method:', '  OK  ', 'Cancel'],
         saveChangedImage: ['You have changed the image, do you want to keep the change(s)?', '  Yes  ', '  No  '],
-        selectSource: ['Select Source:', 'Select', 'Cancel']
+        selectSource: ['Select Source:', 'Select', 'Cancel', 'There is no source available!']
     }
 };*/
 

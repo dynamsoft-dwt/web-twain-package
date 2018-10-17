@@ -6,7 +6,7 @@
 * Copyright 2018, Dynamsoft Corporation 
 * Author: Dynamsoft R&D Department
 *
-* Version: 14.1
+* Version: 14.2
 *
 * Module: addon/pdf
 * final js: build\addon\dynamsoft.webtwain.addon.pdf.js

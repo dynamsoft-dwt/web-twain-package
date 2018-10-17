@@ -6,7 +6,7 @@
  * @preserve Copyright 2018, Dynamsoft Corporation
  * @author Dynamsoft
  *
- * @version 5.2
+ * @version 6.3
  *
  * @fileoverview Dynamsoft JavaScript Library for Dynamsoft Barcode Reader
  * More info on DBR: http://www.dynamsoft.com/Products/Dynamic-Barcode-Reader.aspx
@@ -30,11 +30,21 @@ dynamsoft.dbrEnv = dynamsoft.dbrEnv || {};
 //  decompile, disassemble, or modify the productKey .                             //
 
 //////////////////////////////////////////////////////////////////////////////
-dynamsoft.dbrEnv.productKey = 't01026QAAAICo9/JZUxsm2aZeBAJ0pOZYg8/z7C1XzV4vjmZZ5lp6SVFwPVNzg9GSPRIYRdaxP+uk9H1jSwkgjMigogcXAUpMdg1jevDhqQv5ZeRhjhej8IMJaGoWM/6JOQlnoROggS8k';
+dynamsoft.dbrEnv.productKey = 't00996QAAAD3FziGR/Vjb3GjgoQshk8DhK7tn+OBuXRMWNhP4y+GB+F7tmf6UHAILWKSJGd+eTvtJYXOAP+XuprjC+Xmja5RGYD1fpi7ya8Jt8ssUzIMW0GqWETU+edEv5QSNky72';
 
 if (Dynamsoft.WebTwainEnv.ProductKey)
-    dynamsoft.dbrEnv.productKey = dynamsoft.dbrEnv.productKey + ';' + Dynamsoft.WebTwainEnv.ProductKey;
+    dynamsoft.dcsEnv.productKey = dynamsoft.dcsEnv.productKey + ';' + Dynamsoft.WebTwainEnv.ProductKey;
 
+// If you want to connect to the service manually, please set it to false
+// and call dynamsoft.BarcodeReader.initServiceConnection when needed.
+dynamsoft.dbrEnv.bAutoConnectService = true;
 
 /// set resourcesPath in runtime is ok
-dynamsoft.dbrEnv.resourcesPath = "https://tst.dynamsoft.com/libs/dbr/5.2/js";
+dynamsoft.dbrEnv.resourcesPath = "http://tst.dynamsoft.com/libs/dbr/6.3";
+
+
+// try 64bit first, default false
+//dynamsoft.dbrEnv.ifCheck64bitServiceFirst = true;
+
+// hide dynamsoft service install dialog and customize it, default false
+//dynamsoft.dbrEnv.hideDWASInstallDialog = true;
