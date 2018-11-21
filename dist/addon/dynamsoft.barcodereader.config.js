@@ -30,18 +30,23 @@ dynamsoft.dbrEnv = dynamsoft.dbrEnv || {};
 //  decompile, disassemble, or modify the productKey .                             //
 
 //////////////////////////////////////////////////////////////////////////////
-dynamsoft.dbrEnv.productKey = 't00996QAAAD3FziGR/Vjb3GjgoQshk8DhK7tn+OBuXRMWNhP4y+GB+F7tmf6UHAILWKSJGd+eTvtJYXOAP+XuprjC+Xmja5RGYD1fpi7ya8Jt8ssUzIMW0GqWETU+edEv5QSNky72';
-
-if (Dynamsoft.WebTwainEnv.ProductKey)
-    dynamsoft.dcsEnv.productKey = dynamsoft.dcsEnv.productKey + ';' + Dynamsoft.WebTwainEnv.ProductKey;
+if (Dynamsoft.WebTwainEnv.ProductKey != "")
+    dynamsoft.dbrEnv.productKey = Dynamsoft.WebTwainEnv.ProductKey;
+else
+    dynamsoft.dbrEnv.productKey = 't00996QAAAD3FziGR/Vjb3GjgoQshk8DhK7tn+OBuXRMWNhP4y+GB+F7tmf6UHAILWKSJGd+eTvtJYXOAP+XuprjC+Xmja5RGYD1fpi7ya8Jt8ssUzIMW0GqWETU+edEv5QSNky72';
 
 // If you want to connect to the service manually, please set it to false
 // and call dynamsoft.BarcodeReader.initServiceConnection when needed.
 dynamsoft.dbrEnv.bAutoConnectService = true;
 
 /// set resourcesPath in runtime is ok
-dynamsoft.dbrEnv.resourcesPath = "http://tst.dynamsoft.com/libs/dbr/6.3";
-
+(function () {
+    var p = document.location.protocol;
+    if (p !== 'https:' && p !== 'http:')
+        dynamsoft.dbrEnv.resourcesPath = "https://tst.dynamsoft.com/libs/dbr/6.3";
+    else
+        dynamsoft.dbrEnv.resourcesPath = "http://tst.dynamsoft.com/libs/dbr/6.3";
+})();
 
 // try 64bit first, default false
 //dynamsoft.dbrEnv.ifCheck64bitServiceFirst = true;
