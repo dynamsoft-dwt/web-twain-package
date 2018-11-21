@@ -33,7 +33,7 @@ Dynamsoft.WebTwainEnv.Trial = true;
 ///
 (function () {
     var p = document.location.protocol;
-    if (p !== 'https:' && p !== 'http:')
+    if (p === 'https:')
         Dynamsoft.WebTwainEnv.ResourcesPath = "https://tst.dynamsoft.com/libs/dwt/14.3/";
     else
         Dynamsoft.WebTwainEnv.ResourcesPath = "http://tst.dynamsoft.com/libs/dwt/14.3/";
