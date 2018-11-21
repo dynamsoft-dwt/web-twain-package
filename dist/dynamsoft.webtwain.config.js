@@ -13,7 +13,7 @@ var Dynamsoft = Dynamsoft || { WebTwainEnv: {} };
 Dynamsoft.WebTwainEnv.AutoLoad = true;
 
 ///
-Dynamsoft.WebTwainEnv.Containers = [{ContainerId:'dwtcontrolContainer', Width:270, Height:350}];
+Dynamsoft.WebTwainEnv.Containers = [{ ContainerId: 'dwtcontrolContainer', Width: 270, Height: 350 }];
 
 /////////////////////////////////////////////////////////////////////////////////////
 //  WARNING:  The productKey in this file is protected by copyright law            //
@@ -31,7 +31,13 @@ Dynamsoft.WebTwainEnv.ProductKey = 't0113CQIAAF/nhBzUjv+T7QoTgWhodA+SSjnFmiDU0ZY
 Dynamsoft.WebTwainEnv.Trial = true;
 
 ///
-Dynamsoft.WebTwainEnv.ResourcesPath = 'https://tst.dynamsoft.com/libs/dwt/14.3/';
+(function () {
+    var p = document.location.protocol;
+    if (p !== 'https:' && p !== 'http:')
+        Dynamsoft.WebTwainEnv.ResourcesPath = "https://tst.dynamsoft.com/libs/dwt/14.3/";
+    else
+        Dynamsoft.WebTwainEnv.ResourcesPath = "http://tst.dynamsoft.com/libs/dwt/14.3/";
+})();
 
 ///
 Dynamsoft.WebTwainEnv.IfAddMD5InUploadHeader = false;
