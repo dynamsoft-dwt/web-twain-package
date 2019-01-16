@@ -11,7 +11,7 @@ Cross-platform cross-browser JavaScript library for web document scanning.
 ### The main package
 
 ```bash
-npm install dwt@14.3.1.0115
+npm install dwt@14.3.2
 ```
 
 ### For TypeScript support
