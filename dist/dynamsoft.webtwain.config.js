@@ -2,9 +2,9 @@
 // Dynamsoft JavaScript Library for Basic Initiation of Dynamic Web TWAIN
 // More info on DWT: http://www.dynamsoft.com/Products/WebTWAIN_Overview.aspx
 //
-// Copyright 2018, Dynamsoft Corporation 
+// Copyright 2019, Dynamsoft Corporation 
 // Author: Dynamsoft Team
-// Version: 14.3
+// Version: 14.3.1
 //
 /// <reference path="dynamsoft.webtwain.initiate.js" />
 var Dynamsoft = Dynamsoft || { WebTwainEnv: {} };
@@ -13,7 +13,7 @@ var Dynamsoft = Dynamsoft || { WebTwainEnv: {} };
 Dynamsoft.WebTwainEnv.AutoLoad = true;
 
 ///
-Dynamsoft.WebTwainEnv.Containers = [{ ContainerId: 'dwtcontrolContainer', Width: 270, Height: 350 }];
+Dynamsoft.WebTwainEnv.Containers = [{ContainerId:'dwtcontrolContainer', Width:270, Height:350}];
 
 /////////////////////////////////////////////////////////////////////////////////////
 //  WARNING:  The productKey in this file is protected by copyright law            //
@@ -25,19 +25,13 @@ Dynamsoft.WebTwainEnv.Containers = [{ ContainerId: 'dwtcontrolContainer', Width:
 /////////////////////////////////////////////////////////////////////////////////////
 /// If you need to use multiple keys on the same server, you can combine keys and write like this 
 /// Dynamsoft.WebTwainEnv.ProductKey = 'key1;key2;key3';
-Dynamsoft.WebTwainEnv.ProductKey = 't0113CQIAAF/nhBzUjv+T7QoTgWhodA+SSjnFmiDU0ZYk0TsZ8tkwna/vJeblDXAfh/aHvDl/4m73BfE2iinB58SaVGlCuatVIWU4YWb2yMCgd5dWExsmyedf0tnjQQ8aG0yYODY8fM+VmgYSvNr8BLbDaCw=';
+Dynamsoft.WebTwainEnv.ProductKey = 't0112CQIAAIVnH0G/UhUlCUPYs2ftd4ey1s0T9Hcb0zWEHDBGMZ5XBWKBGvRK9ulqIFlKzBIvR8bPOx612jpVA+v21c+shc1dtAotmJU+bBiZzcrd6MAU/vyLJ32i4EG2kQWjtiFznysMjcSgnCme6r1lYw==';
 
 ///
 Dynamsoft.WebTwainEnv.Trial = true;
 
 ///
-(function () {
-    var p = document.location.protocol;
-    if (p === 'https:')
-        Dynamsoft.WebTwainEnv.ResourcesPath = "https://tst.dynamsoft.com/libs/dwt/14.3/";
-    else
-        Dynamsoft.WebTwainEnv.ResourcesPath = "http://tst.dynamsoft.com/libs/dwt/14.3/";
-})();
+Dynamsoft.WebTwainEnv.ResourcesPath = "https://tst.dynamsoft.com/libs/dwt/14.3.1";
 
 ///
 Dynamsoft.WebTwainEnv.IfAddMD5InUploadHeader = false;

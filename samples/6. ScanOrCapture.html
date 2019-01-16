@@ -40,7 +40,7 @@
         Dynamsoft.WebTwainEnv.AutoLoad = false;
         Dynamsoft.WebTwainEnv.RegisterEvent('OnWebTwainReady', Dynamsoft_OnReady); // Register OnWebTwainReady event. This event fires as soon as Dynamic Web TWAIN is initialized and ready to be used
 
-        var webCamStartingIndex;//This is used to separate scanners and webcams
+        var webCamStartingIndex; //This is used to separate scanners and webcams
         var DWObject;
         var isVideoOn = true;
 
@@ -53,9 +53,9 @@
                     document.getElementById("btn-grab").style.backgroundColor = "";
                     document.getElementById('btn-grab').value = 'Acquire From a Scanner';
                     document.getElementById("btn-switch").style.display = 'none';
-                }
-                else {
-                    DWObject.Addon.Webcam.SelectSource(document.getElementById("source").options[document.getElementById("source").selectedIndex].text);
+                } else {
+                    DWObject.Addon.Webcam.SelectSource(document.getElementById("source").options[document.getElementById(
+                        "source").selectedIndex].text);
 
                     SetIfWebcamPlayVideo(true);
 
@@ -69,21 +69,29 @@
                     DWObject.Height = 350;
                     DWObject.Width = 270;
                 }
-                DWObject.Addon.Webcam.Download(Dynamsoft.WebTwainEnv.ResourcesPath + '/dist/DynamicWebcam.zip', function () {
-                    document.getElementById('source').options.length = 0;
-                    var count = DWObject.SourceCount;
-                    for (var i = 0; i < count; i++) {
-                        document.getElementById('source').options.add(new Option(DWObject.GetSourceNameItems(i), i));
-                    }
-                    webCamStartingIndex = i;
+                if (Dynamsoft.Lib.detect.ssl) {
+                    DWObject.IfSSL = true;
+                    DWObject.HTTPPort = 443;
+                }
+                DWObject.Addon.Webcam.Download(Dynamsoft.WebTwainEnv.ResourcesPath + '/dist/DynamicWebcam.zip',
+                    function () {
+                        document.getElementById('source').options.length = 0;
+                        var count = DWObject.SourceCount;
+                        for (var i = 0; i < count; i++) {
+                            document.getElementById('source').options.add(new Option(DWObject.GetSourceNameItems(i),
+                                i));
+                        }
+                        webCamStartingIndex = i;
 
-                    var arySource = DWObject.Addon.Webcam.GetSourceList();
-                    for (var i = 0; i < arySource.length; i++)
-                        document.getElementById("source").options.add(new Option(arySource[i]), i + webCamStartingIndex); // Get Webcam Source names and put them in a drop-down box
-                    document.getElementById('source').onchange();
-                }, function (errCode, errString) {
-                    console.log('Webcam DLL failed to download with error: ' + errString);
-                });
+                        var arySource = DWObject.Addon.Webcam.GetSourceList();
+                        for (var i = 0; i < arySource.length; i++)
+                            document.getElementById("source").options.add(new Option(arySource[i]), i +
+                                webCamStartingIndex); // Get Webcam Source names and put them in a drop-down box
+                        document.getElementById('source').onchange();
+                    },
+                    function (errCode, errString) {
+                        console.log('Webcam DLL failed to download with error: ' + errString);
+                    });
             }
         }
 
@@ -91,14 +99,13 @@
             if (bShow) {
                 DWObject.Addon.Webcam.StopVideo();
                 setTimeout(function () {
-                    DWObject.Addon.Webcam.PlayVideo(DWObject, 80, function () { });
+                    DWObject.Addon.Webcam.PlayVideo(DWObject, 80, function () {});
                     isVideoOn = true;
                     document.getElementById("btn-grab").style.backgroundColor = "";
                     document.getElementById("btn-grab").disabled = "";
                     document.getElementById("btn-switch").value = "Hide Video";
                 }, 30);
-            }
-            else {
+            } else {
                 DWObject.Addon.Webcam.StopVideo();
                 isVideoOn = false;
                 document.getElementById("btn-grab").style.backgroundColor = "#aaa";
@@ -126,8 +133,7 @@
                     DWObject.CloseSource();
                     DWObject.OpenSource();
                     DWObject.AcquireImage();
-                }
-                else {
+                } else {
 
                     var funCaptureImage = function () {
                         setTimeout(function () {
@@ -147,8 +153,7 @@
                 }
                 DWObject.IfShowFileDialog = true;
                 DWObject.LoadImageEx("", 5,
-                    function () {
-                    },
+                    function () {},
                     function (errorCode, errorString) {
                         alert('Load Image:' + errorString);
                     }

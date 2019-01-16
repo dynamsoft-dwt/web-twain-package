@@ -51,8 +51,8 @@
         }
 
         function downloadOCRBasic(bDownloadDLL) {
-            var strOCRPath = Dynamsoft.WebTwainEnv.ResourcesPath + "OCRResources/OCR.zip",
-                strOCRLangPath = Dynamsoft.WebTwainEnv.ResourcesPath + 'OCRResources/OCRBasicLanguages/English.zip';
+            var strOCRPath = Dynamsoft.WebTwainEnv.ResourcesPath + "/OCRResources/OCR.zip",
+                strOCRLangPath = Dynamsoft.WebTwainEnv.ResourcesPath + '/OCRResources/OCRBasicLanguages/English.zip';
 
             if (bDownloadDLL) {
                 if (DWObject.Addon.OCR.IsModuleInstalled()) { /*console.log('OCR dll is installed');*/

@@ -11,7 +11,7 @@ Cross-platform cross-browser JavaScript library for web document scanning.
 ### The main package
 
 ```bash
-npm install dwt@14.3.1
+npm install dwt@14.3.1.0115
 ```
 
 ### For TypeScript support
@@ -39,29 +39,41 @@ npm install @types/dwt
 * Built-in upload module to easily upload encoded files to FTP or HTTP servers.
 * Built-in support for secure HTTP (HTTPS).
 * Built-in Image Editor to easily edit images without additional code.
-* Barcode reading and OCR with optional addons.
+* Webcam Capturing, Barcode reading and OCR with optional addons.
 
 ## Versions
 
+>`Dynamsoft Service`
+>
+>**v14.3.1** (build version 1, 4, 1, 0115)
+>
+>`Dynamsoft Service Manager`
+>
+>**v14.3.1** (build version 14, 3, 1, 0115)
+>
 >`Dynamic Web TWAIN`
 >
->**v14.3.0** (build version 14, 2, 0, 1025)
+>**v14.3.1** (build version 14, 3, 1, 0115)
 >
 >`Dynamsoft PDF Rasterizer`
 >
->**v14.3.0** (build version 10, 3, 0, 0710)
+>**v14.3.1** (build version 10, 3, 0, 710)
 >
 >`Dynamsoft OCR Basic Engine`
 >
->**v14.3.0** (build version 10, 0, 0, 618)
+>**v14.3.1** (build version 10, 0, 0, 618)
 >
 >`Dynamsoft Barcode Reader`
 >
->**v6.3** (build version 6, 3, 0, 0723)
+>**v6.4.1** (build version 6, 4, 1, 0115)
 >
->`Dynamsoft Camera SDK`
+>`Dynamsoft Webcam Addon for Web TWAIN`
 >
->**v14.3** (build version 14, 2, 0, 1022)
+>**v14.3.1** (build version 14, 3, 1, 0115)
+>
+>`Dynamsoft Upload Module for Web TWAIN`
+>
+>**v14.3.1** (build version 1, 2, 1, 0115)
 
 ## Included Samples
 
@@ -97,7 +109,7 @@ npm install @types/dwt
 > **NOTE: _Loading it from Dynamsoft isn't recommended for your production environement._**
 
 ```html
-<script src="https://tst.dynamsoft.com/libs/dwt/14.3/dynamsoft.webtwain.initiate.js"></script>
+<script src="https://tst.dynamsoft.com/libs/dwt/14.3.1/dynamsoft.webtwain.initiate.js"></script>
 ```
 
 > The file **`dynamsoft.webtwain.initiate.js`** is the core of the package and must be loaded. Once you have installed the package, it can be found under *node_modules\dwt\dist*. Make sure you write the correct path for it.
@@ -127,12 +139,12 @@ Dynamsoft.WebTwainEnv.Trial = true;
 2. To make things easier, all the required installers for the SDK(s) are being loaded from Dynamsoft at runtime when needed. This is configured in the file **`dynamsoft.webtwain.config.js`** with this line of code
 
     ```javascript
-    Dynamsoft.WebTwainEnv.ResourcesPath = 'https://tst.dynamsoft.com/libs/dwt/14.3';
+    Dynamsoft.WebTwainEnv.ResourcesPath = 'https://tst.dynamsoft.com/libs/dwt/14.3.1';
     ```
 
     The installers on the Dynamsoft server are of the trial version. Once you have done all your testing and is ready to move on to use a full version, don't forget to do the following
 
-    * Copy the full version files from a full version installation (`C:\Program Files (x86)\Dynamsoft\Dynamic Web TWAIN SDK 14.3\Resources\`) which you'll get after the purchase of a full license and paste them under `/node_modules/dwt/dist/`
+    * Copy the full version files from a full version installation (`C:\Program Files (x86)\Dynamsoft\Dynamic Web TWAIN SDK 14.3.1\Resources\`) which you'll get after the purchase of a full license and paste them under `/node_modules/dwt/dist/`
     * Make sure you have set the correct full version `ProductKey` and `Trial Status` as well as correct `ResourcesPath` in the file **`dynamsoft.webtwain.config.js`** which you just copied over
 
         ```javascript
@@ -187,7 +199,7 @@ Every time you do a `"npm install"`, all the configurations will be lost, we rec
 <html>
 <head>
     <title>Use Dynamic Web TWAIN to Scan</title>
-    <script src="https://tst.dynamsoft.com/libs/dwt/14.3/dynamsoft.webtwain.initiate.js"></script>
+    <script src="https://tst.dynamsoft.com/libs/dwt/14.3.1/dynamsoft.webtwain.initiate.js"></script>
     <script src="node_modules/dwt/dist/dynamsoft.webtwain.config.js"></script>
 </head>
 <body>
@@ -198,7 +210,7 @@ Every time you do a `"npm install"`, all the configurations will be lost, we rec
         Dynamsoft.WebTwainEnv.Containers = [{ ContainerId: 'dwtcontrolContainer', Width: 270, Height: 350 }];
         Dynamsoft.WebTwainEnv.ProductKey = 't00851wAAACl2hQM/RWwI/J4Ic7C6YBL8Wog+tuDJo1zfCsqKcRDy8meJkAl9w3frghiJvTL493gHQ2fxnefVpL5+k5fEQ6gQfYaMsROwrEmCPXtcOXsq8w==';
         Dynamsoft.WebTwainEnv.Trial = true;
-        Dynamsoft.WebTwainEnv.ResourcesPath = 'https://tst.dynamsoft.com/libs/dwt/14.3';
+        Dynamsoft.WebTwainEnv.ResourcesPath = 'https://tst.dynamsoft.com/libs/dwt/14.3.1';
         Dynamsoft.WebTwainEnv.AutoLoad = false;
         window.onload = function () {
             Dynamsoft.WebTwainEnv.Load();

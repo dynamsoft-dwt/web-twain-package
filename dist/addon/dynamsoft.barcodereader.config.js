@@ -3,16 +3,16 @@
  * @product Dynamsoft Barcode Reader
  * @website http://www.dynamsoft.com
  *
- * @preserve Copyright 2018, Dynamsoft Corporation
+ * @preserve Copyright 2019, Dynamsoft Corporation
  * @author Dynamsoft
  *
- * @version 6.3
+ * @version 6.4.1
  *
  * @fileoverview Dynamsoft JavaScript Library for Dynamsoft Barcode Reader
  * More info on DBR: http://www.dynamsoft.com/Products/Dynamic-Barcode-Reader.aspx
  */
 
-var dynamsoft = dynamsoft || {};
+var dynamsoft = self.dynamsoft || {};
 dynamsoft.dbrEnv = dynamsoft.dbrEnv || {};
 
 //////////////////////////////////////////////////////////////////////////////
@@ -43,13 +43,16 @@ dynamsoft.dbrEnv.bAutoConnectService = true;
 (function () {
     var p = document.location.protocol;
     if (p !== 'https:' && p !== 'http:')
-        dynamsoft.dbrEnv.resourcesPath = "https://tst.dynamsoft.com/libs/dbr/6.3";
+        dynamsoft.dbrEnv.resourcesPath = "https://tst.dynamsoft.com/libs/dbr/6.4.1";
     else
-        dynamsoft.dbrEnv.resourcesPath = "http://tst.dynamsoft.com/libs/dbr/6.3";
+        dynamsoft.dbrEnv.resourcesPath = "http://tst.dynamsoft.com/libs/dbr/6.4.1";
 })();
+
 
 // try 64bit first, default false
 //dynamsoft.dbrEnv.ifCheck64bitServiceFirst = true;
 
-// hide dynamsoft service install dialog and customize it, default false
-//dynamsoft.dbrEnv.hideDWASInstallDialog = true;
+// dbr should hide DWAS install dialog
+dynamsoft.dbrEnv.hideDWASInstallDialog = true;
+// dbr should disable auto download module
+dynamsoft.dbrEnv.disableAutoDownloadModule = true;
