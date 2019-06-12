@@ -4,7 +4,7 @@
 //
 // Copyright 2019, Dynamsoft Corporation 
 // Author: Dynamsoft Team
-// Version: 14.3.1
+// Version: 15.0
 //
 /// <reference path="dynamsoft.webtwain.initiate.js" />
 var Dynamsoft = Dynamsoft || { WebTwainEnv: {} };
@@ -25,13 +25,12 @@ Dynamsoft.WebTwainEnv.Containers = [{ContainerId:'dwtcontrolContainer', Width:27
 /////////////////////////////////////////////////////////////////////////////////////
 /// If you need to use multiple keys on the same server, you can combine keys and write like this 
 /// Dynamsoft.WebTwainEnv.ProductKey = 'key1;key2;key3';
-Dynamsoft.WebTwainEnv.ProductKey = 't0112CQIAAIVnH0G/UhUlCUPYs2ftd4ey1s0T9Hcb0zWEHDBGMZ5XBWKBGvRK9ulqIFlKzBIvR8bPOx612jpVA+v21c+shc1dtAotmJU+bBiZzcrd6MAU/vyLJ32i4EG2kQWjtiFznysMjcSgnCme6r1lYw==';
-
+Dynamsoft.WebTwainEnv.ProductKey = 't00901wAAAJ7/4i9Ey29HMzHfov9XhXylM8Mv1vZqg5H29n5IPmx/VNzEXc9exuG6K6ee62ppfXSsIbC0w9XXgOKia+G3QPnv/l+QT8FCaKuhTSmwNhNRsQuyDixP';
 ///
 Dynamsoft.WebTwainEnv.Trial = true;
 
 ///
-Dynamsoft.WebTwainEnv.ResourcesPath = "https://tst.dynamsoft.com/libs/dwt/14.3.1";
+Dynamsoft.WebTwainEnv.ResourcesPath = "https://tst.dynamsoft.com/libs/dwt/15.0";
 
 ///
 Dynamsoft.WebTwainEnv.IfAddMD5InUploadHeader = false;
@@ -39,8 +38,6 @@ Dynamsoft.WebTwainEnv.IfAddMD5InUploadHeader = false;
 ///
 Dynamsoft.WebTwainEnv.IfConfineMaskWithinTheViewer = false;
 
-///
-//Dynamsoft.WebTwainEnv.IfCheck64bitServiceFirst = true;
 
 ///
 /*Dynamsoft.WebTwainEnv.CustomizableDisplayInfo = {

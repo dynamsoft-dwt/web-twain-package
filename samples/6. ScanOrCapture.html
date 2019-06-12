@@ -38,14 +38,18 @@
         };
 
         Dynamsoft.WebTwainEnv.AutoLoad = false;
-        Dynamsoft.WebTwainEnv.RegisterEvent('OnWebTwainReady', Dynamsoft_OnReady); // Register OnWebTwainReady event. This event fires as soon as Dynamic Web TWAIN is initialized and ready to be used
+        Dynamsoft.WebTwainEnv.RegisterEvent('OnWebTwainReady',
+            Dynamsoft_OnReady
+        ); // Register OnWebTwainReady event. This event fires as soon as Dynamic Web TWAIN is initialized and ready to be used
 
         var webCamStartingIndex; //This is used to separate scanners and webcams
         var DWObject;
         var isVideoOn = true;
 
         function Dynamsoft_OnReady() {
-            DWObject = Dynamsoft.WebTwainEnv.GetWebTwain('dwtcontrolContainer'); // Get the Dynamic Web TWAIN object that is embeded in the div with id 'dwtcontrolContainer'
+            DWObject = Dynamsoft.WebTwainEnv.GetWebTwain(
+                'dwtcontrolContainer'
+            ); // Get the Dynamic Web TWAIN object that is embeded in the div with id 'dwtcontrolContainer'
             document.getElementById('source').onchange = function () {
                 if (document.getElementById('source').selectedIndex < webCamStartingIndex) {
                     DWObject.Addon.Webcam.StopVideo();
@@ -54,8 +58,9 @@
                     document.getElementById('btn-grab').value = 'Acquire From a Scanner';
                     document.getElementById("btn-switch").style.display = 'none';
                 } else {
-                    DWObject.Addon.Webcam.SelectSource(document.getElementById("source").options[document.getElementById(
-                        "source").selectedIndex].text);
+                    DWObject.Addon.Webcam.SelectSource(document.getElementById("source").options[document
+                        .getElementById(
+                            "source").selectedIndex].text);
 
                     SetIfWebcamPlayVideo(true);
 
@@ -73,25 +78,19 @@
                     DWObject.IfSSL = true;
                     DWObject.HTTPPort = 443;
                 }
-                DWObject.Addon.Webcam.Download(Dynamsoft.WebTwainEnv.ResourcesPath + '/dist/DynamicWebcam.zip',
-                    function () {
-                        document.getElementById('source').options.length = 0;
-                        var count = DWObject.SourceCount;
-                        for (var i = 0; i < count; i++) {
-                            document.getElementById('source').options.add(new Option(DWObject.GetSourceNameItems(i),
-                                i));
-                        }
-                        webCamStartingIndex = i;
+                document.getElementById('source').options.length = 0;
+                var count = DWObject.SourceCount;
+                for (var i = 0; i < count; i++) {
+                    document.getElementById('source').options.add(new Option(DWObject.GetSourceNameItems(i),
+                        i));
+                }
+                webCamStartingIndex = i;
 
-                        var arySource = DWObject.Addon.Webcam.GetSourceList();
-                        for (var i = 0; i < arySource.length; i++)
-                            document.getElementById("source").options.add(new Option(arySource[i]), i +
-                                webCamStartingIndex); // Get Webcam Source names and put them in a drop-down box
-                        document.getElementById('source').onchange();
-                    },
-                    function (errCode, errString) {
-                        console.log('Webcam DLL failed to download with error: ' + errString);
-                    });
+                var arySource = DWObject.Addon.Webcam.GetSourceList();
+                for (var i = 0; i < arySource.length; i++)
+                    document.getElementById("source").options.add(new Option(arySource[i]), i +
+                        webCamStartingIndex); // Get Webcam Source names and put them in a drop-down box
+                document.getElementById('source').onchange();
             }
         }
 

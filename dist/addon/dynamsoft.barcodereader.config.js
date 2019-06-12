@@ -6,7 +6,7 @@
  * @preserve Copyright 2019, Dynamsoft Corporation
  * @author Dynamsoft
  *
- * @version 6.4.1
+ * @version 6.5.2
  *
  * @fileoverview Dynamsoft JavaScript Library for Dynamsoft Barcode Reader
  * More info on DBR: http://www.dynamsoft.com/Products/Dynamic-Barcode-Reader.aspx
@@ -30,22 +30,19 @@ dynamsoft.dbrEnv = dynamsoft.dbrEnv || {};
 //  decompile, disassemble, or modify the productKey .                             //
 
 //////////////////////////////////////////////////////////////////////////////
-if (Dynamsoft.WebTwainEnv.ProductKey != "")
-    dynamsoft.dbrEnv.productKey = Dynamsoft.WebTwainEnv.ProductKey;
-else
-    dynamsoft.dbrEnv.productKey = 't00996QAAAD3FziGR/Vjb3GjgoQshk8DhK7tn+OBuXRMWNhP4y+GB+F7tmf6UHAILWKSJGd+eTvtJYXOAP+XuprjC+Xmja5RGYD1fpi7ya8Jt8ssUzIMW0GqWETU+edEv5QSNky72';
+dynamsoft.dbrEnv.productKey = 't00901wAAAJ7/4i9Ey29HMzHfov9XhXylM8Mv1vZqg5H29n5IPmx/VNzEXc9exuG6K6ee62ppfXSsIbC0w9XXgOKia+G3QPnv/l+QT8FCaKuhTSmwNhNRsQuyDixP';
 
 // If you want to connect to the service manually, please set it to false
 // and call dynamsoft.BarcodeReader.initServiceConnection when needed.
-dynamsoft.dbrEnv.bAutoConnectService = true;
+dynamsoft.dbrEnv.bAutoConnectService = false;
 
 /// set resourcesPath in runtime is ok
-(function () {
+(function(){
     var p = document.location.protocol;
     if (p !== 'https:' && p !== 'http:')
-        dynamsoft.dbrEnv.resourcesPath = "https://tst.dynamsoft.com/libs/dbr/6.4.1";
-    else
-        dynamsoft.dbrEnv.resourcesPath = "http://tst.dynamsoft.com/libs/dbr/6.4.1";
+		dynamsoft.dbrEnv.resourcesPath = "https://demo.dynamsoft.com/JSDemo/DBRResources";
+	else
+		dynamsoft.dbrEnv.resourcesPath = "DBRResources";
 })();
 
 

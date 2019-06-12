@@ -19,7 +19,9 @@
     <br />
     <br />
     <div id="dwtcontrolContainer" style="float:left;"></div>
-    <div id="divNoteMessage" ondblclick="this.innerHTML='';" style="margin:0px 20px;float:left;width:300px; height:350px; overflow: auto;background-color:#e7f2fd;border:solid 1px black;"></div>
+    <div id="divNoteMessage" ondblclick="this.innerHTML='';"
+        style="margin:0px 20px;float:left;width:300px; height:350px; overflow: auto;background-color:#e7f2fd;border:solid 1px black;">
+    </div>
     <script type="text/javascript">
         window.onload = function () {
             if (Dynamsoft && (!Dynamsoft.Lib.env.bWin)) {
@@ -40,7 +42,9 @@
         };
 
         Dynamsoft.WebTwainEnv.AutoLoad = false;
-        Dynamsoft.WebTwainEnv.RegisterEvent('OnWebTwainReady', Dynamsoft_OnReady); // Register OnWebTwainReady event. This event fires as soon as Dynamic Web TWAIN is initialized and ready to be used
+        Dynamsoft.WebTwainEnv.RegisterEvent('OnWebTwainReady',
+            Dynamsoft_OnReady
+            ); // Register OnWebTwainReady event. This event fires as soon as Dynamic Web TWAIN is initialized and ready to be used
 
         var DWObject, dbrObject, barcodeText = [];
         var BarcodeInfo = [{
@@ -109,17 +113,10 @@
             }
         ];
 
-        dynamsoft.dbrEnv.onAutoConnectServiceSuccess = function () {
-            dbrObject = new dynamsoft.BarcodeReader();
-        };
-
-        dynamsoft.dbrEnv.onAutoConnectServiceError = function (ex) {
-            alert('Init failed: ' + (ex.message || ex));
-        }
-
-
         function Dynamsoft_OnReady() {
-            DWObject = Dynamsoft.WebTwainEnv.GetWebTwain('dwtcontrolContainer'); // Get the Dynamic Web TWAIN object that is embeded in the div with id 'dwtcontrolContainer'
+            DWObject = Dynamsoft.WebTwainEnv.GetWebTwain(
+                'dwtcontrolContainer'
+                ); // Get the Dynamic Web TWAIN object that is embeded in the div with id 'dwtcontrolContainer'
             if (DWObject) {
                 if (!Dynamsoft.Lib.product.bChromeEdition) {
                     DWObject.Height = 350;
@@ -127,6 +124,11 @@
                 }
                 for (var index = 0; index < BarcodeInfo.length; index++)
                     document.getElementById("barcodeformat").options.add(new Option(BarcodeInfo[index].desc, index));
+                dynamsoft.BarcodeReader.initServiceConnection().then(function () {
+                    dbrObject = new dynamsoft.BarcodeReader();
+                }, function (ex) {
+                    alert('Init failed: ' + (ex.message || ex));
+                });
             }
         }
 
@@ -195,7 +197,8 @@
                 var index = DWObject.CurrentImageIndexInBuffer;
                 var barcodeImage = DWObject.GetImagePartURL(index);
                 var objDiv = document.getElementById('divNoteMessage');
-                dbrObject.decode(barcodeImage).then(function (results) { //This is the function called when barcode is read successfully
+                dbrObject.decode(barcodeImage).then(function (
+                    results) { //This is the function called when barcode is read successfully
                     //Retrieve barcode details
                     var _now = new Date().toLocaleTimeString() + "<br />";
                     objDiv.innerHTML += _now;
