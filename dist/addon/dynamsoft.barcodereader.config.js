@@ -37,12 +37,12 @@ dynamsoft.dbrEnv.productKey = 't00901wAAAJ7/4i9Ey29HMzHfov9XhXylM8Mv1vZqg5H29n5I
 dynamsoft.dbrEnv.bAutoConnectService = false;
 
 /// set resourcesPath in runtime is ok
-(function(){
+(function () {
     var p = document.location.protocol;
     if (p !== 'https:' && p !== 'http:')
-		dynamsoft.dbrEnv.resourcesPath = "https://demo.dynamsoft.com/JSDemo/DBRResources";
-	else
-		dynamsoft.dbrEnv.resourcesPath = "DBRResources";
+        dynamsoft.dbrEnv.resourcesPath = "https://tst.dynamsoft.com/libs/dbr/6.5.2";
+    else
+        dynamsoft.dbrEnv.resourcesPath = "http://tst.dynamsoft.com/libs/dbr/6.5.2";
 })();
 
 

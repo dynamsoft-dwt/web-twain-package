@@ -25,7 +25,8 @@ Dynamsoft.WebTwainEnv.Containers = [{ContainerId:'dwtcontrolContainer', Width:27
 /////////////////////////////////////////////////////////////////////////////////////
 /// If you need to use multiple keys on the same server, you can combine keys and write like this 
 /// Dynamsoft.WebTwainEnv.ProductKey = 'key1;key2;key3';
-Dynamsoft.WebTwainEnv.ProductKey = 't00901wAAAJ7/4i9Ey29HMzHfov9XhXylM8Mv1vZqg5H29n5IPmx/VNzEXc9exuG6K6ee62ppfXSsIbC0w9XXgOKia+G3QPnv/l+QT8FCaKuhTSmwNhNRsQuyDixP';
+Dynamsoft.WebTwainEnv.ProductKey = 't0112CQIAAGgxTkB24jOI5LQ1wkHGm96lZbVJbsHT+GxLbfPOf8MSbI6iYSSCH1Izbl5NrhlpW8M4h860uEG+k7Q20SuubFsKvocTZmYPG0ZGb+Vq0o/Z+HMXD/ZoeJBtZMIk25D5H0HvdiXNyEEuuiZoUA==';
+
 ///
 Dynamsoft.WebTwainEnv.Trial = true;
 
