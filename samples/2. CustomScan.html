@@ -3,8 +3,7 @@
 
 <head>
     <title>Use Auto Feeder to scan</title>
-    <script type="text/javascript" src="../dist/dynamsoft.webtwain.initiate.js"></script>
-    <script type="text/javascript" src="../dist/dynamsoft.webtwain.config.js"></script>
+    <script type="text/javascript" src="../dist/dynamsoft.webtwain.min.js"></script>
 </head>
 
 <body>
@@ -19,7 +18,7 @@
     <label>
         <input type="checkbox" id="ADF" checked="checked">Auto Feeder</label>
     <label>
-        <input type="checkbox" id="ShowUI" checked="checked">Show UI
+        <input type="checkbox" id="ShowUI">Show UI
         <br />
     </label>
 
@@ -35,22 +34,23 @@
 
     <div id="dwtcontrolContainer"></div>
     <script type="text/javascript">
+        //Dynamsoft.WebTwainEnv.Containers = [{ ContainerId: 'dwtcontrolContainer',  Width:'583px', Height:'513px'}];
+        //Dynamsoft.WebTwainEnv.ProductKey = 'Your-Product-Key-Goes-Here';
+        //Dynamsoft.WebTwainEnv.Trial = true;
+        //Dynamsoft.WebTwainEnv.ResourcesPath = 'https://tst.dynamsoft.com/libs/dwt/15.1';
+
         window.onload = function () {
             Dynamsoft.WebTwainEnv.Load();
         };
-        Dynamsoft.WebTwainEnv.AutoLoad = false;
-        Dynamsoft.WebTwainEnv.RegisterEvent('OnWebTwainReady', Dynamsoft_OnReady); // Register OnWebTwainReady event. This event fires as soon as Dynamic Web TWAIN is initialized and ready to be used
-
-        var DWObject;
-
-        function Dynamsoft_OnReady() {
-            DWObject = Dynamsoft.WebTwainEnv.GetWebTwain('dwtcontrolContainer'); // Get the Dynamic Web TWAIN object that is embeded in the div with id 'dwtcontrolContainer'
+        Dynamsoft.WebTwainEnv.RegisterEvent('OnWebTwainReady', function () {
+            DWObject = Dynamsoft.WebTwainEnv.GetWebTwain('dwtcontrolContainer');
             if (DWObject) {
                 var count = DWObject.SourceCount;
                 for (var i = 0; i < count; i++)
-                    document.getElementById("source").options.add(new Option(DWObject.GetSourceNameItems(i), i));
+                    document.getElementById("source").options.add(new Option(DWObject.GetSourceNameItems(i),
+                        i));
             }
-        }
+        });
 
         function AcquireImage() {
             if (DWObject) {
@@ -82,7 +82,8 @@
                 //Resolution
                 DWObject.Resolution = parseInt(document.getElementById("Resolution").value);
 
-                if (document.getElementById("ADF").checked && DWObject.IfFeederEnabled == true)  // if paper is NOT loaded on the feeder
+                if (document.getElementById("ADF").checked && DWObject.IfFeederEnabled ==
+                    true) // if paper is NOT loaded on the feeder
                 {
                     if (DWObject.IfFeederLoaded != true && DWObject.ErrorCode == 0) {
                         if (confirm("No paper detected on the feeder, do you want to scan from the flatbed instead?"))
@@ -91,7 +92,6 @@
                             return;
                     }
                 }
-
                 DWObject.AcquireImage(OnAcquireImageSuccess, OnAcquireImageFailure);
             }
         }

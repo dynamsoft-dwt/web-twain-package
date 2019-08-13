@@ -32,19 +32,21 @@ dynamsoft.dbrEnv = dynamsoft.dbrEnv || {};
 //////////////////////////////////////////////////////////////////////////////
 dynamsoft.dbrEnv.productKey = 't00971wAAAFcsFqt6bh2/uEztmHsAZfHE7I6TR3tqEWpGhXIy4NjINg1gj8k7U44dgNbrYTT7wSvOoxOVsSdIYa1ojyCh4aeAKrITApDfhJkV+K7zAiwDaPAXqApt1uoFWB4rtw==';
 
+if (Dynamsoft && Dynamsoft.WebTwainEnv && Dynamsoft.WebTwainEnv.ProductKey)
+	dynamsoft.dbrEnv.productKey = [Dynamsoft.WebTwainEnv.ProductKey, dynamsoft.dbrEnv.productKey].join(";");
+
 // If you want to connect to the service manually, please set it to false
 // and call dynamsoft.BarcodeReader.initServiceConnection when needed.
-dynamsoft.dbrEnv.bAutoConnectService = true;
+dynamsoft.dbrEnv.bAutoConnectService = false;
 
 /// set resourcesPath in runtime is ok
-(function(){
-    var p = document.location.protocol;
-    if (p !== 'https:' && p !== 'http:')
-		dynamsoft.dbrEnv.resourcesPath = "https://demo.dynamsoft.com/JSDemo/DBRResources";
+(function () {
+	var p = document.location.protocol;
+	if (p !== 'https:' && p !== 'http:')
+		dynamsoft.dbrEnv.resourcesPath = "https://tst.dynamsoft.com/libs/dbr/7.0";
 	else
-		dynamsoft.dbrEnv.resourcesPath = "DBRResources";
+		dynamsoft.dbrEnv.resourcesPath = "http://tst.dynamsoft.com/libs/dbr/7.0";
 })();
-
 
 // try 64bit first, default false
 //dynamsoft.dbrEnv.ifCheck64bitServiceFirst = true;

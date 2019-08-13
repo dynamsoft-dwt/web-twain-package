@@ -3,8 +3,7 @@
 
 <head>
 	<title>Use Auto Feeder to scan</title>
-	<script type="text/javascript" src="../dist/dynamsoft.webtwain.initiate.js"></script>
-	<script type="text/javascript" src="../dist/dynamsoft.webtwain.config.js"></script>
+	<script type="text/javascript" src="../dist/dynamsoft.webtwain.min.js"></script>
 </head>
 
 <body>
@@ -12,22 +11,21 @@
 		<input type="checkbox" id="ADF" checked="checked">Auto Feeder</label>
 	<input type="button" value="Scan" onclick="AcquireImage();" />
 
-	<!-- dwtcontrolContainer is the default div id for Dynamic Web TWAIN control.
-    If you need to rename the id, you should also change the id in the dynamsoft.webtwain.config.js accordingly. -->
+	<!-- dwtcontrolContainer is the default div id for Dynamic Web TWAIN control.-->
 	<div id="dwtcontrolContainer"></div>
 
 	<script type="text/javascript">
+		//Dynamsoft.WebTwainEnv.Containers = [{ ContainerId: 'dwtcontrolContainer',  Width:'583px', Height:'513px'}];
+		//Dynamsoft.WebTwainEnv.ProductKey = 'Your-Product-Key-Goes-Here';
+		//Dynamsoft.WebTwainEnv.Trial = true;
+		//Dynamsoft.WebTwainEnv.ResourcesPath = 'https://tst.dynamsoft.com/libs/dwt/15.1';
+
 		window.onload = function () {
 			Dynamsoft.WebTwainEnv.Load();
 		};
-		Dynamsoft.WebTwainEnv.AutoLoad = false;
-		Dynamsoft.WebTwainEnv.RegisterEvent('OnWebTwainReady', Dynamsoft_OnReady); // Register OnWebTwainReady event. This event fires as soon as Dynamic Web TWAIN is initialized and ready to be used
-
-		var DWObject;
-
-		function Dynamsoft_OnReady() {
-			DWObject = Dynamsoft.WebTwainEnv.GetWebTwain('dwtcontrolContainer'); // Get the Dynamic Web TWAIN object that is embeded in the div with id 'dwtcontrolContainer'
-		}
+		Dynamsoft.WebTwainEnv.RegisterEvent('OnWebTwainReady', function () {
+			DWObject = Dynamsoft.WebTwainEnv.GetWebTwain('dwtcontrolContainer');
+		});
 
 		function AcquireImage() {
 			if (DWObject) {
@@ -39,24 +37,28 @@
 
 					DWObject.OpenSource();
 					DWObject.IfShowUI = false; //Disable scanner UI.
-					DWObject.IfDisableSourceAfterAcquire = true;//Scanner source will be disabled automatically after scan.
-					if (document.getElementById("ADF").checked)//Use auto feeder or use the flatbed
-						DWObject.IfFeederEnabled = true;//Enbale Document Feeder
+					DWObject.IfDisableSourceAfterAcquire =
+						true; //Scanner source will be disabled automatically after scan.
+					if (document.getElementById("ADF").checked) //Use auto feeder or use the flatbed
+						DWObject.IfFeederEnabled = true; //Enbale Document Feeder
 					else
-						DWObject.IfFeederEnabled = false;//Disable Document Feeder
+						DWObject.IfFeederEnabled = false; //Disable Document Feeder
 
-					if (document.getElementById("ADF").checked && DWObject.IfFeederEnabled == true)  // if paper is NOT loaded on the feeder
+					if (document.getElementById("ADF").checked && DWObject.IfFeederEnabled ==
+						true) // if paper is NOT loaded on the feeder
 					{
 						if (DWObject.IfFeederLoaded != true && DWObject.ErrorCode == 0) {
-							if (confirm("No paper detected on the feeder, do you want to scan from the flatbed instead?"))
+							if (confirm(
+									"No paper detected on the feeder, do you want to scan from the flatbed instead?"))
 								DWObject.IfFeederEnabled = false;
 							else
 								return;
 						}
 					}
-
 					DWObject.AcquireImage(OnAcquireImageSuccess, OnAcquireImageFailure);
-				}, function () { console.log('SelectSource failed!'); });
+				}, function () {
+					console.log('SelectSource failed!');
+				});
 			}
 		}
 	</script>

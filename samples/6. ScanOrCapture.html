@@ -3,9 +3,7 @@
 
 <head>
     <title>Acquire Images From Scanners and Cameras</title>
-    <script type="text/javascript" src="../dist/dynamsoft.webtwain.initiate.js"></script>
-    <script type="text/javascript" src="../dist/dynamsoft.webtwain.config.js"></script>
-    <script type="text/javascript" src="../dist/addon/dynamsoft.webtwain.addon.pdf.js"></script>
+    <script type="text/javascript" src="../dist/dynamsoft.webtwain.min.js"></script>
     <script type="text/javascript" src="../dist/addon/dynamsoft.webtwain.addon.webcam.js"></script>
 </head>
 
@@ -19,6 +17,11 @@
     <br />
     <div id="dwtcontrolContainer"></div>
     <script type="text/javascript">
+        //Dynamsoft.WebTwainEnv.Containers = [{ ContainerId: 'dwtcontrolContainer',  Width:'583px', Height:'513px'}];
+        //Dynamsoft.WebTwainEnv.ProductKey = 'Your-Product-Key-Goes-Here';
+        //Dynamsoft.WebTwainEnv.Trial = true;
+        //Dynamsoft.WebTwainEnv.ResourcesPath = 'https://tst.dynamsoft.com/libs/dwt/15.1';
+
         window.onload = function () {
             if (Dynamsoft && (!Dynamsoft.Lib.env.bWin)) {
                 var ObjString = [];
@@ -37,46 +40,36 @@
             }
         };
 
-        Dynamsoft.WebTwainEnv.AutoLoad = false;
-        Dynamsoft.WebTwainEnv.RegisterEvent('OnWebTwainReady',
-            Dynamsoft_OnReady
-        ); // Register OnWebTwainReady event. This event fires as soon as Dynamic Web TWAIN is initialized and ready to be used
+        var DWObject, webCamStartingIndex; //This is used to separate scanners and webcams
 
-        var webCamStartingIndex; //This is used to separate scanners and webcams
-        var DWObject;
         var isVideoOn = true;
 
-        function Dynamsoft_OnReady() {
-            DWObject = Dynamsoft.WebTwainEnv.GetWebTwain(
-                'dwtcontrolContainer'
-            ); // Get the Dynamic Web TWAIN object that is embeded in the div with id 'dwtcontrolContainer'
-            document.getElementById('source').onchange = function () {
-                if (document.getElementById('source').selectedIndex < webCamStartingIndex) {
-                    DWObject.Addon.Webcam.StopVideo();
-                    isVideoOn = false;
-                    document.getElementById("btn-grab").style.backgroundColor = "";
-                    document.getElementById('btn-grab').value = 'Acquire From a Scanner';
-                    document.getElementById("btn-switch").style.display = 'none';
-                } else {
-                    DWObject.Addon.Webcam.SelectSource(document.getElementById("source").options[document
-                        .getElementById(
-                            "source").selectedIndex].text);
-
-                    SetIfWebcamPlayVideo(true);
-
-                    document.getElementById('btn-grab').value = 'Acquire From a Webcam';
-                    document.getElementById("btn-switch").style.display = '';
-                }
-                document.getElementById("btn-grab").disabled = "";
-            }
+        Dynamsoft.WebTwainEnv.RegisterEvent('OnWebTwainReady', function () {
+            DWObject = Dynamsoft.WebTwainEnv.GetWebTwain('dwtcontrolContainer');
             if (DWObject) {
                 if (!Dynamsoft.Lib.product.bChromeEdition) {
                     DWObject.Height = 350;
                     DWObject.Width = 270;
                 }
-                if (Dynamsoft.Lib.detect.ssl) {
-                    DWObject.IfSSL = true;
-                    DWObject.HTTPPort = 443;
+                document.getElementById('source').onchange = function () {
+                    if (document.getElementById('source').selectedIndex < webCamStartingIndex) {
+                        DWObject.Addon.Webcam.StopVideo();
+                        isVideoOn = false;
+                        document.getElementById("btn-grab").style.backgroundColor = "";
+                        document.getElementById('btn-grab').value = 'Acquire From a Scanner';
+                        document.getElementById("btn-switch").style.display = 'none';
+                    } else {
+                        DWObject.Addon.Webcam.SelectSource(document.getElementById("source").options[
+                            document
+                            .getElementById(
+                                "source").selectedIndex].text);
+
+                        SetIfWebcamPlayVideo(true);
+
+                        document.getElementById('btn-grab').value = 'Acquire From a Webcam';
+                        document.getElementById("btn-switch").style.display = '';
+                    }
+                    document.getElementById("btn-grab").disabled = "";
                 }
                 document.getElementById('source').options.length = 0;
                 var count = DWObject.SourceCount;
@@ -92,7 +85,8 @@
                         webCamStartingIndex); // Get Webcam Source names and put them in a drop-down box
                 document.getElementById('source').onchange();
             }
-        }
+
+        });
 
         function SetIfWebcamPlayVideo(bShow) {
             if (bShow) {
