@@ -6,7 +6,7 @@
  * @preserve Copyright 2019, Dynamsoft Corporation
  * @author Dynamsoft
  *
- * @version 7.0
+ * @version 7.1
  *
  * @fileoverview Dynamsoft JavaScript Library for Dynamsoft Barcode Reader
  * More info on DBR: http://www.dynamsoft.com/Products/Dynamic-Barcode-Reader.aspx
@@ -30,7 +30,7 @@ dynamsoft.dbrEnv = dynamsoft.dbrEnv || {};
 //  decompile, disassemble, or modify the productKey .                             //
 
 //////////////////////////////////////////////////////////////////////////////
-dynamsoft.dbrEnv.productKey = 't00971wAAAFcsFqt6bh2/uEztmHsAZfHE7I6TR3tqEWpGhXIy4NjINg1gj8k7U44dgNbrYTT7wSvOoxOVsSdIYa1ojyCh4aeAKrITApDfhJkV+K7zAiwDaPAXqApt1uoFWB4rtw==';
+dynamsoft.dbrEnv.productKey = 't00976QAAAJjdYp84Fa5rECnE6HYJmsyjqELLGzjt9LxFJsiiOoSgsVjboNb7GDeQvFXLA2D9vaEykXCnoCYvuEHzYTI8ek0dQdx5M9civ8a+TA0zniCDLCNuLEstWeUGKtAuCw==';
 
 // If you want to connect to the service manually, please set it to false
 // and call dynamsoft.BarcodeReader.initServiceConnection when needed.

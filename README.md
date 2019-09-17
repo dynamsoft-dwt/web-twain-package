@@ -11,7 +11,7 @@ Cross-platform cross-browser JavaScript library for web document scanning.
 ### The main package
 
 ```bash
-npm install dwt@15.1.0
+npm install dwt@15.2.0
 ```
 
 ### For TypeScript support
@@ -45,35 +45,35 @@ npm install @types/dwt
 
 >`Dynamsoft Service (DynamsoftService.exe, 64bit)`
 >
->**v15.1** (build version 1, 5, 1, 0806)
+>**v15.2** (build version 1, 5, 2, 0924)
 >
->`Dynamsoft Service Manager (DWASManager_15100806.dll, 64bit)`
+>`Dynamsoft Service Manager (DWASManager_15200924.dll, 64bit)`
 >
->**v15.1** (build version 15, 1, 0, 0806)
+>**v15.2** (build version 15, 2, 0, 0924)
 >
->`Dynamic Web TWAIN (dwt_trial_15.1.0.0806.dll, 64bit)`
+>`Dynamic Web TWAIN (dwt_trial_15.2.0.0924.dll, 64bit)`
 >
->**v15.1** (build version 15, 1, 0, 0806)
+>**v15.2** (build version 15, 2, 0, 0924)
 >
->`Dynamsoft PDF Rasterizer (DynamicPdfRx64_10.3.2.0806.dll, 64bit)`
+>`Dynamsoft PDF Rasterizer (DynamicPdfRx64_10.3.3.0924.dll, 64bit)`
 >
->**v15.1** (build version 10, 3, 2, 0806)
+>**v15.2** (build version 10, 3, 3, 0924)
 >
 >`Dynamsoft OCR Basic Engine (DynamicOCRx64_10.0.0.0618.dll, 64bit)`
 >
->**v15.1** (build version 10, 0, 0, 0618)
+>**v15.2** (build version 10, 0, 0, 0618)
 >
->`Dynamsoft Barcode Reader (dbrx64_7.0.0.0806.dll, 64bit)`
+>`Dynamsoft Barcode Reader (dbrx64_7.1.0.0924.dll, 64bit)`
 >
->**v7.0.0** (build version 7, 0, 0, 0806)
+>**v7.1.0** (build version 7, 1, 0, 0924)
 >
 >`Dynamsoft Webcam Addon (DynamicWebcamx64_15.0.0.0625.dll, 64bit)`
 >
->**v15.1** (build version 15, 0, 0, 0625)
+>**v15.2** (build version 15, 0, 0, 0625)
 >
 >`Dynamsoft Upload Module (UploadModule_1.3.1.0806.dll, 64bit)`
 >
->**v15.1** (build version 1, 3, 1, 0806)
+>**v15.2** (build version 1, 3, 1, 0806)
 
 ## Included Samples
 

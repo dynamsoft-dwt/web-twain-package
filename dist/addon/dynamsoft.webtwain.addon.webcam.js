@@ -6,7 +6,7 @@
 * Copyright 2019, Dynamsoft Corporation 
 * Author: Dynamsoft R&D Department
 *
-* Version: 15.1
+* Version: 15.2
 *
 * Module: addon/webcam
 * final js: build\addon\dynamsoft.webtwain.addon.webcam.js
