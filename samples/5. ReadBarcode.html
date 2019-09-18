@@ -213,15 +213,11 @@
                             var result = results[i];
                             Barcode_text = result.BarcodeText;
                             var loc = result.LocalizationResult;
-                            var confidence = result.LocalizationResult.ExtendedResultArray[0].Confidence;
                             var x = loc.X1;
                             var y = loc.Y1;
                             var format = result.BarcodeFormatString;
                             barcodeText.push("barcode[" + (i + 1) + "]: " + "<br />");
                             barcodeText.push("<strong>" + Barcode_text + "</strong>");
-                            if (confidence < 30) {
-                                barcodeText.push("<i style='color:red'> &lt; Could be wrong &gt;</i>");
-                            }
                             barcodeText.push("<br />format:" + format + "<br />");
                             barcodeText.push("x:" + x + "y:" + y + "<br />");
                             barcodeText.push("------------------------------<br />");

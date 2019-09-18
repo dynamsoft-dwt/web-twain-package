@@ -109,7 +109,7 @@ npm install @types/dwt
 > **NOTE: _Loading it from Dynamsoft isn't recommended for your production environement._**
 
 ```html
-<script src="https://tst.dynamsoft.com/libs/dwt/15.1/dynamsoft.webtwain.initiate.js"></script>
+<script src="https://tst.dynamsoft.com/libs/dwt/15.2/dynamsoft.webtwain.initiate.js"></script>
 ```
 
 > The file **`dynamsoft.webtwain.initiate.js`** is the core of the package and must be loaded. Once you have installed the package, it can be found under *node_modules\dwt\dist*. Make sure you write the correct path for it.
@@ -139,7 +139,7 @@ Dynamsoft.WebTwainEnv.Trial = true;
 2. To make things easier, all the required installers for the SDK(s) are being loaded from Dynamsoft Server at runtime. This is configured in the file **`dynamsoft.webtwain.config.js`** with this line of code
 
     ```javascript
-    Dynamsoft.WebTwainEnv.ResourcesPath = 'https://tst.dynamsoft.com/libs/dwt/15.1';
+    Dynamsoft.WebTwainEnv.ResourcesPath = 'https://tst.dynamsoft.com/libs/dwt/15.2';
     ```
 
     The installers on the Dynamsoft server are of the trial version. Once you have done all your testing and is ready to move on to use a full version, don't forget to do the following
@@ -199,7 +199,7 @@ Every time you do a `"npm install"`, all the configurations will be lost, we rec
 <html>
 <head>
     <title>Use Dynamic Web TWAIN to Scan</title>
-    <script src="https://tst.dynamsoft.com/libs/dwt/15.1/dynamsoft.webtwain.initiate.js"></script>
+    <script src="https://tst.dynamsoft.com/libs/dwt/15.2/dynamsoft.webtwain.initiate.js"></script>
     <script src="node_modules/dwt/dist/dynamsoft.webtwain.config.js"></script>
 </head>
 <body>
@@ -210,7 +210,7 @@ Every time you do a `"npm install"`, all the configurations will be lost, we rec
         Dynamsoft.WebTwainEnv.Containers = [{ ContainerId: 'dwtcontrolContainer', Width: 270, Height: 350 }];
         Dynamsoft.WebTwainEnv.ProductKey = 't00971wAAAFcsFqt6bh2/uEztmHsAZfHE7I6TR3tqEWpGhXIy4NjINg1gj8k7U44dgNbrYTT7wSvOoxOVsSdIYa1ojyCh4aeAKrITApDfhJkV+K7zAiwDaPAXqApt1uoFWB4rtw==';
         Dynamsoft.WebTwainEnv.Trial = true;
-        Dynamsoft.WebTwainEnv.ResourcesPath = 'https://tst.dynamsoft.com/libs/dwt/15.1';
+        Dynamsoft.WebTwainEnv.ResourcesPath = 'https://tst.dynamsoft.com/libs/dwt/15.2';
         Dynamsoft.WebTwainEnv.AutoLoad = false;
         window.onload = function () {
             Dynamsoft.WebTwainEnv.Load();
