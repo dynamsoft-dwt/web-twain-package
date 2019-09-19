@@ -34,6 +34,7 @@ npm install @types/dwt
 * Supports importing existing files in the formats BMP, JPG, PNG, TIF, PDF (image based).
 * Supports rasterizing text-based PDF files into images.
 * Supports image viewing and basic editing through APIs like rotate, flip, mirror, crop, etc.
+* Supports image grouping via tags.
 * Supports encrypting local files in buffer and automatic removing of files that are no longer needed.
 * Built-in encoding module to create files in the formats BMP, JPG, PNG, TIF, PDF.
 * Built-in upload module to easily upload encoded files to FTP or HTTP servers.
@@ -104,12 +105,16 @@ npm install @types/dwt
 
 >Please note that a **relative path** is used. You might want to change it based on where you are putting your code.
 >
->Alternatively, you can also load the file from the Dynamsoft server which holds the libraries as well. Note that there are _**different versions**_ and make sure you use the correct one in your application. 
+>Alternatively, you can also load the file from the Dynamsoft server or a CDN that holds the library. Note that there are _**different versions**_ and make sure you use the correct one in your application. 
 >
 > **NOTE: _Loading it from Dynamsoft isn't recommended for your production environement._**
 
 ```html
 <script src="https://tst.dynamsoft.com/libs/dwt/15.2/dynamsoft.webtwain.initiate.js"></script>
+```
+
+```html
+<script src="https://unpkg.com/dwt@15.2.0/dist/dynamsoft.webtwain.initiate.js"></script>
 ```
 
 > The file **`dynamsoft.webtwain.initiate.js`** is the core of the package and must be loaded. Once you have installed the package, it can be found under *node_modules\dwt\dist*. Make sure you write the correct path for it.
@@ -129,8 +134,9 @@ For example:
 
 ```javascript
 Dynamsoft.WebTwainEnv.Containers = [{ ContainerId: 'dwtcontrolContainer',  Width:'583px', Height:'513px'}];
-Dynamsoft.WebTwainEnv.ProductKey = 't00971wAAAFcsFqt6bh2/uEztmHsAZfHE7I6TR3tqEWpGhXIy4NjINg1gj8k7U44dgNbrYTT7wSvOoxOVsSdIYa1ojyCh4aeAKrITApDfhJkV+K7zAiwDaPAXqApt1uoFWB4rtw==';
+Dynamsoft.WebTwainEnv.ProductKey = 'A-Valid-Product-Key';
 Dynamsoft.WebTwainEnv.Trial = true;
+Dynamsoft.WebTwainEnv.ResourcesPath = 'https://tst.dynamsoft.com/libs/dwt/15.2';
 ```
 
 ***NOTICE*** :
@@ -153,9 +159,27 @@ Dynamsoft.WebTwainEnv.Trial = true;
         Dynamsoft.WebTwainEnv.ResourcesPath = 'node_modules/dwt/dist';//make sure this is correct
         ```
 
+3. Since the file **`dynamsoft.webtwain.config.js`** is used to configure the library. You can also just use default configurations and then make some necessary changes in your own code. In this case, try using the file **`dynamsoft.webtwain.min.js`** to replace both **`dynamsoft.webtwain.initiate.js`** and **`dynamsoft.webtwain.config.js`** and then add custom configurations in your code like 
+
+    ```javascript
+	Dynamsoft.WebTwainEnv.AutoLoad = false;
+	Dynamsoft.WebTwainEnv.Containers = [{ ContainerId: 'dwtcontrolContainer', Width: '100%', Height: '600px' }];
+	Dynamsoft.WebTwainEnv.RegisterEvent('OnWebTwainReady', Dynamsoft_OnReady);
+	/**
+	 * In order to use the full version, do the following
+	 * 1. Change Dynamsoft.WebTwainEnv.Trial to false
+	 * 2. Replace A-Valid-Product-Key with a full version key
+	 * 3. Change Dynamsoft.WebTwainEnv.ResourcesPath to point to the full version 
+	 *    resource files that you obtain after purchasing a key
+	 */
+	Dynamsoft.WebTwainEnv.Trial = true;
+	//Dynamsoft.WebTwainEnv.ProductKey = "A-Valid-Product-Key";
+	//Dynamsoft.WebTwainEnv.ResourcesPath = "https://tst.dynamsoft.com/libs/dwt/15.2";
+    ```
+
 ### Step 3 Write code to use the pacakge to do a simple document scan
 
-> The following code demonstrates the minimum code needed to use the package. For more sophisticated sample or demo, check out the [Sample Gallery](https://www.dynamsoft.com/Downloads/WebTWAIN-Sample-Download.aspx)
+> The following code demonstrates the minimum code needed to use the package. For more sophisticated sample or demo, check out the [Sample Gallery](https://www.dynamsoft.com/Downloads/WebTWAIN-Sample-Download.aspx) and our [Github Repositories](https://github.com/dynamsoft-dwt).
 
 ```html
 <input type="button" value="Scan" onclick="AcquireImage();" />
@@ -208,7 +232,7 @@ Every time you do a `"npm install"`, all the configurations will be lost, we rec
 
     <script type="text/javascript">
         Dynamsoft.WebTwainEnv.Containers = [{ ContainerId: 'dwtcontrolContainer', Width: 270, Height: 350 }];
-        Dynamsoft.WebTwainEnv.ProductKey = 't00971wAAAFcsFqt6bh2/uEztmHsAZfHE7I6TR3tqEWpGhXIy4NjINg1gj8k7U44dgNbrYTT7wSvOoxOVsSdIYa1ojyCh4aeAKrITApDfhJkV+K7zAiwDaPAXqApt1uoFWB4rtw==';
+        Dynamsoft.WebTwainEnv.ProductKey = 'A-Valid-Product-Key';
         Dynamsoft.WebTwainEnv.Trial = true;
         Dynamsoft.WebTwainEnv.ResourcesPath = 'https://tst.dynamsoft.com/libs/dwt/15.2';
         Dynamsoft.WebTwainEnv.AutoLoad = false;
