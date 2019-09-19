@@ -150,16 +150,21 @@ Dynamsoft.WebTwainEnv.ResourcesPath = 'https://tst.dynamsoft.com/libs/dwt/15.2';
 
     The installers on the Dynamsoft server are of the trial version. Once you have done all your testing and is ready to move on to use a full version, don't forget to do the following
 
-    * Copy the full version files from a full version installation (`C:\Program Files (x86)\Dynamsoft\Dynamic Web TWAIN SDK 15.0\Resources\`), which you'll get with your purchased license, and paste them under `/node_modules/dwt/dist/`
-    * Make sure you have set the correct full version `ProductKey` and `Trial Status` as well as correct `ResourcesPath` in the file **`dynamsoft.webtwain.config.js`**, which, you just copied over
+    * Copy the full version files from a full version installation (`C:\Program Files (x86)\Dynamsoft\Dynamic Web TWAIN SDK 15.0\Resources\`), which you'll get with your purchased license, and paste them under `/node_modules/dwt/dist/` or upload these files to your own server. Uploading these files to your server is the recommended way.
+    * Make sure you have set the correct full version `ProductKey` and `Trial Status` as well as correct `ResourcesPath` in the file **`dynamsoft.webtwain.config.js`**, which, you just copied over or uploaded to your server.
 
         ```javascript
         Dynamsoft.WebTwainEnv.ProductKey = '{your full version key}';
         Dynamsoft.WebTwainEnv.Trial = false; //using the full version
-        Dynamsoft.WebTwainEnv.ResourcesPath = 'node_modules/dwt/dist';//make sure this is correct
+        Dynamsoft.WebTwainEnv.ResourcesPath = '{the path to full version resources like node_modules/dwt/dist or a url to the location on your server}';//make sure this is correct
         ```
 
-3. Since the file **`dynamsoft.webtwain.config.js`** is used to configure the library. You can also just use default configurations and then make some necessary changes in your own code. In this case, try using the file **`dynamsoft.webtwain.min.js`** to replace both **`dynamsoft.webtwain.initiate.js`** and **`dynamsoft.webtwain.config.js`** and then add custom configurations in your code like 
+3. The file **`dynamsoft.webtwain.config.js`** is only used to configure the library and is not necessary because the configurations can be made in your own code too. You can use the file **`dynamsoft.webtwain.min.js`** to replace **`dynamsoft.webtwain.initiate.js`** and **`dynamsoft.webtwain.config.js`**, then add custom configurations in your code like 
+
+
+    ```html
+    <script src="https://unpkg.com/dwt@15.2.0/dist/dynamsoft.webtwain.min.js"></script>
+    ```
 
     ```javascript
 	Dynamsoft.WebTwainEnv.AutoLoad = false;
@@ -212,10 +217,6 @@ Dynamsoft.WebTwainEnv.ResourcesPath = 'https://tst.dynamsoft.com/libs/dwt/15.2';
 </script>
 ```
 
-### Step 4 Make sure your configurations don't get erased
-
-Every time you do a `"npm install"`, all the configurations will be lost, we recommend that you change the configurations in your own code, and leave the unchanged configurations in the default **`dynamsoft.webtwain.config.js`**. Check out the **Full Sample** below to see how it is done.
-
 ## Full Sample
 
 ```html
@@ -223,8 +224,7 @@ Every time you do a `"npm install"`, all the configurations will be lost, we rec
 <html>
 <head>
     <title>Use Dynamic Web TWAIN to Scan</title>
-    <script src="https://tst.dynamsoft.com/libs/dwt/15.2/dynamsoft.webtwain.initiate.js"></script>
-    <script src="node_modules/dwt/dist/dynamsoft.webtwain.config.js"></script>
+    <script src="https://unpkg.com/dwt@15.2.0/dist/dynamsoft.webtwain.min.js"></script>
 </head>
 <body>
     <input type="button" value="Scan" onclick="AcquireImage();" />
