@@ -107,7 +107,7 @@ npm install @types/dwt
 >
 >Alternatively, you can also load the file from the Dynamsoft server or a CDN that holds the library. Note that there are _**different versions**_ and make sure you use the correct one in your application. 
 >
-> **NOTE: _Loading it from Dynamsoft isn't recommended for your production environement._**
+> **NOTE: _Loading it from Dynamsoft isn't recommended for your production environment._**
 
 ```html
 <script src="https://tst.dynamsoft.com/libs/dwt/15.2/dynamsoft.webtwain.initiate.js"></script>
