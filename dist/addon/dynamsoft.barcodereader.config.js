@@ -3,10 +3,10 @@
  * @product Dynamsoft Barcode Reader
  * @website http://www.dynamsoft.com
  *
- * @preserve Copyright 2019, Dynamsoft Corporation
+ * @preserve Copyright 2020, Dynamsoft Corporation
  * @author Dynamsoft
  *
- * @version 7.1
+ * @version 7.3.0
  *
  * @fileoverview Dynamsoft JavaScript Library for Dynamsoft Barcode Reader
  * More info on DBR: http://www.dynamsoft.com/Products/Dynamic-Barcode-Reader.aspx
@@ -30,7 +30,7 @@ dynamsoft.dbrEnv = dynamsoft.dbrEnv || {};
 //  decompile, disassemble, or modify the productKey .                             //
 
 //////////////////////////////////////////////////////////////////////////////
-dynamsoft.dbrEnv.productKey = 't00976QAAAJjdYp84Fa5rECnE6HYJmsyjqELLGzjt9LxFJsiiOoSgsVjboNb7GDeQvFXLA2D9vaEykXCnoCYvuEHzYTI8ek0dQdx5M9civ8a+TA0zniCDLCNuLEstWeUGKtAuCw==';
+dynamsoft.dbrEnv.productKey = 't0097+AAAAF2k5HE8VWdJASyjgepCk6NcloYce/mEarjfG3BTKDxVYihQ8Dez31+qwcTszshWij4CxWFyWMW9+f2dYEeCzVomFYBWYE245v4faG62oBeICeJzg0czUecHDmcxYw==';
 
 if (Dynamsoft && Dynamsoft.WebTwainEnv && Dynamsoft.WebTwainEnv.ProductKey)
 	dynamsoft.dbrEnv.productKey = [Dynamsoft.WebTwainEnv.ProductKey, dynamsoft.dbrEnv.productKey].join(";");

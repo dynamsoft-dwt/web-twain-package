@@ -1,12 +1,13 @@
-/*
+/* 20200107
 * Dynamsoft JavaScript Library
+*
 * Product: Dynamsoft Web Twain
 * Web Site: http://www.dynamsoft.com
 *
-* Copyright 2019, Dynamsoft Corporation 
+* Copyright 2020, Dynamsoft Corporation 
 * Author: Dynamsoft R&D Department
 *
-* Version: 15.2
+* Version: 15.3
 *
 * Module: addon/webcam
 * final js: build\addon\dynamsoft.webtwain.addon.webcam.js
