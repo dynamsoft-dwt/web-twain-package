@@ -30,7 +30,7 @@ dynamsoft.dbrEnv = dynamsoft.dbrEnv || {};
 //  decompile, disassemble, or modify the productKey .                             //
 
 //////////////////////////////////////////////////////////////////////////////
-dynamsoft.dbrEnv.productKey = 't00964wAAAEmW23nsY/hKjudKvQFRZSledUjDYFYcdafPKFB+HFnu0CDIm0GF928FVUlMe+bNvJvEHl8M5EzkFwkc68oCXvRrCXPMH9AfI1F+GUvTpvF0GXGjbRNl20+Pci2r';
+dynamsoft.dbrEnv.productKey = 't00921wAAADKXavCRisWjTFxv2AJXABT70Y4jG0LTh8iGNQspwuWyBSWd9Oe0bJoQxoZR0OxQgXDUn8AKjVvG4APHE+35u18DyP+AjS92oE1QHxBpAfNaCpR8A6QWK8k=';
 
 if (Dynamsoft && Dynamsoft.WebTwainEnv && Dynamsoft.WebTwainEnv.ProductKey)
 	dynamsoft.dbrEnv.productKey = [Dynamsoft.WebTwainEnv.ProductKey, dynamsoft.dbrEnv.productKey].join(";");
@@ -43,9 +43,9 @@ dynamsoft.dbrEnv.bAutoConnectService = false;
 (function () {
 	var p = document.location.protocol;
 	if (p !== 'https:' && p !== 'http:')
-		dynamsoft.dbrEnv.resourcesPath = "https://tst.dynamsoft.com/libs/dbr/7.1";
+		dynamsoft.dbrEnv.resourcesPath = "https://tst.dynamsoft.com/libs/dbr/7.3";
 	else
-		dynamsoft.dbrEnv.resourcesPath = "http://tst.dynamsoft.com/libs/dbr/7.1";
+		dynamsoft.dbrEnv.resourcesPath = "http://tst.dynamsoft.com/libs/dbr/7.3";
 })();
 
 // try 64bit first, default false
