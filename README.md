@@ -22,7 +22,7 @@ npm install @types/dwt
 
 ## Features
 
-* TWAIN spec 2.1 and below compatible (ActiveX, HTML5 for Windows APIs).
+* TWAIN spec 2.3 and below compatible (ActiveX, HTML5 for Windows APIs).
 * TWAIN spec 1.9 and below compatible (HTML5 for Mac API).
 * ICA compatible (HTML5 for Mac API).
 * SANE compatible (HTML5 for Linux).
@@ -126,7 +126,7 @@ npm install @types/dwt
 ```
 
 > The file **`dynamsoft.webtwain.config.js`** is used to config the package to best suite your application. You can config things like 
-> 1. The initial dimentions of the built-in viewer
+> 1. The initial dimensions of the built-in viewer
 > 2. Whether you are using the full version or the trial version
 > 3. The **product key** required to activate the package
 
@@ -141,7 +141,7 @@ Dynamsoft.WebTwainEnv.ResourcesPath = 'https://tst.dynamsoft.com/libs/dwt/15.3';
 
 ***NOTICE*** :
 
-1. If you are using the trial, the ProductKey might be expired or invalid. In this case, you can [request a trial key](https://www.dynamsoft.com/CustomerPortal/Portal/TrialLicense.aspx) and then replace the one above (Dynamsoft.WebTwainEnv.ProductKey) in **`dynamsoft.webtwain.config.js`**.
+1. If you are using the trial, the `ProductKey` might be expired or invalid. In this case, you can [request a trial key](https://www.dynamsoft.com/CustomerPortal/Portal/TrialLicense.aspx) and then replace the one above (`Dynamsoft.WebTwainEnv.ProductKey`) in **`dynamsoft.webtwain.config.js`**.
 2. To make things easier, all the required installers for the SDK(s) are being loaded from Dynamsoft Server at runtime. This is configured in the file **`dynamsoft.webtwain.config.js`** with this line of code
 
     ```javascript
@@ -150,7 +150,7 @@ Dynamsoft.WebTwainEnv.ResourcesPath = 'https://tst.dynamsoft.com/libs/dwt/15.3';
 
     The installers on the Dynamsoft server are of the trial version. Once you have done all your testing and is ready to move on to use a full version, don't forget to do the following
 
-    * Copy the full version files from a full version installation (`C:\Program Files (x86)\Dynamsoft\Dynamic Web TWAIN SDK 15.0\Resources\`), which you'll get with your purchased license, and paste them under `/node_modules/dwt/dist/` or upload these files to your own server. Uploading these files to your server is the recommended way.
+    * Copy the full version files from a full version installation (`C:\Program Files (x86)\Dynamsoft\Dynamic Web TWAIN SDK 15.0\Resources\`) which you'll get with your purchased license, and paste them under `/node_modules/dwt/dist/` if that's where you are referencing them. A more recommended way is to upload these files to your own server and use that absolute path.
     * Make sure you have set the correct full version `ProductKey` and `Trial Status` as well as correct `ResourcesPath` in the file **`dynamsoft.webtwain.config.js`**, which, you just copied over or uploaded to your server.
 
         ```javascript
@@ -165,24 +165,24 @@ Dynamsoft.WebTwainEnv.ResourcesPath = 'https://tst.dynamsoft.com/libs/dwt/15.3';
     ```html
     <script src="https://unpkg.com/dwt@15.3.0/dist/dynamsoft.webtwain.min.js"></script>
     ```
-
+    
     ```javascript
-	Dynamsoft.WebTwainEnv.AutoLoad = false;
-	Dynamsoft.WebTwainEnv.Containers = [{ ContainerId: 'dwtcontrolContainer', Width: '100%', Height: '600px' }];
-	Dynamsoft.WebTwainEnv.RegisterEvent('OnWebTwainReady', Dynamsoft_OnReady);
-	/**
-	 * In order to use the full version, do the following
-	 * 1. Change Dynamsoft.WebTwainEnv.Trial to false
-	 * 2. Replace A-Valid-Product-Key with a full version key
-	 * 3. Change Dynamsoft.WebTwainEnv.ResourcesPath to point to the full version 
-	 *    resource files that you obtain after purchasing a key
-	 */
-	Dynamsoft.WebTwainEnv.Trial = true;
-	//Dynamsoft.WebTwainEnv.ProductKey = "A-Valid-Product-Key";
-	//Dynamsoft.WebTwainEnv.ResourcesPath = "https://tst.dynamsoft.com/libs/dwt/15.3";
+    Dynamsoft.WebTwainEnv.AutoLoad = false;
+    Dynamsoft.WebTwainEnv.Containers = [{ ContainerId: 'dwtcontrolContainer', Width: '100%', Height: '600px' }];
+    Dynamsoft.WebTwainEnv.RegisterEvent('OnWebTwainReady', Dynamsoft_OnReady);
+    /**
+     * In order to use the full version, do the following
+     * 1. Change Dynamsoft.WebTwainEnv.Trial to false
+     * 2. Replace A-Valid-Product-Key with a full version key
+     * 3. Change Dynamsoft.WebTwainEnv.ResourcesPath to point to the full version 
+     *    resource files that you obtain after purchasing a key
+     */
+    Dynamsoft.WebTwainEnv.Trial = true;
+    //Dynamsoft.WebTwainEnv.ProductKey = "A-Valid-Product-Key";
+    //Dynamsoft.WebTwainEnv.ResourcesPath = "https://tst.dynamsoft.com/libs/dwt/15.3";
     ```
 
-### Step 3 Write code to use the pacakge to do a simple document scan
+### Step 3 Write code to use the package to do a simple document scan
 
 > The following code demonstrates the minimum code needed to use the package. For more sophisticated sample or demo, check out the [Sample Gallery](https://www.dynamsoft.com/Downloads/WebTWAIN-Sample-Download.aspx) and our [Github Repositories](https://github.com/dynamsoft-dwt).
 

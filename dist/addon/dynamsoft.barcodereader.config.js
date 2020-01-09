@@ -43,9 +43,9 @@ dynamsoft.dbrEnv.bAutoConnectService = false;
 (function () {
 	var p = document.location.protocol;
 	if (p !== 'https:' && p !== 'http:')
-		dynamsoft.dbrEnv.resourcesPath = "https://tst.dynamsoft.com/libs/dbr/7.1";
+		dynamsoft.dbrEnv.resourcesPath = "https://tst.dynamsoft.com/libs/dbr/7.3";
 	else
-		dynamsoft.dbrEnv.resourcesPath = "http://tst.dynamsoft.com/libs/dbr/7.1";
+		dynamsoft.dbrEnv.resourcesPath = "http://tst.dynamsoft.com/libs/dbr/7.3";
 })();
 
 // try 64bit first, default false
