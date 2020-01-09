@@ -49,11 +49,11 @@
         var DWObject, dbrObject, barcodeText = [];
         var BarcodeInfo = [{
                 desc: "All",
-                val: 503317503
+                val: -32505857
             },
             {
                 desc: "1D Barcodes",
-                val: 1023
+                val: 2047
             },
             {
                 desc: "Aztec",
@@ -222,7 +222,6 @@
                             barcodeText.push("x:" + x + "y:" + y + "<br />");
                             barcodeText.push("------------------------------<br />");
                         }
-
                         barcodeText.splice(0, 0, '<p style="padding:5px; margin:0;">');
                         barcodeText.push('</p>');
                         objDiv.innerHTML += barcodeText.join('');
