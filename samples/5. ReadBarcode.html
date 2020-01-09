@@ -173,25 +173,9 @@
                 /**
                  * Setting up the barcode reader
                  */
-                settings.mBarcodeFormatIds = BarcodeInfo[document.getElementById("barcodeformat").selectedIndex].val;
-                settings.mAntiDamageLevel = 9;
-                settings.mBarcodeInvertMode = 0;
-                settings.mBinarizationBlockSize = 0;
-                settings.mColourImageConvertMode = 0;
-                settings.mDeblurLevel = 9;
-                settings.mEnableFillBinaryVacancy = 1;
-                settings.mExpectedBarcodesCount = 512;
-                settings.mGrayEqualizationSensitivity = 0;
-                settings.mLocalizationAlgorithmPriority = "";
-                settings.mMaxAlgorithmThreadCount = 4;
-                settings.mMaxBarcodesCount = 2147483647;
-                settings.mMaxDimOfFullImageAsBarcodeZone = 262144;
-                settings.mPDFRasterDPI = 300;
-                settings.mRegionPredetectionMode = 1;
-                settings.mScaleDownThreshold = 2147483647;
-                settings.mTextFilterMode = 2;
-                settings.mTextureDetectionSensitivity = 5;
-                settings.mTimeout = 10000;
+                settings.barcodeFormatIds = BarcodeInfo[document.getElementById("barcodeformat").selectedIndex].val;
+                settings.expectedBarcodesCount = 512;
+                settings.scaleDownThreshold = 2147483647;
                 /** End of settings */
                 dbrObject.updateRuntimeSettings(settings);
                 var index = DWObject.CurrentImageIndexInBuffer;
