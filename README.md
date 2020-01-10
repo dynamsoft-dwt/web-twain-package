@@ -114,7 +114,7 @@ npm install @types/dwt
 ```
 
 ```html
-<script src="https://unpkg.com/dwt@15.3.0/dist/dynamsoft.webtwain.initiate.js"></script>
+<script src="https://unpkg.com/dwt@15.3.1/dist/dynamsoft.webtwain.initiate.js"></script>
 ```
 
 > The file **`dynamsoft.webtwain.initiate.js`** is the core of the package and must be loaded. Once you have installed the package, it can be found under *node_modules\dwt\dist*. Make sure you write the correct path for it.
@@ -163,7 +163,7 @@ Dynamsoft.WebTwainEnv.ResourcesPath = 'https://tst.dynamsoft.com/libs/dwt/15.3';
 
 
     ```html
-    <script src="https://unpkg.com/dwt@15.3.0/dist/dynamsoft.webtwain.min.js"></script>
+    <script src="https://unpkg.com/dwt@15.3.1/dist/dynamsoft.webtwain.min.js"></script>
     ```
     
     ```javascript
@@ -224,7 +224,7 @@ Dynamsoft.WebTwainEnv.ResourcesPath = 'https://tst.dynamsoft.com/libs/dwt/15.3';
 <html>
 <head>
     <title>Use Dynamic Web TWAIN to Scan</title>
-    <script src="https://unpkg.com/dwt@15.3.0/dist/dynamsoft.webtwain.min.js"></script>
+    <script src="https://unpkg.com/dwt@15.3.1/dist/dynamsoft.webtwain.min.js"></script>
 </head>
 <body>
     <input type="button" value="Scan" onclick="AcquireImage();" />
