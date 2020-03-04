@@ -1,7 +1,7 @@
 var Dynamsoft = Dynamsoft || { WebTwainEnv: {} };
 Dynamsoft.WebTwainEnv.AutoLoad = false;
 Dynamsoft.WebTwainEnv.Containers = [{ ContainerId: "dwtcontrolContainer", Width: 270, Height: 350 }];
-Dynamsoft.WebTwainEnv.ProductKey = "t00891wAAAGCDEqp3pXep9jSs4SxkUpZ3sK4saFBfTwvsARY6I1n7OShtdqbiwzd7ImYubvVFvJEGspWENXhCU6Yw1WVCseL+gB+bEyTeoAbIGbA0fliaOyfEKuo=";
+Dynamsoft.WebTwainEnv.ProductKey = "t00911wAAAFsmavKcp1aUe+caNv1t5hohGodW/S3mEEwD2LdeIGxFxRShh+FWsH+4r9ttwBA73QADJdDe5ti4iS/fVlO5TSAg+4YH2PjcwPmDMoHvgLoqnkgXRTYrMA==";
 Dynamsoft.WebTwainEnv.Trial = true;
 Dynamsoft.WebTwainEnv.IfAddMD5InUploadHeader = false;
 Dynamsoft.WebTwainEnv.IfConfineMaskWithinTheViewer = false;
