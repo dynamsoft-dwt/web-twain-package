@@ -46,23 +46,23 @@ npm install @types/dwt
 
 >`Dynamsoft Service (DynamsoftService.exe, 64bit)`
 >
->**v15.3** (build version 1, 5, 3, 0116)
+>**v15.3.1** (build version 1, 5, 3, 0116)
 >
 >`Dynamsoft Service Manager (DWASManager_15300116.dll, 64bit)`
 >
->**v15.3** (build version 15, 3, 0, 0116)
+>**v15.3.1** (build version 15, 3, 0, 0116)
 >
 >`Dynamic Web TWAIN (dwt_trial_15.3.0.0116.dll, 64bit)`
 >
->**v15.3** (build version 15, 3, 0, 0116)
+>**v15.3.1** (build version 15, 3, 0, 0116)
 >
 >`Dynamsoft PDF Rasterizer (DynamicPdfRx64_10.3.3.0924.dll, 64bit)`
 >
->**v15.3** (build version 10, 3, 3, 0924)
+>**v15.3.1** (build version 10, 3, 3, 0924)
 >
 >`Dynamsoft OCR Basic Engine (DynamicOCRx64_10.0.0.0618.dll, 64bit)`
 >
->**v15.3** (build version 10, 0, 0, 0618)
+>**v15.3.1** (build version 10, 0, 0, 0618)
 >
 >`Dynamsoft Barcode Reader (dbrx64_7.3.0.0107.dll, 64bit)`
 >
@@ -70,11 +70,11 @@ npm install @types/dwt
 >
 >`Dynamsoft Webcam Addon (DynamicWebcamx64_15.0.0.0625.dll, 64bit)`
 >
->**v15.3** (build version 15, 0, 0, 0625)
+>**v15.3.1** (build version 15, 0, 0, 0625)
 >
 >`Dynamsoft Upload Module (UploadModule_1.4.0.0107.dll, 64bit)`
 >
->**v15.3** (build version 1, 4, 0, 0107)
+>**v15.3.1** (build version 1, 4, 0, 0107)
 
 ## Included Samples
 
