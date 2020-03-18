@@ -150,7 +150,7 @@ Dynamsoft.WebTwainEnv.ResourcesPath = 'https://tst.dynamsoft.com/libs/dwt/15.3.1
 
     The installers on the Dynamsoft server are of the trial version. Once you have done all your testing and is ready to move on to use a full version, don't forget to do the following
 
-    * Copy the full version files from a full version installation (`C:\Program Files (x86)\Dynamsoft\Dynamic Web TWAIN SDK 15.0\Resources\`) which you'll get with your purchased license, and paste them under `/node_modules/dwt/dist/` if that's where you are referencing them. A more recommended way is to upload these files to your own server and use that absolute path.
+    * Copy the full version files from a full version installation (`C:\Program Files (x86)\Dynamsoft\Dynamic Web TWAIN SDK 15.3.1\Resources\`) which you'll get with your purchased license, and paste them under `/node_modules/dwt/dist/` if that's where you are referencing them. A more recommended way is to upload these files to your own server and use that absolute path.
     * Make sure you have set the correct full version `ProductKey` and `Trial Status` as well as correct `ResourcesPath` in the file **`dynamsoft.webtwain.config.js`**, which, you just copied over or uploaded to your server.
 
         ```javascript
