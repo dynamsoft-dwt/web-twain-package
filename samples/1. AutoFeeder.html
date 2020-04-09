@@ -3,8 +3,7 @@
 
 <head>
 	<title>Use Auto Feeder to scan</title>
-	<script type="text/javascript" src="../dist/dynamsoft.webtwain.initiate.js"></script>
-	<script type="text/javascript" src="../dist/dynamsoft.webtwain.config.js"></script>
+	<script type="text/javascript" src="../dist/dynamsoft.webtwain.min.js"></script>
 </head>
 
 <body>
@@ -20,7 +19,7 @@
 		window.onload = function () {
 			Dynamsoft.WebTwainEnv.Load();
 		};
-		Dynamsoft.WebTwainEnv.AutoLoad = false;
+		Dynamsoft.WebTwainEnv.ProductKey = 't0140cQMAAGnOvWTyoOR4HEFckJJmzMWpZcPSHyXGAvYGxgEkg5fBnRoFPslaAayuNOe5B/gp7plUCIUAtf6Ttb98d7Ifv/3A6Mxsu7CZLJhKHUuMorfuu/E/ZrOfuSyoMz7zjXKjgvHcMO1HiGbvyHv+GBWM54ZpP4Wej2RorGBUMJ4b4tx40yqnXlIiqvs='; //2020-04-24
 		Dynamsoft.WebTwainEnv.RegisterEvent('OnWebTwainReady', Dynamsoft_OnReady); // Register OnWebTwainReady event. This event fires as soon as Dynamic Web TWAIN is initialized and ready to be used
 
 		var DWObject;
