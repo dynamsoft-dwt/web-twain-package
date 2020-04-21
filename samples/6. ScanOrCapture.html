@@ -3,7 +3,7 @@
 
 <head>
     <title>Acquire Images From Scanners and Cameras</title>
-    <script type="text/javascript" src="../dist/dynamsoft.webtwain.min.js"></script>
+    <script src="https://unpkg.com/dwt@15.3.3-sdk/dist/dynamsoft.webtwain.min.js"></script>
 </head>
 
 <body>
@@ -95,7 +95,7 @@
             if (bShow) {
                 DWObject.Addon.Webcam.StopVideo();
                 setTimeout(function () {
-                    DWObject.Addon.Webcam.PlayVideo(DWObject, 80, function () {});
+                    DWObject.Addon.Webcam.PlayVideo(DWObject, 80, function () { });
                     isVideoOn = true;
                     document.getElementById("btn-grab").style.backgroundColor = "";
                     document.getElementById("btn-grab").disabled = "";
@@ -149,7 +149,7 @@
                 }
                 DWObject.IfShowFileDialog = true;
                 DWObject.LoadImageEx("", 5,
-                    function () {},
+                    function () { },
                     function (errorCode, errorString) {
                         alert('Load Image:' + errorString);
                     }

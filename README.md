@@ -11,7 +11,7 @@ Cross-platform cross-browser JavaScript library for web document scanning.
 ### The main package
 
 ```bash
-npm install dwt@15.3.2-sdk
+npm install dwt@15.3.3-sdk
 ```
 
 ### For TypeScript support
@@ -114,7 +114,7 @@ npm install @types/dwt
 ```
 
 ```html
-<script src="https://unpkg.com/dwt@15.3.2-sdk/dist/dynamsoft.webtwain.initiate.js"></script>
+<script src="https://unpkg.com/dwt@15.3.3-sdk/dist/dynamsoft.webtwain.initiate.js"></script>
 ```
 
 > The file **`dynamsoft.webtwain.initiate.js`** is the core of the package and must be loaded. Once you have installed the package, it can be found under *node_modules\dwt\dist*. Make sure you write the correct path for it.
@@ -163,7 +163,7 @@ Dynamsoft.WebTwainEnv.ResourcesPath = 'https://tst.dynamsoft.com/libs/dwt/15.3.1
 
 
     ```html
-    <script src="https://unpkg.com/dwt@15.3.2-sdk/dist/dynamsoft.webtwain.min.js"></script>
+    <script src="https://unpkg.com/dwt@15.3.3-sdk/dist/dynamsoft.webtwain.min.js"></script>
     ```
     
     ```javascript
@@ -224,7 +224,7 @@ Dynamsoft.WebTwainEnv.ResourcesPath = 'https://tst.dynamsoft.com/libs/dwt/15.3.1
 <html>
 <head>
     <title>Use Dynamic Web TWAIN to Scan</title>
-    <script src="https://unpkg.com/dwt@15.3.2-sdk/dist/dynamsoft.webtwain.min.js"></script>
+    <script src="https://unpkg.com/dwt@15.3.3-sdk/dist/dynamsoft.webtwain.min.js"></script>
 </head>
 <body>
     <input type="button" value="Scan" onclick="AcquireImage();" />

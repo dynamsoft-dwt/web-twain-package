@@ -3,7 +3,7 @@
 
 <head>
     <title>Use Auto Feeder to scan</title>
-    <script type="text/javascript" src="../dist/dynamsoft.webtwain.min.js"></script>
+    <script src="https://unpkg.com/dwt@15.3.3-sdk/dist/dynamsoft.webtwain.min.js"></script>
 </head>
 
 <body>
@@ -48,7 +48,7 @@
                     DWObject.Addon.PDF.SetConvertMode(EnumDWT_ConvertMode.CM_RENDERALL);
                 }
                 DWObject.LoadImageEx('', 5,
-                    function () {},
+                    function () { },
                     function (errorCode, errorString) {
                         alert('Load Image:' + errorString);
                     }
