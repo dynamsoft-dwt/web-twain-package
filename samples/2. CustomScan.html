@@ -2,99 +2,84 @@
 <html>
 
 <head>
-    <title>Use Auto Feeder to scan</title>
-    <script src="https://unpkg.com/dwt@15.3.3-sdk/dist/dynamsoft.webtwain.min.js"></script>
+  <title>Custom Scan</title>
+  <script src="../dist/dynamsoft.webtwain.min.js"></script>
 </head>
 
 <body>
-    <label for="BW">
-        <input type="radio" id="BW" name="PixelType">B&amp;W </label>
-    <label for="Gray">
-        <input type="radio" id="Gray" name="PixelType">Gray</label>
-    <label for="RGB">
-        <input type="radio" id="RGB" name="PixelType" checked="checked">Color</label>
-    |
+  <label for="BW">
+    <input type="radio" value="0" name="PixelType">B&amp;W </label>
+  <label for="Gray">
+    <input type="radio" value="1" name="PixelType">Gray</label>
+  <label for="RGB">
+    <input type="radio" value="2" name="PixelType" checked="checked">Color</label>
+  |
 
-    <label>
-        <input type="checkbox" id="ADF" checked="checked">Auto Feeder</label>
-    <label>
-        <input type="checkbox" id="ShowUI" checked="checked">Show UI
-        <br />
-    </label>
+  <label>
+    <input type="checkbox" id="ADF" checked="checked">Auto Feeder</label>
+  <label>
+    <input type="checkbox" id="ShowUI" checked="checked">Show UI
+    <br />
+  </label>
 
-    <select size="1" id="Resolution">
-        <option value="100">100</option>
-        <option value="150">150</option>
-        <option value="200">200</option>
-        <option value="300">300</option>
-    </select>
-    <select size="1" id="source" style="position: relative; width: 220px;"></select>
+  <select id="Resolution">
+    <option value="100">100</option>
+    <option value="150">150</option>
+    <option value="200">200</option>
+    <option value="300">300</option>
+  </select>
+  <select id="source" style="position: relative; width: 220px;"></select>
 
-    <input type="button" value="Scan" onclick="AcquireImage();" />
+  <input type="button" value="Scan" onclick="AcquireImage();" />
 
-    <div id="dwtcontrolContainer"></div>
-    <script type="text/javascript">
-        window.onload = function () {
-            Dynamsoft.WebTwainEnv.Load();
-        };
-        Dynamsoft.WebTwainEnv.ProductKey = 't0140cQMAAGnOvWTyoOR4HEFckJJmzMWpZcPSHyXGAvYGxgEkg5fBnRoFPslaAayuNOe5B/gp7plUCIUAtf6Ttb98d7Ifv/3A6Mxsu7CZLJhKHUuMorfuu/E/ZrOfuSyoMz7zjXKjgvHcMO1HiGbvyHv+GBWM54ZpP4Wej2RorGBUMJ4b4tx40yqnXlIiqvs='; //2020-04-24
-        Dynamsoft.WebTwainEnv.RegisterEvent('OnWebTwainReady', Dynamsoft_OnReady); // Register OnWebTwainReady event. This event fires as soon as Dynamic Web TWAIN is initialized and ready to be used
+  <div id="dwtcontrolContainer"></div>
+  <script type="text/javascript">
+    Dynamsoft.WebTwainEnv.ResourcesPath = "../dist";
+    Dynamsoft.WebTwainEnv.ProductKey = 't0068MgAAAFgW05zp85JXvbVigG3piPN2/luDlLjQF55OJy48LymLDkYdTg6jZQeQ2SJ3ODHgLtAuKCpANd+NB4SXZQg3yXE=';
+    Dynamsoft.WebTwainEnv.RegisterEvent('OnWebTwainReady', Dynamsoft_OnReady); // Register OnWebTwainReady event. This event fires as soon as Dynamic Web TWAIN is initialized and ready to be used
+    window.onload = function () {
+      Dynamsoft.WebTwainEnv.Load();
+    };
+    var DWObject;
 
-        var DWObject;
+    function Dynamsoft_OnReady() {
+      DWObject = Dynamsoft.WebTwainEnv.GetWebTwain('dwtcontrolContainer'); // Get the Dynamic Web TWAIN object that is embeded in the div with id 'dwtcontrolContainer'
+      if (DWObject) {
+        var count = DWObject.SourceCount;
+        for (var i = 0; i < count; i++)
+          document.getElementById("source").options.add(new Option(DWObject.GetSourceNameItems(i), i));
+      }
+    }
 
-        function Dynamsoft_OnReady() {
-            DWObject = Dynamsoft.WebTwainEnv.GetWebTwain('dwtcontrolContainer'); // Get the Dynamic Web TWAIN object that is embeded in the div with id 'dwtcontrolContainer'
-            if (DWObject) {
-                var count = DWObject.SourceCount;
-                for (var i = 0; i < count; i++)
-                    document.getElementById("source").options.add(new Option(DWObject.GetSourceNameItems(i), i));
-            }
-        }
-
-        function AcquireImage() {
-            if (DWObject) {
-                var OnAcquireImageSuccess, OnAcquireImageFailure;
-                OnAcquireImageSuccess = OnAcquireImageFailure = function () {
-                    DWObject.CloseSource();
-                };
-
-                DWObject.SelectSourceByIndex(document.getElementById("source").selectedIndex);
-                DWObject.OpenSource();
-                DWObject.IfDisableSourceAfterAcquire = true;
-                //Pixel type
-                if (document.getElementById("BW").checked)
-                    DWObject.PixelType = EnumDWT_PixelType.TWPT_BW;
-                else if (document.getElementById("Gray").checked)
-                    DWObject.PixelType = EnumDWT_PixelType.TWPT_GRAY;
-                else if (document.getElementById("RGB").checked)
-                    DWObject.PixelType = EnumDWT_PixelType.TWPT_RGB;
-                //If auto feeder
-                if (document.getElementById("ADF").checked)
-                    DWObject.IfFeederEnabled = true;
-                else
-                    DWObject.IfFeederEnabled = false;
-                //If show UI
-                if (document.getElementById("ShowUI").checked)
-                    DWObject.IfShowUI = true;
-                else
-                    DWObject.IfShowUI = false;
-                //Resolution
-                DWObject.Resolution = parseInt(document.getElementById("Resolution").value);
-
-                if (document.getElementById("ADF").checked && DWObject.IfFeederEnabled == true)  // if paper is NOT loaded on the feeder
-                {
-                    if (DWObject.IfFeederLoaded != true && DWObject.ErrorCode == 0) {
-                        if (confirm("No paper detected on the feeder, do you want to scan from the flatbed instead?"))
-                            DWObject.IfFeederEnabled = false;
-                        else
-                            return;
-                    }
-                }
-
-                DWObject.AcquireImage(OnAcquireImageSuccess, OnAcquireImageFailure);
-            }
-        }
-    </script>
+    function AcquireImage() {
+      if (DWObject) {
+        DWObject.SelectSourceByIndex(document.getElementById("source").selectedIndex);
+        DWObject.OpenSource();
+        var pixelType = 2;
+        document.getElementsByName("PixelType").forEach(
+          function (item) {
+            if (item.checked)
+              pixelType = item.value;
+          }
+        );
+        DWObject.AcquireImage(
+          {
+            IfShowUI: document.getElementById("ShowUI").checked,
+            IfFeederEnabled: document.getElementById("ADF").checked,
+            PixelType: pixelType,
+            Resolution: parseInt(document.getElementById("Resolution").value),
+            IfDisableSourceAfterAcquire: true
+          },
+          function () {
+            console.log("Successful!");
+          },
+          function (settings, errCode, errString) {
+            alert(errString)
+          }
+        );
+      }
+    }
+  </script>
 </body>
 
 </html>
