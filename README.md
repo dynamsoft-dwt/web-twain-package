@@ -4,14 +4,14 @@ Cross-platform cross-browser JavaScript library for web document scanning.
 
 # Overview
 
-[Dynamic Web TWAIN](https://www.dynamsoft.com/Products/WebTWAIN_Overview.aspx) is a TWAIN-based scanning SDK software specifically designed for web applications. With just a few lines of code, you can develop robust applications to scan documents from TWAIN/ICA/SANE-compatible scanners on Windows/macOS/Linux, view and edit the scanned images, then save them to a local/server file system or database. You can even use your mobile devices running iOS | iPadOS | Android with the library starting in 16.0!
+[Dynamic Web TWAIN](https://www.dynamsoft.com/Products/WebTWAIN_Overview.aspx) is a TWAIN-based scanning SDK software specifically designed for web applications. With just a few lines of code, you can develop robust applications to scan documents from TWAIN/ICA/SANE-compatible scanners on Windows/macOS/Linux, view and edit the scanned images, then save them to a local/server file system or database. You can even use your mobile devices running iOS | iPadOS | Android with the library starting in 16.0.0!
 
 ## Installation
 
 ### The main package
 
 ```bash
-npm install dwt@16.0
+npm install dwt@16.0.0
 ```
 
 ### For TypeScript support
@@ -140,23 +140,23 @@ npm install @types/dwt
 
 >`Dynamsoft Service (DynamsoftService.exe, 64bit)`
 >
->**v16.0** (build version 1, 6, 0, 0428)
+>**v16.0.0** (build version 1, 6, 0, 0428)
 >
 >`Dynamsoft Service Manager (DWASManager_16000428.dll, 64bit)`
 >
->**v16.0** (build version 16, 0, 0, 0428)
+>**v16.0.0** (build version 16, 0, 0, 0428)
 >
 >`Dynamic Web TWAIN (dwt_16.0.0.0428.dll, 64bit)`
 >
->**v16.0** (build version 16, 0, 0, 0428)
+>**v16.0.0** (build version 16, 0, 0, 0428)
 >
 >`Dynamsoft PDF Rasterizer (DynamicPdfRx64_11.0.0.0428.dll, 64bit)`
 >
->**v16.0** (build version 11, 0, 0, 0428)
+>**v16.0.0** (build version 11, 0, 0, 0428)
 >
 >`Dynamsoft OCR Basic Engine (DynamicOCRx64_10.0.0.0618.dll, 64bit)`
 >
->**v16.0** (build version 10, 0, 0, 0618)
+>**v16.0.0** (build version 10, 0, 0, 0618)
 >
 >`Dynamsoft Barcode Reader (dbrx64_7.4.0.0428.dll, 64bit)`
 >
@@ -164,11 +164,11 @@ npm install @types/dwt
 >
 >`Dynamsoft Webcam Addon (DynamicWebcamx64_15.0.0.0625.dll, 64bit)`
 >
->**v16.0** (build version 15, 0, 0, 0625)
+>**v16.0.0** (build version 15, 0, 0, 0625)
 >
 >`Dynamsoft Upload Module (UploadModule_1.6.0.0428.dll, 64bit)`
 >
->**v16.0** (build version 1, 6, 0, 0428)
+>**v16.0.0** (build version 1, 6, 0, 0428)
 
 ## Features
 
