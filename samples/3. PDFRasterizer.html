@@ -7,16 +7,22 @@
 </head>
 
 <body>
-  <input type="button" value="Scan" onclick="AcquireImage();" />
-  <input type="button" value="Load Images or PDFs" onclick="LoadImages();" />
+  <input type="button" id="acquireButton" value="Acquire" onclick="AcquireImage();" />
+  <input type="button" id="loadButton" value="Load Images or PDFs" onclick="LoadImages();" />
+  <input type="file" id="mobileFile" style="display:none" onchange="fileChanged(this)" />
   <br />
   <br />
   <div id="dwtcontrolContainer"></div>
   <script type="text/javascript">
     Dynamsoft.WebTwainEnv.ResourcesPath = "../dist";
-    Dynamsoft.WebTwainEnv.ProductKey = 't0068UwAAADuagdgRa7VZsnlpQhDMTfqnzYFmSNTBMRcfqtLVkCrNUDZHa5nolTDDu+bgQsD7/S5XpHELWPHqRpEx99YxZMY=';
+    Dynamsoft.WebTwainEnv.ProductKey = 't0068UwAAAIJDksIvUfzPY//Iv6ZsAx5Wz77bjM3jG+b5eYPPpwYOMXjvcUul8KwjD3inj95FsaYmQuZbDFJnkAr78oHCFm4=';
     Dynamsoft.WebTwainEnv.RegisterEvent('OnWebTwainReady', Dynamsoft_OnReady);
     window.onload = function () {
+      if (Dynamsoft.Lib.env.bMobile) {
+        document.getElementById('acquireButton').style.display = "none";
+        document.getElementById('loadButton').style.display = "none";
+        document.getElementById('mobileFile').style.display = "";
+      }
       Dynamsoft.WebTwainEnv.Load();
     };
     var DWObject;
@@ -62,6 +68,13 @@
           }
         );
       }
+    }
+    
+    function fileChanged(inputTarget) {
+      DWObject.LoadImageFromBinary(
+        inputTarget.files[0],
+        function () { inputTarget.value = ""; },
+        function (errCode, errString) { alert(errString); });
     }
   </script>
 </body>

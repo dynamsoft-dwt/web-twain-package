@@ -115,7 +115,7 @@ npm install @types/dwt
 
 ## Included Samples
 
-* **`AutoFeeder.html` & `CustomScan.html`**
+* **`AcquireImage.html` & `CustomScan.html`**
   * Dynamic Web TWAIN core features
 * **`PDFRasterizer.html`**:
   * Using the Rasterizer add-on to convert text-based PDF files
