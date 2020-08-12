@@ -6,9 +6,9 @@
   <script src="../dist/dynamsoft.webtwain.min.js"></script>
 </head>
 
-<body>
+<body style="padding: 30px;">
   <div id="scanOptions">
-    <label for="BW">
+    <label for="BW" >
       <input type="radio" value="0" name="PixelType">B&amp;W </label>
     <label for="Gray">
       <input type="radio" value="1" name="PixelType">Gray</label>
@@ -33,18 +33,19 @@
 
     <input type="button" value="Scan" onclick="AcquireImage();" />
   </div>
-  <input type="file" id="mobileFile" style="display:none" onchange="fileChanged(this)" />
-
+  <input type="button" id="mobileFile" value="Acquire" style="font-size: x-large;display:none" onclick="LoadImage()" />
+  <br />
   <div id="dwtcontrolContainer"></div>
   <script type="text/javascript">
     Dynamsoft.WebTwainEnv.ResourcesPath = "../dist";
-	Dynamsoft.WebTwainEnv.ProductKey = 't0102MQEAAKKT20Sgn3HOSqQJgppoDFEYAz6sbAPPF0DhJpyHp+HRiThPVRq7P8u4ea5hvRZnU2Y6D+O0JQoDCsncez16VsJiRqdRxLSY6fzqwz9Z2QAZ3nSLs4rezKdPy8YqxXYZ5D0K';
+    Dynamsoft.WebTwainEnv.ProductKey = 't0102MQEAAKKT20Sgn3HOSqQJgppoDFEYAz6sbAPPF0DhJpyHp+HRiThPVRq7P8u4ea5hvRZnU2Y6D+O0JQoDCsncez16VsJiRqdRxLSY6fzqwz9Z2QAZ3nSLs4rezKdPy8YqxXYZ5D0K';
     Dynamsoft.WebTwainEnv.RegisterEvent('OnWebTwainReady', Dynamsoft_OnReady); // Register OnWebTwainReady event. This event fires as soon as Dynamic Web TWAIN is initialized and ready to be used
     window.onload = function () {
       if (Dynamsoft.Lib.env.bMobile) {
         document.getElementById('scanOptions').style.display = "none";
         document.getElementById('mobileFile').style.display = "";
       }
+      Dynamsoft.WebTwainEnv.Containers = [{ContainerId:'dwtcontrolContainer', Width:600, Height:800}];
       Dynamsoft.WebTwainEnv.Load();
     };
     var DWObject;
@@ -88,11 +89,8 @@
       }
     }
 
-    function fileChanged(inputTarget) {
-      DWObject.LoadImageFromBinary(
-        inputTarget.files[0],
-        function () { inputTarget.value = ""; },
-        function (errCode, errString) { alert(errString); });
+    function LoadImage() {
+      DWObject.LoadImageEx('', 5);
     }
   </script>
 </body>

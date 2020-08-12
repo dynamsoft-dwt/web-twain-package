@@ -6,7 +6,7 @@
   <script src="../dist/dynamsoft.webtwain.min.js"></script>
 </head>
 
-<body>
+<body style="padding: 30px;">
   <div id="notMobile">
     <h1>Scan or Load documents and OCR them (English as an example)</h1>
     <h4>Other languages are also supported, contact support@dynamsoft.com for more info.</h4>
@@ -24,7 +24,7 @@
 
     <br />
   </div>
-  <h1 id="mobiel" style="margin:10vmin; display: none;">
+  <h1 id="mobile" style="margin:10vmin; display: none;">
     The OCR Add-on is coming to the mobile platform in a later version, stay tuned!!
   </h1>
   <script type="text/javascript">
@@ -32,15 +32,15 @@
     Dynamsoft.WebTwainEnv.ProductKey = 't0102MQEAAKKT20Sgn3HOSqQJgppoDFEYAz6sbAPPF0DhJpyHp+HRiThPVRq7P8u4ea5hvRZnU2Y6D+O0JQoDCsncez16VsJiRqdRxLSY6fzqwz9Z2QAZ3nSLs4rezKdPy8YqxXYZ5D0K';
     Dynamsoft.WebTwainEnv.RegisterEvent('OnWebTwainReady', Dynamsoft_OnReady);
     window.onload = function () {
-      if (Dynamsoft && Dynamsoft.Lib.env.bWin && Dynamsoft.Lib.product.bChromeEdition) {
+      if (Dynamsoft && Dynamsoft.Lib.env.bWin && Dynamsoft.Lib.product.bHTML5Edition && Dynamsoft.WebTwainEnv.UseLocalService) {
         Dynamsoft.WebTwainEnv.Load();
       }
       else {
         if (Dynamsoft.Lib.env.bMobile) {
           document.getElementById('notMobile').style.display = "none";
-          document.getElementById('mobiel').style.display = "";
+          document.getElementById('mobile').style.display = "";
         } else
-          alert("Please note that your current browser doesn't support the OCR add-on, please use modern browsers like Chrome, Firefox.");
+          alert("The OCR add-on doesn't work on your browser or in the WASM mode, please use modern browsers like Chrome, Firefox in the Service mode.");
       }
     };
     var DWObject;

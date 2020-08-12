@@ -2,96 +2,147 @@
 <html>
 
 <head>
-  <title>Acquire Images From Scanners and Cameras</title>
+  <title>Acquire Images</title>
   <script src="../dist/dynamsoft.webtwain.min.js"></script>
 </head>
 
-<body>
+<body style="padding: 30px;">
   <div id="notMobile">
-    <h1>Acquire Images From Scanners and Cameras</h1>
-    <select id="source"></select><br />
-    <input type="button" id="btn-switch" value="Hide Video" onclick="SwitchViews();" />
-    <input type="button" id="btn-grab" value="Acquire From a Scanner" onclick="CaptureImage();" /> Or
-    <input type="button" value="Load Images or PDFs" onclick="LoadImages();" />
+    <h1>Acquire Images</h1>
+    <label style="font-size: x-large;" id="H5CameraLabel"><input type="checkbox" id="H5Camera" />Use H5
+      Camera</label>
+    <select style="font-size: x-large;" id="source"></select><br />
+    <input type="button" id="btn-switch" style="font-size: x-large;" value="Hide Video" onclick="SwitchViews();" />
+    <input type="button" id="btn-grab" style="font-size: x-large;" value="Acquire" onclick="CaptureImage();" />
     <br />
     <br />
     <div id="dwtcontrolContainer"></div>
   </div>
-  <h1 id="mobiel" style="margin:10vmin; display: none;">
-    Camera Support is coming in versino 16.1, stay tuned!
-  </h1>
   <script type="text/javascript">
     Dynamsoft.WebTwainEnv.ResourcesPath = "../dist";
     Dynamsoft.WebTwainEnv.ProductKey = 't0102MQEAAKKT20Sgn3HOSqQJgppoDFEYAz6sbAPPF0DhJpyHp+HRiThPVRq7P8u4ea5hvRZnU2Y6D+O0JQoDCsncez16VsJiRqdRxLSY6fzqwz9Z2QAZ3nSLs4rezKdPy8YqxXYZ5D0K';
     Dynamsoft.WebTwainEnv.RegisterEvent('OnWebTwainReady', Dynamsoft_OnReady);
+    Dynamsoft.WebTwainEnv.Containers = [{ ContainerId: 'dwtcontrolContainer', Width: 600, Height: 800 }];
+    var bWASMCamera = true, bWASM = false;
     window.onload = function () {
-      if (Dynamsoft && Dynamsoft.Lib.env.bWin) {
-        Dynamsoft.WebTwainEnv.Load();
+      if (Dynamsoft.Lib.env.bMobile || Dynamsoft.WebTwainEnv.UseLocalService === false) {
+        document.getElementById("H5CameraLabel").style.display = "none";
+        bWASM = true;
       }
-      else {
-        if (Dynamsoft.Lib.env.bMobile) {
-          document.getElementById('notMobile').style.display = "none";
-          document.getElementById('mobiel').style.display = "";
-        } else
-          alert("Please note that your current browser doesn't support the OCR add-on, please use modern browsers like Chrome, Firefox.");
+      document.getElementById("H5Camera").onchange = function () {
+        sourceChanged(true);
+        bWASMCamera = document.getElementById("H5Camera").checked;
+        updateSources();
+      };
+      document.getElementById('source').onchange = function () {
+        sourceChanged();
       }
+      if (Dynamsoft && Dynamsoft.Lib.env.bWin && Dynamsoft.WebTwainEnv.UseLocalService && !document.getElementById("H5Camera").checked) {
+        bWASMCamera = false;
+      }
+      Dynamsoft.WebTwainEnv.Load();
     };
     var DWObject;
-    var webCamStartingIndex; //This is used to separate scanners and webcams
-    var DWObject;
+    var webCamStartingIndex;
     var isVideoOn = true;
+    var devices = [];
 
     function Dynamsoft_OnReady() {
       DWObject = Dynamsoft.WebTwainEnv.GetWebTwain('dwtcontrolContainer');
-      document.getElementById('source').onchange = function () {
-        if (document.getElementById('source').selectedIndex < webCamStartingIndex) {
-          DWObject.Addon.Webcam.StopVideo();
-          isVideoOn = false;
-          document.getElementById("btn-grab").style.backgroundColor = "";
-          document.getElementById('btn-grab').value = 'Acquire From a Scanner';
-          document.getElementById("btn-switch").style.display = 'none';
-        } else {
-          DWObject.Addon.Webcam.SelectSource(document.getElementById("source").options[document
-            .getElementById("source").selectedIndex].text);
-          SetIfWebcamPlayVideo(true);
-          document.getElementById('btn-grab').value = 'Acquire From a Webcam';
-          document.getElementById("btn-switch").style.display = '';
-        }
-        document.getElementById("btn-grab").disabled = "";
-      }
-      if (DWObject) {
-        if (!Dynamsoft.Lib.product.bChromeEdition) {
-          DWObject.Height = 350;
-          DWObject.Width = 270;
-        }
-        document.getElementById('source').options.length = 0;
-        var count = DWObject.SourceCount;
-        for (var i = 0; i < count; i++) {
-          document.getElementById('source').options.add(new Option(DWObject.GetSourceNameItems(i),
-            i));
-        }
-        webCamStartingIndex = i;
+      updateSources();
+    }
 
-        var arySource = DWObject.Addon.Webcam.GetSourceList();
-        for (var i = 0; i < arySource.length; i++)
-          document.getElementById("source").options.add(new Option(arySource[i]), i +
-            webCamStartingIndex); // Get Webcam Source names and put them in a drop-down box
-        document.getElementById('source').onchange();
+    function sourceChanged(closeCamera) {
+      if (closeCamera || document.getElementById('source').selectedIndex < webCamStartingIndex) {
+        if (bWASMCamera)
+          DWObject.Addon.Camera.stop();
+        else
+          DWObject.Addon.Webcam.StopVideo();
+        isVideoOn = false;
+        document.getElementById("btn-grab").style.backgroundColor = "";
+        document.getElementById('btn-grab').value = 'Acquire From a Scanner';
+        document.getElementById("btn-switch").style.display = 'none';
+      } else {
+        if (bWASMCamera)
+          DWObject.Addon.Camera.selectSource(devices[document
+            .getElementById("source").selectedIndex].deviceId);
+        else
+          DWObject.Addon.Webcam.SelectSource(devices[document
+            .getElementById("source").selectedIndex].label);
+        SetIfWebcamPlayVideo(true);
+        document.getElementById('btn-grab').value = 'Acquire From a Camera';
+        document.getElementById("btn-switch").style.display = '';
+      }
+      document.getElementById("btn-grab").disabled = "";
+    }
+
+    function showSources() {
+      var sourceElement = document.getElementById("source");
+      var i, L = sourceElement.options.length - 1;
+      for (i = L; i >= 0; i--) {
+        sourceElement.remove(i);
+      }
+      for (var i = 0; i < devices.length; i++)
+        sourceElement.options.add(new Option(devices[i].label), i);
+      sourceChanged();
+    }
+
+    function updateSources() {
+      devices = [];
+      if (DWObject) {
+        if (bWASM) {
+          webCamStartingIndex = 0;
+          DWObject.Addon.Camera.getSourceList().then(function (list) {
+            devices = list;
+            showSources();
+          });
+        } else {
+          var i = 0, scanners = DWObject.GetSourceNames();
+          for (i = 0; i < scanners.length; i++) {
+            devices.push({
+              deviceId: i,
+              label: scanners[i]
+            });
+          }
+          webCamStartingIndex = i;
+          if (bWASMCamera) {
+            DWObject.Addon.Camera.getSourceList().then(function (list) {
+              devices = devices.concat(list);
+              showSources();
+            });
+          } else {
+            var cameras = DWObject.Addon.Webcam.GetSourceList();
+            for (i = 0; i < cameras.length; i++) {
+              devices.push({
+                deviceId: webCamStartingIndex + i,
+                label: cameras[i]
+              });
+            }
+            showSources();
+          }
+        }
       }
     }
 
     function SetIfWebcamPlayVideo(bShow) {
       if (bShow) {
-        DWObject.Addon.Webcam.StopVideo();
+        if (!bWASMCamera)
+          DWObject.Addon.Webcam.StopVideo();
         setTimeout(function () {
-          DWObject.Addon.Webcam.PlayVideo(DWObject, 80, function () { });
+          if (bWASMCamera)
+            DWObject.Addon.Camera.play();
+          else
+            DWObject.Addon.Webcam.PlayVideo(DWObject, 80, function () { });
           isVideoOn = true;
           document.getElementById("btn-grab").style.backgroundColor = "";
           document.getElementById("btn-grab").disabled = "";
           document.getElementById("btn-switch").value = "Hide Video";
         }, 30);
       } else {
-        DWObject.Addon.Webcam.StopVideo();
+        if (bWASMCamera)
+          DWObject.Addon.Camera.stop();
+        else
+          DWObject.Addon.Webcam.StopVideo();
         isVideoOn = false;
         document.getElementById("btn-grab").style.backgroundColor = "#aaa";
         document.getElementById("btn-grab").disabled = "disabled";
@@ -124,24 +175,11 @@
               SetIfWebcamPlayVideo(false);
             }, 50);
           };
-          DWObject.Addon.Webcam.CaptureImage(funCaptureImage, funCaptureImage);
+          if (bWASMCamera)
+            DWObject.Addon.Camera.capture().then(function (blob) { funCaptureImage(); });
+          else
+            DWObject.Addon.Webcam.CaptureImage(funCaptureImage, funCaptureImage);
         }
-      }
-    }
-
-    function LoadImages() {
-      if (DWObject) {
-        if (DWObject.Addon && DWObject.Addon.PDF) {
-          DWObject.Addon.PDF.SetResolution(300);
-          DWObject.Addon.PDF.SetConvertMode(EnumDWT_ConvertMode.CM_RENDERALL);
-        }
-        DWObject.IfShowFileDialog = true;
-        DWObject.LoadImageEx("", 5,
-          function () { },
-          function (errorCode, errorString) {
-            alert('Load Image:' + errorString);
-          }
-        );
       }
     }
   </script>

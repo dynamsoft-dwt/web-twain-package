@@ -6,10 +6,9 @@
   <script src="../dist/dynamsoft.webtwain.min.js"></script>
 </head>
 
-<body>
-  <input type="button" id="acquireButton" value="Acquire" onclick="AcquireImage();" />
-  <input type="button" id="loadButton" value="Load Images or PDFs" onclick="LoadImages();" />
-  <input type="file" id="mobileFile" style="display:none" onchange="fileChanged(this)" />
+<body style="padding: 30px;">
+  <input type="button" style="font-size: x-large;" id="acquireButton" value="Acquire" onclick="AcquireImage();" />
+  <input type="button" style="font-size: x-large;" id="loadButton" value="Load PDFs" onclick="LoadImages();" />
   <br />
   <br />
   <div id="dwtcontrolContainer"></div>
@@ -20,9 +19,8 @@
     window.onload = function () {
       if (Dynamsoft.Lib.env.bMobile) {
         document.getElementById('acquireButton').style.display = "none";
-        document.getElementById('loadButton').style.display = "none";
-        document.getElementById('mobileFile').style.display = "";
       }
+      Dynamsoft.WebTwainEnv.Containers = [{ContainerId:'dwtcontrolContainer', Width:600, Height:800}];
       Dynamsoft.WebTwainEnv.Load();
     };
     var DWObject;
@@ -61,20 +59,13 @@
           DWObject.Addon.PDF.SetResolution(300);
           DWObject.Addon.PDF.SetConvertMode(EnumDWT_ConvertMode.CM_RENDERALL);
         }
-        DWObject.LoadImageEx('', 5,
+        DWObject.LoadImageEx('', 4,
           function () { },
           function (errorCode, errorString) {
             alert('Load Image:' + errorString);
           }
         );
       }
-    }
-
-    function fileChanged(inputTarget) {
-      DWObject.LoadImageFromBinary(
-        inputTarget.files[0],
-        function () { inputTarget.value = ""; },
-        function (errCode, errString) { alert(errString); });
     }
   </script>
 </body>

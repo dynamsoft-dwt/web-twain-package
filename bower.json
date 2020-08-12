@@ -31,7 +31,7 @@
         "document scanning",
         "SANE"
     ],
-    "license": "MIT",
+    "license": "SEE LICENSE IN LICENSE.txt",
     "homepage": "https://www.dynamsoft.com/Products/WebTWAIN_Overview.aspx",
     "ignore": [
         "**/.*",
