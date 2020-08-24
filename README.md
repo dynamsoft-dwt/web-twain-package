@@ -4,14 +4,14 @@ Cross-platform cross-browser JavaScript library for web document scanning.
 
 # Overview
 
-[Dynamic Web TWAIN](https://www.dynamsoft.com/Products/WebTWAIN_Overview.aspx) is a TWAIN-based scanning SDK software specifically designed for web applications. With just a few lines of code, you can develop robust applications to scan documents from TWAIN/ICA/SANE-compatible scanners on Windows/macOS/Linux, view and edit the scanned images, then save them to a local/server file system or database. You can even use your mobile devices running iOS | iPadOS | Android with the library starting in 16.1.1-test!
+[Dynamic Web TWAIN](https://www.dynamsoft.com/Products/WebTWAIN_Overview.aspx) is a TWAIN-based scanning SDK software specifically designed for web applications. With just a few lines of code, you can develop robust applications to scan documents from TWAIN/ICA/SANE-compatible scanners on Windows/macOS/Linux, view and edit the scanned images, then save them to a local/server file system or database. You can even use your mobile devices running iOS | iPadOS | Android with the library starting in 16.1.1!
 
 ## Installation
 
 ### The main package
 
 ```bash
-npm install dwt@16.1.1-test
+npm install dwt@16.1.1
 ```
 
 ### For TypeScript support
