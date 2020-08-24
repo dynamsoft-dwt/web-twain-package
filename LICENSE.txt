@@ -1,44 +1,43 @@
 License Agreement
 
-Revision date: 06/16/2020
-
+Revision date: 08/04/2020
 
 IMPORTANT-READ CAREFULLY: THIS IS A LEGAL AGREEMENT BETWEEN YOU AND DYNAMSOFT CORPORATION, FOR THE DYNAMSOFT SOFTWARE AND ANY ACCOMPANYING ONLINE OR ELECTRONIC DOCUMENTATION ("SOFTWARE"). BEFORE CONTINUING WITH THE INSTALLATION OF THE SOFTWARE, YOU MUST READ, ACKNOWLEDGE AND ACCEPT THE TERMS AND CONDITIONS OF THE SOFTWARE LICENSE AGREEMENT THAT FOLLOWS ("AGREEMENT"). IF YOU DO NOT ACCEPT THE TERMS AND CONDITIONS OF THE AGREEMENT, YOU MAY, WITHIN THIRTY (30) DAYS OF PURCHASE RETURN THE SOFTWARE TO THE PLACE YOU OBTAINED IT FOR A FULL REFUND.
 
 DEFINITIONS
-"Software": The "Dynamic Web TWAIN" software and its add-ons, accompanying components, parts and documentation that have been developed by Dynamsoft.
+"Application" means an end user program that the Licensee develops using the Software and into which the Redistributables are incorporated, and which contain significant additional functionality over and above the functionality contained in the Software. [Read what is counted as a single application](https://www.dynamsoft.com/Products/single-application.aspx) to learn more.
+
+"Domain" is defined as a top-level or second-level domain, for example, www.dynamsoft.com and www.dynamsoft.ca are two separate Domains, and www.dynamsoft.com and www.microsoft.com are two separate Domains; except for sites that use public domain names of multi-tenant cloud platforms, a Domain is defined as a unique subdomain such as dynamsoft.force.com.
 
 "Licensee" means the person or entity entering into this Agreement with Dynamsoft. Any person who is entering into this Agreement on behalf of an organizational entity represents that he or she has the authority to bind such entity.
 
-"Application" means an end user program that the Licensee develops using the Software and into which the Redistributables are incorporated, and which contain significant additional functionality over and above the functionality contained in the Software. Read what is counted as a single application to learn more.
-
 "Redistributables" are those runtime libraries and files intended for duplication and distribution with the Application.
 
-"Deployment License" allows Licensee to copy, deploy and redistribute the Redistributables to end users as part of the Application.
+"Server" means a device or computer that has the Software loaded into its RAM. Server includes the following: (i) a networked device with the Software installed that's accessible by multiple users who can independently operate the Software from another machine, (ii) a networked device with the Software running as a service that accepts connections from other machines or applications, (iii) a computer with the Software running to service the public or multiple users, e.g. a kiosk or a scan station, and (iv) a web server with the Software deployed that accepts end user connection to run the Software on the client machines.
 
-"Server" is defined as a computer configured with the intention of multiple users accessing it as a service, or as a background service running as an automated process. The computer has Software loaded into its RAM.
-
-"Domain" is defined as a top-level or second-level domain. For example, www.dynamsoft.com and www.dynamsoft.ca are two Domains; www.dynamsoft.com and www.microsoft.com are two Domains.
+"Software": The "Dynamic Web TWAIN" software and its add-ons, accompanying components, parts and documentation that have been developed by Dynamsoft.
 
 GRANT OF LICENSE
 Dynamsoft Corporation grants you a nonexclusive, non-transferable, and limited license to use the Software products and functionalities for which you have paid the applicable fees solely for your internal business purposes and in accordance with the terms and conditions of this Agreement. The Software is licensed, not sold, to you. If you acquire or are provided with any directories, components, connectors, utilities, data, or other items from Dynamsoft for use with the Software (the "Additional Software"), your use of the Additional Software shall be in accordance with the terms, conditions, obligations and restrictions of this Agreement. The term "Software" as used herein, shall be deemed to include the Additional Software and Third Party Products.
 
-INSTALLATION AND USE
+Installation and Use
 You may install and use the Software only in the configuration and for the number of licenses acquired by you. In order to exercise your rights to the Software under this License Agreement you must activate your copy of the Software in the manner described during the launch sequence. Dynamsoft may control the number and type of licenses and the use of the Software by keycode(s).
 
-EVALUATION/NOT FOR RESALE LICENSE
-An Evaluation or Not For Resale License may be used only for the number and type of licenses specified and for the period specified on the Software packaging, ordering or shipping documentation. Upon expiration of such specified period, the Software associated with an Evaluation or Not For Resale license will not function unless Licensee has obtained applicable full license keys. If the ordering or shipping documentation specifies a particular project, the Software may be used only with that project.
+Evaluation/Not For Resale License
+An Evaluation or Not For Resale License (NFR) may be used only for the number and type of licenses specified and for the period specified on the Software packaging, ordering or shipping documentation. Upon expiration of such specified period, the Software associated with an Evaluation or NFR License will not function unless Licensee has obtained applicable full license keys. If the ordering or shipping documentation specifies a particular project, the Software may be used only with that project.
 
-An Evaluation License may only be used for evaluation purposes and may not be used for production purposes. Notwithstanding any other provision of this Agreement, Software provided under an Evaluation or Not for Resale License are provided "AS-IS" without warranty of any kind, express or implied. An Evaluation License or Not for Resale License may be terminated by Dynamsoft Corporation upon written notice at any time.
+An Evaluation License may only be used for evaluation purposes and may not be used for production purposes. Notwithstanding any other provision of this Agreement, Software provided under an Evaluation or NFR License are provided "AS-IS" without warranty of any kind, express or implied. An Evaluation License or NFR License may be terminated by Dynamsoft Corporation upon written notice at any time.
 
-DEPLOYMENT LICENSE
-Dynamsoft provides flexible licensing for the Software. You can choose the most suitable license model for your Application. There are two license models for you to choose from: annual subscription and perpetual licensing.
+Deployment License
+A Deployment License allows copying, deployment, and distribution of the Redistributables to end users, without further distribution, as part of the Application for your internal business purposes, not for resale to external customers.
+
+The following licensing options are available:
 
 Per Server License
 
 By default, the Software is licensed on a per-Server per-Application basis.
 
-One Server License is required to deploy a single Application that uses the Software to one Server. Once a Server License has been purchased, unlimited desktops are permitted to access the Application.
+One Server License is required to deploy a single Application that uses the Software to one Server. Once a Server License has been purchased, unlimited client devices (desktop PCs, laptops, smartphones, or tablets) are permitted to access the Application.
 
 Servers apply to both physical and virtual servers, and include but not limited to production servers all of which require licensing: failover servers, development servers that are also used for testing purposes, quality assurance servers, testing servers, and staging servers. Continuous integration servers (build servers), and localhost development servers don't require additional licenses.
 
@@ -46,7 +45,7 @@ For cloud deployment, please contact sales at sales@dynamsoft.com for flexible l
 
 Per Named User License
 
-The Software can be licensed on a per-Named User per-Application basis. One Named User License allows access to a single Application by one named user. Named User Licenses are not transferrable. They can be either perpetual or annual.
+The Software can be licensed on a per-Named User per-Application basis. One Named User License allows access to a single Application by one named user. Named User Licenses are not transferrable.
 
 Named User licensing is ideal for environments that have a low user density per Server.
 
@@ -54,11 +53,10 @@ Per Domain License
 
 The Software can also be licensed on a per Domain per Application basis. With a Domain License, Licensee can deploy one Application to one Domain.
 
-Annual License Renewal
+Licensee can choose annual subscription or perpetual licensing. Unless otherwise stated in a duly executed agreement, annual subscription licenses will be valid for one year beginning with the license order date. Licensee can extend licenses for additional one-year periods (each a "Renewal Term").
 
-Annual subscription licenses will be valid for one year beginning with the license order date. Licensee can extend the licenses for additional one-year periods (each a "Renewal Term").
-
-Additional Licensing Options
+OEM License
+Licensee must execute a separate OEM License Agreement prior to deploying the Application to third-party end users, either directly or through distribution channels. This may happen when Licensee acts as an ISV, OEM, or solution provider offering the Application to the public.
 
 Additional licensing options can be discussed with sales@dynamsoft.com.
 
