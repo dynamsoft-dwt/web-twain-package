@@ -1,38 +1,49 @@
-# ![Dynamic Web TWAIN](https://www.dynamsoft.com/assets/img-icon/logo-dwt-white-300x68.png)
+# 
+
+![Dynamic Web TWAIN](https://www.dynamsoft.com/assets/img-icon/logo-dwt-white-300x68.png)
 
 Cross-platform cross-browser JavaScript library for web document scanning.
 
 # Overview
 
-[Dynamic Web TWAIN](https://www.dynamsoft.com/Products/WebTWAIN_Overview.aspx) is a TWAIN-based scanning SDK software specifically designed for web applications. With just a few lines of code, you can develop robust applications to scan documents from TWAIN/ICA/SANE-compatible scanners on Windows/macOS/Linux, view and edit the scanned images, then save them to a local/server file system or database. You can even use your mobile devices running iOS | iPadOS | Android with the library starting in 16.1.2!
+[Dynamic Web TWAIN](https://www.dynamsoft.com/Products/WebTWAIN_Overview.aspx) is a TWAIN-based scanning SDK software specifically designed for web applications. With just a few lines of code, you can develop robust applications to scan documents from TWAIN/ICA/SANE-compatible scanners on Windows/macOS/Linux, view and edit the scanned images, then save them to a local/server file system or database. You can even use your mobile devices running iOS | iPadOS | Android with the library starting in 16.1.3!
 
 ## Installation
 
 ### The main package
 
-```bash
-npm install dwt@16.1.2
+``` bash
+npm install dwt@16.1.3
 ```
 
 ### For TypeScript support
 
-```bash
+``` bash
 npm install @types/dwt
 ```
+
+## Get a License
+
+This library requires a license to work. If you don't have a valid license, you can [request one for free](https://www.dynamsoft.com/customer/license/trialLicense).
+
+To use your license, please see [Update the Product Key](https://www.dynamsoft.com/web-twain/docs/indepth/development/upgrade.html#update-the-product-key)
 
 ## Quick Start
 
 ### Step 1 Create a HTML page and load **`dynamsoft.webtwain.min.js`** into your page:
 
-```html
+``` html
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>Hello World</title>
-	<script src="dist/dynamsoft.webtwain.min.js"></script>
+    <title>Hello World</title>
+    <script src="dist/dynamsoft.webtwain.min.js"></script>
 </head>
+
 <body>
 </body>
+
 </html>
 ```
 
@@ -40,19 +51,22 @@ npm install @types/dwt
 
 ### Step 2 Add a script tag and make initial settings:
 
-```html
+``` html
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title>Hello World</title>
-  <script src="dist/dynamsoft.webtwain.min.js"></script>
+    <title>Hello World</title>
+    <script src="dist/dynamsoft.webtwain.min.js"></script>
 </head>
+
 <body>
-  <script type="text/javascript">
-    Dynamsoft.WebTwainEnv.ResourcesPath = "dist";
-    Dynamsoft.WebTwainEnv.ProductKey = 't0140cQMAA...';
-  </script>
+    <script type="text/javascript">
+        Dynamsoft.WebTwainEnv.ResourcesPath = "dist";
+        Dynamsoft.WebTwainEnv.ProductKey = 't0140cQMAA...';
+    </script>
 </body>
+
 </html>
 ```
 
@@ -65,71 +79,75 @@ npm install @types/dwt
 
 > The following code demonstrates the minimum code needed to use the package. Note the addition of HTML elements as well as JavaScript code. For more sophisticated sample or demo, check out the [Sample Gallery](https://www.dynamsoft.com/Downloads/WebTWAIN-Sample-Download.aspx) and our [Github Repositories](https://github.com/dynamsoft-dwt).
 
-```html
+``` html
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title>Hello World</title>
-  <script src="dist/dynamsoft.webtwain.min.js"></script>
+    <title>Hello World</title>
+    <script src="dist/dynamsoft.webtwain.min.js"></script>
 </head>
+
 <body>
-  <input type="button" value="Scan" onclick="AcquireImage();" />
-  <div id="dwtcontrolContainer"></div>
-  <script type="text/javascript">
-    Dynamsoft.WebTwainEnv.ResourcesPath = "dist";
-    Dynamsoft.WebTwainEnv.ProductKey = 't0068MgAAAFgW05zp85JXvbVigG3piPN2/luDlLjQF55OJy48LymLDkYdTg6jZQeQ2SJ3ODHgLtAuKCpANd+NB4SXZQg3yXE='; // Put your own key here
-    window.onload = function () {
-      Dynamsoft.WebTwainEnv.Load();
-    };
-    var DWObject;
-    function Dynamsoft_OnReady() {
-      // dwtcontrolContainer is the id of the DIV to create the WebTwain instance in.
-      DWObject = Dynamsoft.WebTwainEnv.GetWebTwain('dwtcontrolContainer');
-    }
-    function AcquireImage() {
-      if (DWObject) {
-        DWObject.SelectSource(function () {
-          DWObject.OpenSource();
-          DWObject.AcquireImage(
-            {
-              PixelType: Dynamsoft.EnumDWT_PixelType.TWPT_RGB,
-              Resolution: 200,
-              IfDisableSourceAfterAcquire: true
-            },
-            function () {
-              console.log("Successful!");
-            },
-            function (settings, errCode, errString) {
-              alert(errString)
+    <input type="button" value="Scan" onclick="AcquireImage();" />
+    <div id="dwtcontrolContainer"></div>
+    <script type="text/javascript">
+        Dynamsoft.WebTwainEnv.ResourcesPath = "dist";
+        Dynamsoft.WebTwainEnv.ProductKey = 't0068MgAAAFgW05zp85JXvbVigG3piPN2/luDlLjQF55OJy48LymLDkYdTg6jZQeQ2SJ3ODHgLtAuKCpANd+NB4SXZQg3yXE='; // Put your own key here
+        window.onload = function() {
+            Dynamsoft.WebTwainEnv.Load();
+        };
+        var DWObject;
+
+        function Dynamsoft_OnReady() {
+            // dwtcontrolContainer is the id of the DIV to create the WebTwain instance in.
+            DWObject = Dynamsoft.WebTwainEnv.GetWebTwain('dwtcontrolContainer');
+        }
+
+        function AcquireImage() {
+            if (DWObject) {
+                DWObject.SelectSource(function() {
+                    DWObject.OpenSource();
+                    DWObject.AcquireImage({
+                            PixelType: Dynamsoft.EnumDWT_PixelType.TWPT_RGB,
+                            Resolution: 200,
+                            IfDisableSourceAfterAcquire: true
+                        },
+                        function() {
+                            console.log("Successful!");
+                        },
+                        function(settings, errCode, errString) {
+                            alert(errString)
+                        }
+                    );
+                }, function() {
+                    alert('SelectSource failed!');
+                });
             }
-          );
-        }, function () {
-          alert('SelectSource failed!');
-        });
-      }
-    }
-  </script>
+        }
+    </script>
 </body>
+
 </html>
 ```
 
 ## Included Samples
 
 * **`AcquireImage.html` & `CustomScan.html`**
-  * Dynamic Web TWAIN core features
+  + Dynamic Web TWAIN core features
 * **`PDFRasterizer.html`**:
-  * Using the Rasterizer add-on to convert text-based PDF files
+  + Using the Rasterizer add-on to convert text-based PDF files
 * **`OCRADocument.html`**:
-  * Scan, Load images and then perform OCR on them (English)
+  + Scan, Load images and then perform OCR on them (English)
 * **`ReadBarcode.html`**:
-  * Scan, Load images and then read barcode off them
+  + Scan, Load images and then read barcode off them
 * **`ScanOrCapture.html`**:
-  * Scan documents from scanners or capture documents from webcams
+  + Scan documents from scanners or capture documents from webcams
 
 ## Documentation
 
-* [Developer's Guide](https://www.dynamsoft.com/docs/dwt/)
-* [API Reference](https://www.dynamsoft.com/docs/dwt/API/API-Index.html)
+* [Main Entrance](https://www.dynamsoft.com/web-twain/docs/about/index.html)
+* [API Reference](https://www.dynamsoft.com/web-twain/docs/info/api/index.html)
 * [Sample Gallery](https://www.dynamsoft.com/Downloads/WebTWAIN-Sample-Download.aspx)
 
 ## Need Help?
@@ -138,37 +156,45 @@ npm install @types/dwt
 
 ## Versions
 
->`Dynamsoft Service (DynamsoftService.exe, 64bit)`
+> `Dynamsoft Service (DynamsoftService.exe, 64bit)`
+
 >
->**v16.1.0** (build version 1, 6, 1, 0728)
+> **v16.1.0** (build version 1, 6, 1, 0728)
 >
->`Dynamsoft Service Manager (DWASManager_16000428.dll, 64bit)`
+> `Dynamsoft Service Manager (DWASManager_16000428.dll, 64bit)`
+
 >
->**v16.1.0** (build version 16, 0, 0, 0428)
+> **v16.1.0** (build version 16, 0, 0, 0428)
 >
->`Dynamic Web TWAIN (dwt_16.1.0.0728.dll, 64bit)`
+> `Dynamic Web TWAIN (dwt_16.1.0.0728.dll, 64bit)`
+
 >
->**v16.1.0** (build version 16, 1, 0, 0728)
+> **v16.1.0** (build version 16, 1, 0, 0728)
 >
->`Dynamsoft PDF Rasterizer (DynamicPdfRx64_11.0.0.0428.dll, 64bit)`
+> `Dynamsoft PDF Rasterizer (DynamicPdfRx64_11.0.0.0428.dll, 64bit)`
+
 >
->**v16.1.0** (build version 11, 0, 0, 0428)
+> **v16.1.0** (build version 11, 0, 0, 0428)
 >
->`Dynamsoft OCR Basic Engine (DynamicOCRx64_10.0.0.0618.dll, 64bit)`
+> `Dynamsoft OCR Basic Engine (DynamicOCRx64_10.0.0.0618.dll, 64bit)`
+
 >
->**v16.1.0** (build version 10, 0, 0, 0618)
+> **v16.1.0** (build version 10, 0, 0, 0618)
 >
->`Dynamsoft Barcode Reader (dbrx64_7.4.0.0428.dll, 64bit)`
+> `Dynamsoft Barcode Reader (dbrx64_7.4.0.0428.dll, 64bit)`
+
 >
->**v7.3.0** (build version 7, 4, 0, 0428)
+> **v7.3.0** (build version 7, 4, 0, 0428)
 >
->`Dynamsoft Webcam Addon (DynamicWebcamx64_15.0.0.0625.dll, 64bit)`
+> `Dynamsoft Webcam Addon (DynamicWebcamx64_15.0.0.0625.dll, 64bit)`
+
 >
->**v16.1.0** (build version 15, 0, 0, 0625)
+> **v16.1.0** (build version 15, 0, 0, 0625)
 >
->`Dynamsoft Upload Module (UploadModule_1.6.0.0428.dll, 64bit)`
+> `Dynamsoft Upload Module (UploadModule_1.6.0.0428.dll, 64bit)`
+
 >
->**v16.1.0** (build version 1, 6, 0, 0428)
+> **v16.1.0** (build version 1, 6, 0, 0428)
 
 ## Features
 
