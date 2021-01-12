@@ -1,5 +1,10 @@
 # 
 
+![version](https://img.shields.io/npm/v/dwt.svg)
+![downloads](https://img.shields.io/npm/dm/dwt.svg) 
+![jsdelivr](https://img.shields.io/jsdelivr/npm/hm/dwt.svg)
+![](https://img.shields.io/snyk/vulnerabilities/npm/dwt.svg)
+
 ![Dynamic Web TWAIN](https://www.dynamsoft.com/assets/img-icon/logo-dwt-white-300x68.png)
 
 Cross-platform cross-browser JavaScript library for web document scanning.
