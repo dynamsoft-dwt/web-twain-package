@@ -86,7 +86,7 @@ export interface Camera {
      * @param name Specify the event name.
      * @param callback The event listener.
      */
-	on(name: string, callback: (event: ViewerEvent) => void): void;
+	on(name: string, callback: (event?: any, event1?: any, event2?: any) => void): void;
     /**
      * Remove a built-in viewer event handler.
      * @param eventName Specify the event name.

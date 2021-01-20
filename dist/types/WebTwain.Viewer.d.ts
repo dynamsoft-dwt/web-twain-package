@@ -312,7 +312,7 @@ export interface DynamsoftViewer {
      * @param name Specify the event name.
      * @param callback The event listener
      */
-    on(name: string, callback: (event: ViewerEvent) => void): void;
+	on(name: string, callback: (event?: any, event1?: any, event2?: any) => void): void;
     /**
      * [Scope] Main viewer
      * [Description] Remove the event handler.
@@ -623,7 +623,7 @@ export interface ThumbnailViewer {
      * @param name Specify the event name.
      * @param callback The event listener.
      */
-    on(name: string, callback: (event: ThumbnailViewerEvent) => void): void;
+    on(name: string, callback: (event?: any, event1?: any, event2?: any) => void): void;
     /**
      * [Scope] Thumbnail viewer
      * [Description] Remove the event handler.
