@@ -134,35 +134,35 @@ npm install dwt
 
 >`Dynamsoft Service (DynamsoftService.exe, 64bit)`
 >
->**v16.2.2** (build version 1, 6, 2, 0112)
+>**v16.2** (build version 1, 6, 2, 0112)
 >
 >`Dynamsoft Service Manager (DWASManager_16200112.dll, 64bit)`
 >
->**v16.2.2** (build version 16, 2, 0, 0112)
+>**v16.2** (build version 16, 2, 0, 0112)
 >
 >`Dynamic Web TWAIN (dwt_16.2.0.0112.dll, 64bit)`
 >
->**v16.2.2** (build version 16, 2, 0, 0112)
+>**v16.2** (build version 16, 2, 0, 0112)
 >
 >`Dynamsoft PDF Rasterizer (DynamicPdfRx64_11.1.0.0112.dll, 64bit)`
 >
->**v16.2.2** (build version 11, 1, 0, 0112)
+>**v16.2** (build version 11, 1, 0, 0112)
 >
 >`Dynamsoft OCR Basic Engine (DynamicOCRx64_10.0.0.0618.dll, 64bit)`
 >
->**v16.2.2** (build version 10, 0, 0, 0618)
+>**v16.2** (build version 10, 0, 0, 0618)
 >
 >`Dynamsoft Barcode Reader (dbrx64_7.6.0.0112.dll, 64bit)`
 >
->**v7.6.0** (build version 7, 6, 0, 0112)
+>**v7.6** (build version 7, 6, 0, 0112)
 >
 >`Dynamsoft Webcam Addon (DynamicWebcamx64_15.0.0.0625.dll, 64bit)`
 >
->**v16.2.2** (build version 15, 0, 0, 0625)
+>**v16.2** (build version 15, 0, 0, 0625)
 >
 >`Dynamsoft Upload Module (UploadModule_1.6.0.0428.dll, 64bit)`
 >
->**v16.2.2** (build version 1, 6, 0, 0428)
+>**v16.2** (build version 1, 6, 0, 0428)
 
 ## Features
 
