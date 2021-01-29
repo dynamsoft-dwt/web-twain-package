@@ -14,6 +14,10 @@ Cross-platform cross-browser JavaScript library for web document scanning.
 npm install dwt
 ```
 
+### A Virtual Scanner
+
+If you do not have a physical scanner to test on Windows, you can install a virtual scanner. Read more [here](https://www.dynamsoft.com/web-twain/docs/getstarted/hardware.html?ver=latest#no-scanner-to-test).
+
 ## Quick Start
 
 ### Step 1 Create a HTML page and load **`dynamsoft.webtwain.min.js`** into your page:
