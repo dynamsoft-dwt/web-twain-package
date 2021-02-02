@@ -230,7 +230,7 @@ export interface DynamsoftViewer {
      * [Scope] Main viewer
      * [Description] Create a custom element and append it to the main viewer.
      * @param element Specify an element (not ID).
-     * @param location Whether to put the element in the main viewer. Allowed values are left, top, right, bottom.
+     * @param location Whether to put the element in the main viewer. Allowed values are "left" and "right".
      * @param ifFull Whether to display the element in full screen.
      */
     createCustomElement(element: HTMLDivElement, location?: string, ifFull?: boolean): CustomElement;
