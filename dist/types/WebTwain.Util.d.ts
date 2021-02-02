@@ -84,6 +84,10 @@ export interface WebTwainUtil {
      * Whether using ActiveX.
      */
 	isUsingActiveX(): boolean;
+	 /**
+     * Return whether this webTwain instance is in Local-Service mode or WASM mode.
+     */
+	UseLocalService: boolean;
 }
 
 export interface Authorization {
