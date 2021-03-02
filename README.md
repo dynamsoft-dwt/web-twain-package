@@ -4,7 +4,7 @@ Cross-platform cross-browser JavaScript library for web document scanning.
 
 # Overview
 
-[Dynamic Web TWAIN](https://www.dynamsoft.com/Products/WebTWAIN_Overview.aspx) is a TWAIN-based scanning SDK software specifically designed for web applications. With just a few lines of code, you can develop robust applications to scan documents from TWAIN/ICA/SANE-compatible scanners on Windows/macOS/Linux, view and edit the scanned images, then save them to a local/server file system or database. You can even use your mobile devices running iOS | iPadOS | Android with the library starting in 16.2!
+[Dynamic Web TWAIN](https://www.dynamsoft.com/web-twain/overview/) is a TWAIN-based scanning SDK software specifically designed for web applications. With just a few lines of code, you can develop robust applications to scan documents from TWAIN/ICA/SANE-compatible scanners on Windows/macOS/Linux, view and edit the scanned images, then save them to a local/server file system or database. You can even use your mobile devices running iOS | iPadOS | Android with the library starting in 16.2!
 
 ## Installation
 
@@ -57,11 +57,11 @@ If you do not have a physical scanner to test on Windows, you can install a virt
 > Note that `ResourcesPath` and `ProductKey` must be set in order to use the library. 
 
 1. `ResourcesPath` is a relative path to where you put the directory "/dist/" and all the files in it.
-2. If you don't have a valid `ProductKey`, you can [request a trial key](https://www.dynamsoft.com/CustomerPortal/Portal/TrialLicense.aspx) to use.
+2. If you don't have a valid `ProductKey`, you can [request a trial key](https://www.dynamsoft.com/customer/license/trialLicense) to use.
 
 ### Step 3 Write code to use the package to do a simple document scan
 
-> The following code demonstrates the minimum code needed to use the package. Note the addition of HTML elements as well as JavaScript code. For more sophisticated sample or demo, check out the [Sample Gallery](https://www.dynamsoft.com/Downloads/WebTWAIN-Sample-Download.aspx) and our [Github Repositories](https://github.com/dynamsoft-dwt).
+> The following code demonstrates the minimum code needed to use the package. Note the addition of HTML elements as well as JavaScript code. For more sophisticated sample or demo, check out the [Sample Gallery](https://www.dynamsoft.com/web-twain/resources/code-gallery/) and our [Github Repositories](https://github.com/dynamsoft-dwt).
 
 ```html
 <!DOCTYPE html>
@@ -126,13 +126,13 @@ If you do not have a physical scanner to test on Windows, you can install a virt
 
 ## Documentation
 
-* [Developer's Guide](https://www.dynamsoft.com/docs/dwt/)
-* [API Reference](https://www.dynamsoft.com/docs/dwt/API/API-Index.html)
-* [Sample Gallery](https://www.dynamsoft.com/Downloads/WebTWAIN-Sample-Download.aspx)
+* [Developer's Guide](https://www.dynamsoft.com/web-twain/docs/about/index.html)
+* [API Reference](https://www.dynamsoft.com/web-twain/docs/info/api/index.html)
+* [Sample Gallery](https://www.dynamsoft.com/web-twain/resources/code-gallery/)
 
 ## Need Help?
 
-[Contact Dynamsoft](https://www.dynamsoft.com/Company/Contact.aspx) to resolve any issue you encounter with the library.
+[Contact Dynamsoft](https://www.dynamsoft.com/company/contact/) to resolve any issue you encounter with the library.
 
 ## Versions
 
